@@ -406,9 +406,12 @@ margin: 5px;
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Preferred</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>40</width>
+               <width>126</width>
                <height>40</height>
               </size>
              </property>
@@ -815,7 +818,7 @@ padding: 5px;
      <x>0</x>
      <y>0</y>
      <width>918</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
