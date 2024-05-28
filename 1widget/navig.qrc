@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>709722.png</file>
+        <file>group.png</file>
+        <file>pngtree.png</file>
+        <file>poster.png</file>
+        <file>images (1).png</file>
+        <file>images (3).png</file>
+        <file>480-4808503.png</file>
+        <file>about-us-icon.png</file>
+        <file>pp.png</file>
+        <file>images (2).png</file>
+        <file>images77.png</file>
+        <file>chat-.png</file>
+    </qresource>
+    <qresource prefix="/new/prefix2"/>
+    <qresource prefix="/">
+        <file>icon-portfolio-20.png</file>
+        <file>53-530391_.png</file>
+        <file>images (5).png</file>
+        <file>pngtree-message-icon-text-png-image_2694832.jpg</file>
+        <file>885773_message_512x512.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>recaptcha-v3-splash-564x315.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>businessman-Pre.png</file>
+        <file>group.png</file>
+        <file>4photosho.png</file>
+        <file>4photoshop-icon-home-(1).png</file>
+        <file>480-4808503.png</file>
+        <file>709722.png</file>
+        <file>images (1).png</file>
+        <file>images (3).png</file>
+        <file>images (4).png</file>
+        <file>images.png</file>
+    </qresource>
+    <qresource prefix="/new/prefix2"/>
+</RCC>
