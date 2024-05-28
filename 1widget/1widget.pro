@@ -18,6 +18,7 @@ SOURCES += \
     messaging.cpp \
     mynetworkcompany.cpp \
     mynetworkuser.cpp \
+    post.cpp \
     startpage.cpp \
     verificationpage.cpp
 
@@ -30,6 +31,7 @@ HEADERS += \
     messaging.h \
     mynetworkcompany.h \
     mynetworkuser.h \
+    post.h \
     startpage.h \
     verificationpage.h
 
@@ -42,6 +44,7 @@ FORMS += \
     messaging.ui \
     mynetworkcompany.ui \
     mynetworkuser.ui \
+    post.ui \
     startpage.ui \
     verificationpage.ui
 
