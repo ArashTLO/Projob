@@ -9,9 +9,11 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    comment.cpp \
     home.cpp \
     jobscompany.cpp \
     jobsuser.cpp \
+    likelist.cpp \
     loginpage.cpp \
     main.cpp \
     me.cpp \
@@ -23,9 +25,11 @@ SOURCES += \
     verificationpage.cpp
 
 HEADERS += \
+    comment.h \
     home.h \
     jobscompany.h \
     jobsuser.h \
+    likelist.h \
     loginpage.h \
     me.h \
     messaging.h \
@@ -36,9 +40,11 @@ HEADERS += \
     verificationpage.h
 
 FORMS += \
+    comment.ui \
     home.ui \
     jobscompany.ui \
     jobsuser.ui \
+    likelist.ui \
     loginpage.ui \
     me.ui \
     messaging.ui \
