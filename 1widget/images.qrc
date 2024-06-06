@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>pishvazpic.JPG</file>
+        <file>../../../Pictures/like-3d-render-transparent-icon-png.png</file>
+    </qresource>
+    <qresource prefix="/prefix1"/>
+</RCC>
