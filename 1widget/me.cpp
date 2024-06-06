@@ -6,12 +6,17 @@
 #include "mynetworkuser.h"
 #include "jobscompany.h"
 #include "mynetworkcompany.h"
+#include <QPixmap>
+#include "verificationpage.h"
+#include "DataModel.h"
 
 me::me(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::me)
 {
     ui->setupUi(this);
+    QPixmap pix("F:/Projob/Projob/1widget/4photosho.png");
+    ui->label_img->setPixmap(pix);
 }
 
 me::~me()
@@ -73,4 +78,7 @@ void me::on_commandLinkButton_6_clicked()
     this->close();
     w3->show();
 }
+class ApplyData : public QWidget {
+    DataModel* dataModel_;
+};
 

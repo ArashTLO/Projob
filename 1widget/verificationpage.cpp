@@ -6,6 +6,8 @@
 #include "QSqlDriver"
 #include "QSqlQuery"
 #include "QSqlQueryModel"
+#include "me.h"
+#include "DataModel.h"
 
 verificationpage::verificationpage(QWidget *parent) :
     QMainWindow(parent),
@@ -25,7 +27,6 @@ verificationpage::~verificationpage()
 
 void verificationpage::on_pushButton_clicked()
 {
-
     QString s1 = ui->lineEdit->text();
     QString s2 = ui->lineEdit_2->text();
     QString s3 = ui->lineEdit_4->text();
@@ -35,7 +36,7 @@ void verificationpage::on_pushButton_clicked()
     QString s7 = ui->spinBox_3->text();
     QString s8 = ui->textEdit->toPlainText();
 
-    if(ui->lineEdit->text() == "" || ui->lineEdit_2->text() == "" || ui->lineEdit_4->text() == "" || ui->lineEdit_5->text() == "")
+    if(ui->lineEdit->text() == "" || ui->lineEdit_2->text() == "" || ui->lineEdit_4->text() == "" || ui->lineEdit_5->text() == "" || ui->lineEdit_fname->text() == "" || ui->lineEdit_lname->text() == "")
        QMessageBox::warning(this,"verification","Please complete all information");
 
     else{
@@ -46,3 +47,8 @@ void verificationpage::on_pushButton_clicked()
         w3->show();
     }
 }
+class Data : public QWidget {
+    // ...
+    DataModel* dataModel_;
+};
+

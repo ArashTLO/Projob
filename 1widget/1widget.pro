@@ -23,6 +23,7 @@ SOURCES += \
     verificationpage.cpp
 
 HEADERS += \
+    DataModel.h \
     home.h \
     jobscompany.h \
     jobsuser.h \

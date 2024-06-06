@@ -18,6 +18,8 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_lineEdit_fname_textChanged(const QString &arg1);
+
 private:
     Ui::verificationpage *ui;
 };

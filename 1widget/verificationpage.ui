@@ -660,7 +660,7 @@ background-color: rgb(255, 255, 255);
      <string>Enter firstname</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_lname_2">
+   <widget class="QLabel" name="label_fname">
     <property name="geometry">
      <rect>
       <x>40</x>
