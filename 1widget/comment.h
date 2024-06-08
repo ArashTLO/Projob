@@ -12,8 +12,13 @@ class comment : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit comment(QWidget *parent = nullptr);
+    explicit comment(QString nema,int id,QWidget *parent = nullptr);
     ~comment();
+
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::comment *ui;

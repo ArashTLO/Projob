@@ -64,5 +64,4 @@ RESOURCES += \
     images.qrc \
     navig.qrc
 
-DISTFILES += \
-    ../../../Pictures/like-3d-render-transparent-icon-png.png
+DISTFILES +=
