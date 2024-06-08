@@ -189,7 +189,8 @@ background-color: rgb(50, 50, 50);
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(54, 66, 51);</string>
+     <string notr="true">color: rgb(54,66, 51);
+</string>
     </property>
     <property name="text">
      <string>welcome to the </string>
@@ -213,7 +214,7 @@ background-color: rgb(50, 50, 50);
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(54, 66, 51);
+     <string notr="true">background-color: rgb(69,92,80);
 color: white;
 padding: 5px;
 border-radius: 10px;

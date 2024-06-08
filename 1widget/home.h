@@ -16,6 +16,12 @@ public:
     ~home();
 
 private slots:
+    void onLikeClicked(QString name,int id);
+
+    void on_likelistshow_clicked(int id);
+
+    void on_comment_Clicked(QString name,int id);
+
     void on_commandLinkButton_clicked();
 
     void on_commandLinkButton_2_clicked();

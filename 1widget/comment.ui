@@ -1,24 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>comment</class>
  <widget class="QMainWindow" name="comment">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1000</width>
+    <height>625</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Nirmala UI</family>
+    <pointsize>11</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QMenuBar" name="menubar"/>
-  <widget class="QWidget" name="centralwidget"/>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow#comment{
+background-color: rgb(192, 221, 190);
+}
+QPushButton#pushButton{
+background-color: black;
+color: white;
+font: bold 15px;
+border-radius: 10px;
+transition: 0.2s;
+}
+QPushButton#pushButton:hover {
+background-color: rgb(80,80,80);
+font: bold 17px;
+}
+QPushButton#pushButton:pressed {
+background-color: rgb(50,50,50);
+}
+QPushButton#pushButtone:focus{
+box-shadow: 0 0 5px rgba(0,0,255,0.5);
+font: bold 15px;
+Width: 150px;
+}
+QPushButton#pushButton_2{
+background-color: black;
+color: white;
+font: bold 15px;
+border-radius: 10px;
+transition: 0.2s;
+}
+QPushButton#pushButton_2:hover {
+background-color: rgb(80,80,80);
+font: bold 17px;
+}
+QPushButton#pushButton_2:pressed {
+background-color: rgb(50,50,50);
+}
+QPushButton#pushButtone_2:focus{
+box-shadow: 0 0 5px rgba(0,0,255,0.5);
+font: bold 15px;
+Width: 150px;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>100</y>
+      <width>1000</width>
+      <height>345</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/pishvazpic.JPG);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/pishvazpic.JPG</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea_2">
+    <property name="geometry">
+     <rect>
+      <x>88</x>
+      <y>307</y>
+      <width>357</width>
+      <height>274</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>120</width>
+      <height>200</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::WheelFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::PreventContextMenu</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="locale">
+     <locale language="English" country="TuvaluCountry"/>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>338</width>
+       <height>338</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QFrame" name="frame_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>200</horstretch>
+          <verstretch>200</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>310</width>
+          <height>320</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>4000</width>
+          <height>4000</height>
+         </size>
+        </property>
+        <property name="sizeIncrement">
+         <size>
+          <width>310</width>
+          <height>320</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>310</width>
+          <height>320</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);
+</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>591</x>
+      <y>530</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Add Comment</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>330</y>
+      <width>381</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 15px;
+border-radius: 10px;
+border: 1px solid #0640ff;
+padding:5px;
+margin:10px;
+</string>
+    </property>
+    <property name="documentTitle">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Write your comment in the text line </string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>20</y>
+      <width>471</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="tabletTracking">
+     <bool>false</bool>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
+    <property name="statusTip">
+     <string/>
+    </property>
+    <property name="accessibleDescription">
+     <string/>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 66, 51);</string>
+    </property>
+    <property name="title">
+     <string>post</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+    <widget class="QTextEdit" name="textEdit_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>251</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Nirmala UI</family>
+       <pointsize>-1</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: bold 15px;
+border-radius: 10px;
+border: 1px solid #0640ff;
+padding: 5px;
+margin: 5px;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>298</x>
+       <y>71</y>
+       <width>151</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 10px;
+border: 1px solid #0640ff;
+padding: 5px;
+margin: 5px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="geometry">
+      <rect>
+       <x>294</x>
+       <y>18</y>
+       <width>153</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: bold 15px;
+border-radius: 10px;
+border: 1px solid #0640ff;
+padding: 5px;
+margin: 3px;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>40</y>
+      <width>208</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Magneto</family>
+      <pointsize>26</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(52, 123, 110);
+background-color: rgb(69,92,80);
+color: white;
+padding: 5px;
+border-radius: 10px;
+border-top-left-radius: 40px;
+border-bottom-right-radius: 40px;</string>
+    </property>
+    <property name="text">
+     <string>PROJOB</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>530</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>258</y>
+      <width>311</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 66, 51);
+</string>
+    </property>
+    <property name="text">
+     <string>Comments on the top post.</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <pixmapfunction/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>
