@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     addcompany.cpp \
     comment.cpp \
+    content.cpp \
     createjob.cpp \
     home.cpp \
     jobscompany.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
 HEADERS += \
     addcompany.h \
     comment.h \
+    content.h \
     createjob.h \
     home.h \
     jobscompany.h \
