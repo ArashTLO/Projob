@@ -101,6 +101,7 @@ void loginpage::on_pushButton_clicked()
 }
 void loginpage::on_pushButton_login_clicked()
 {
+    if(!ui->lineEdit_username->text().isEmpty() && !ui->lineEdit_password->text().isEmpty()){
     QString username = ui->lineEdit_username->text();
     QString password = ui->lineEdit_password->text();
     QSqlQuery checkQuery;
@@ -119,11 +120,35 @@ void loginpage::on_pushButton_login_clicked()
         this->close();
         w3->show();
     }
-    else if(username.isEmpty() || password.isEmpty()){
-        QMessageBox::warning(this,"Login","Please enter your name and password");
-    }
     else {
         QMessageBox::warning(this, "Login", "You have not registered before, please register");
+    }
+    }
+    else if(!ui->lineEdit_C_name->text().isEmpty() && !ui->lineEdit_C_password->text().isEmpty()){
+        QString C_name = ui->lineEdit_C_name->text();
+        QString C_password = ui->lineEdit_C_password->text();
+
+        QSqlQuery checkQuery;
+        checkQuery.prepare("SELECT companey_id FROM loginCompaney WHERE C_name = :username AND C_password = :password");
+        checkQuery.bindValue(":username", C_name);
+        checkQuery.bindValue(":password", C_password);
+        checkQuery.exec();
+
+        if(ui->lineEdit_enter->text() != ui->lineEdit_generate->text()){
+            QMessageBox::warning(this,"Login","Captcha is not verified!");
+        }
+        else if(checkQuery.next()){
+            int id = checkQuery.value("companey_id").toInt(); // اینجا از این شیوه برای خواندن مقدار استفاده کنید
+            home *w3 = new home(id);
+            this->close();
+            w3->show();
+        }
+        else {
+            QMessageBox::warning(this, "Login", "You have not registered before, please register");
+        }
+    }
+    else{
+        QMessageBox::warning(this, "Login", "please enter your information in the appropriate line edit");
     }
 }
 

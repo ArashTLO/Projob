@@ -185,7 +185,7 @@ Width: 150px;
              </property>
              <property name="minimumSize">
               <size>
-               <width>10</width>
+               <width>200</width>
                <height>20</height>
               </size>
              </property>
@@ -256,17 +256,82 @@ margin: 5px;
             </spacer>
            </item>
            <item>
-            <spacer name="horizontalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+            <widget class="QLabel" name="label_username_2">
+             <property name="font">
+              <font>
+               <family>Nirmala UI</family>
+               <pointsize>8</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
              </property>
-             <property name="sizeHint" stdset="0">
+             <property name="styleSheet">
+              <string notr="true">color: rgb(54, 66, 51);</string>
+             </property>
+             <property name="text">
+              <string>Companey name:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_C_name">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>10</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
               <size>
-               <width>40</width>
+               <width>220</width>
                <height>20</height>
               </size>
              </property>
-            </spacer>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="sizeIncrement">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="baseSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Nirmala UI</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <italic>false</italic>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>Enter your name</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font: bold 15px;
+border-radius: 10px;
+border: 1px solid #0640ff;
+padding: 5px;
+margin: 5px;
+</string>
+             </property>
+             <property name="placeholderText">
+              <string>Enter the companey name</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -306,7 +371,7 @@ margin: 5px;
             <widget class="QLineEdit" name="lineEdit_password">
              <property name="minimumSize">
               <size>
-               <width>40</width>
+               <width>200</width>
                <height>45</height>
               </size>
              </property>
@@ -431,17 +496,82 @@ margin: 5px;
             </spacer>
            </item>
            <item>
-            <spacer name="horizontalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+            <widget class="QLabel" name="label_username_3">
+             <property name="font">
+              <font>
+               <family>Nirmala UI</family>
+               <pointsize>8</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
              </property>
-             <property name="sizeHint" stdset="0">
+             <property name="styleSheet">
+              <string notr="true">color: rgb(54, 66, 51);</string>
+             </property>
+             <property name="text">
+              <string>Companey password :</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_C_password">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>10</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
               <size>
-               <width>40</width>
-               <height>40</height>
+               <width>195</width>
+               <height>20</height>
               </size>
              </property>
-            </spacer>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="sizeIncrement">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="baseSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Nirmala UI</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <italic>false</italic>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>Enter your name</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font: bold 15px;
+border-radius: 10px;
+border: 1px solid #0640ff;
+padding: 5px;
+margin: 5px;
+</string>
+             </property>
+             <property name="placeholderText">
+              <string>Enter password</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
