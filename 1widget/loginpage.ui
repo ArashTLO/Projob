@@ -269,7 +269,7 @@ margin: 5px;
               <string notr="true">color: rgb(54, 66, 51);</string>
              </property>
              <property name="text">
-              <string>Companey name:</string>
+              <string>Company name:</string>
              </property>
             </widget>
            </item>
@@ -326,7 +326,7 @@ margin: 5px;
 </string>
              </property>
              <property name="placeholderText">
-              <string>Enter the companey name</string>
+              <string>Enter the company name</string>
              </property>
              <property name="clearButtonEnabled">
               <bool>false</bool>
@@ -487,9 +487,12 @@ margin: 5px;
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Expanding</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>50</width>
+               <width>80</width>
                <height>40</height>
               </size>
              </property>
@@ -509,7 +512,7 @@ margin: 5px;
               <string notr="true">color: rgb(54, 66, 51);</string>
              </property>
              <property name="text">
-              <string>Companey password :</string>
+              <string>Company password:</string>
              </property>
             </widget>
            </item>
@@ -954,7 +957,7 @@ padding: 5px;
      <x>0</x>
      <y>0</y>
      <width>918</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
