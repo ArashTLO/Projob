@@ -471,12 +471,9 @@ margin: 5px;
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Preferred</enum>
-             </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>126</width>
+               <width>120</width>
                <height>40</height>
               </size>
              </property>
@@ -488,11 +485,11 @@ margin: 5px;
               <enum>Qt::Horizontal</enum>
              </property>
              <property name="sizeType">
-              <enum>QSizePolicy::Expanding</enum>
+              <enum>QSizePolicy::Fixed</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>80</width>
+               <width>120</width>
                <height>40</height>
               </size>
              </property>

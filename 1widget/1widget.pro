@@ -25,7 +25,8 @@ SOURCES += \
     mynetworkuser.cpp \
     post.cpp \
     startpage.cpp \
-    verificationpage.cpp
+    verificationpage.cpp \
+    viewprofile.cpp
 
 HEADERS += \
     addcompany.h \
@@ -43,7 +44,8 @@ HEADERS += \
     mynetworkuser.h \
     post.h \
     startpage.h \
-    verificationpage.h
+    verificationpage.h \
+    viewprofile.h
 
 FORMS += \
     addcompany.ui \
@@ -60,7 +62,8 @@ FORMS += \
     mynetworkuser.ui \
     post.ui \
     startpage.ui \
-    verificationpage.ui
+    verificationpage.ui \
+    viewprofile.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
