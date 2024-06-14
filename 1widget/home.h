@@ -12,7 +12,7 @@ class home : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit home(int number,QWidget *parent = nullptr);
+    explicit home(int number,QString type,QWidget *parent = nullptr);
     ~home();
 
 private slots:

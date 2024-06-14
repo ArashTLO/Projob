@@ -12,7 +12,7 @@ class comment : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit comment(QString nema,int id,QWidget *parent = nullptr);
+    explicit comment(QString nema,int id,QString type,QWidget *parent = nullptr);
     ~comment();
 
 private slots:

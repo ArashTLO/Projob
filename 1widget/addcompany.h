@@ -15,6 +15,11 @@ public:
     explicit addcompany(QWidget *parent = nullptr);
     ~addcompany();
 
+private slots:
+    void on_pushButton_select_photo_clicked();
+
+    void on_pushButton_back_clicked();
+
 private:
     Ui::addcompany *ui;
 };

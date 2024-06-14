@@ -1,6 +1,5 @@
 #include <QApplication>
 #include <QMainWindow>
-#include <QLabel>
 #include <QPushButton>
 #include <QFileDialog>
 #include <QPixmap>
@@ -16,30 +15,28 @@
 #include "QByteArray"
 #include "QShowEvent"
 #include "QLabel"
-
+#include "content.h"
+#include "QJsonObject"
+#include "QJsonDocument"
+#include "QJsonArray"
+#include <QDebug>
 
 int adad_p;
-QString name_p;
-post::post(int number,QWidget *parent) :
+QString name_p,Type_p;
+QString *n;
+post::post(int number,QString type,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::post)
 {
-    //ui->label_3->setPixmap(QPixmap());
-    QSqlQuery q;
-    q.prepare("SELECT username FROM loginpage WHERE account_id = :account_id");
-    q.bindValue(":account_id", number);
-    q.exec();
-    if(q.next()){
-        name_p = q.value("username").toString();
-        numberLabel = new QLabel(name_p, this);
-        numberLabel->setGeometry(41,120,210,40);
-        numberLabel->setStyleSheet("padding:5px;background-color: rgb(132,183,190);border-radius:13px;border:3px solid rgb(52,103,110);");
-    }
+    Type_p = type;
+
+    content myContent;
+    name_p = myContent.check_type(type,number);
+    numberLabel = new QLabel(name_p, this);
+    numberLabel->setGeometry(41,120,210,40);
+    numberLabel->setStyleSheet("padding:5px;background-color: rgb(132,183,190);border-radius:13px;border:3px solid rgb(52,103,110);");
     adad_p = number;
-    //name_p = name;
-    //numberLabel = new QLabel("Received number: " + QString::number(number), this);
-    //numberLabel = new QLabel(name_p, this);
-    //numberLabel->setGeometry(90,160,300,30);
+
     connect(new loginpage, SIGNAL(sendData(int)), this, SLOT(receiveData(int)));
     ui->setupUi(this);
     QSqlDatabase database;    // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
@@ -48,48 +45,87 @@ post::post(int number,QWidget *parent) :
     database.open();
 }
 
-QString filePath;
-
+QString filePath1;
 
 post::~post()
 {
     delete ui;
 }
-
 void post::on_pushButton_clicked()
 {
     QString s1 = ui->textEdit_post->toPlainText();
 
-    QFile file(filePath);
-    if(file.open(QIODevice::ReadOnly)){
-    QByteArray imageData = file.readAll();
+    QFile imageFile(filePath1);
 
-    QSqlQuery q;
-    q.prepare("INSERT INTO post(post_text,post_image,account_id,username) VALUES(:text,:imageData,:id,:username)");
-    q.bindValue(":text",s1);
-    q.bindValue(":imageData",imageData);
-    q.bindValue(":id", adad_p);
-    q.bindValue(":username", name_p);
-    q.exec();
-    file.close();
+    if (imageFile.open(QIODevice::ReadOnly)) {
+        QByteArray imageData = imageFile.readAll();
+
+        QSqlQuery q;
+        if(Type_p == "P"){
+            q.prepare("INSERT INTO post(post_text, post_image, account_id, username) VALUES (:text, :imageData, :id, :username)");
+            q.bindValue(":text", s1);
+            q.bindValue(":imageData", imageData);
+            q.bindValue(":id", adad_p);
+            q.bindValue(":username", name_p);
+            q.exec();
+        }
+
+        else if(Type_p == "C"){
+
+        post_company mypost;
+        mypost.id_C = adad_p;
+        mypost.post_text = s1;
+        mypost.post_image = imageData;
+        mypost.post_id = mypost.nextPostid(mypost.id_C);
+
+        QJsonObject postObject;
+        postObject["post_id"] = mypost.post_id;
+        postObject["id_C"] = mypost.id_C;
+        //postObject["post_id"] = mypost.post_id;
+        postObject["post_text"] = mypost.post_text;
+        QString base64Image = QString(imageData.toBase64());
+        postObject["post_image"] = base64Image;
+
+        QSqlQuery q;
+        q.prepare("SELECT posts FROM CompanyInformation WHERE rowid = :id_company");
+        q.bindValue(":id_company", adad_p);
+
+        if(q.exec() && q.next()) {
+            QString postsString = q.value(0).toString();
+            QJsonDocument doc = QJsonDocument::fromJson(postsString.toUtf8());
+            QJsonArray postsArray = doc.array();
+            postsArray.append(postObject);
+            QJsonDocument newDoc(postsArray);
+            QString newPostsString = newDoc.toJson();
+
+            q.prepare("UPDATE CompanyInformation SET posts = :newPostsString WHERE rowid = :id_company");
+            q.bindValue(":id_company", adad_p);
+            q.bindValue(":newPostsString", newPostsString);
+
+            if (!q.exec()) {
+                qDebug() << "Error: trrrrrrr";
+            } else {
+                qDebug() << "Record updated successfully!";
+            }
+        } else {
+            qDebug() << "Error: Failed to retrieve posts from Database.";
+        }
     }
 }
-
+}
 void post::on_pushButton_2_clicked()
 {
-    filePath = QFileDialog::getOpenFileName(this,"Select Image", "", "Image Files (*.png *.jpg *.jpeg *.bmp)");
+    filePath1 = QFileDialog::getOpenFileName(this, "Select Image", "", "Image Files (*.png *.jpg *.jpeg *.bmp)");
 
-    if (!filePath.isEmpty()){
-        QPixmap pixmap(filePath);
+    if (!filePath1.isEmpty()) {
+        QPixmap pixmap(filePath1);
         ui->label_3->setPixmap(pixmap.scaled(ui->label_3->size(), Qt::KeepAspectRatio));
     }
 }
 
-
 void post::on_pushButton_3_clicked()
 {
-    home *s = new home(adad_p);
+    home *s = new home(adad_p,Type_p);
     this->close();
     s->show();
 }
-

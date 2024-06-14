@@ -67,7 +67,6 @@ font: bold 15px;
 Width: 150px;
 }
 
-
 QPushButton#pushButton_select_photo{
 background-color: black;
 color: white;
@@ -596,6 +595,11 @@ border-bottom-right-radius: 40px;
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+border-top-left-radius: 40px;
+border-bottom-right-radius: 40px;</string>
+    </property>
     <property name="text">
      <string>Back</string>
     </property>
@@ -852,6 +856,11 @@ background-color: rgb(255, 255, 255);
       <italic>false</italic>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+border-top-left-radius: 30px;
+border-bottom-right-radius: 30px;</string>
     </property>
     <property name="text">
      <string>select</string>

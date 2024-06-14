@@ -20,16 +20,18 @@
 #include "QDebug"
 #include "likelist.h"
 #include "comment.h"
+#include "QMessageBox"
 
 int adad_h;
 QVariant id;
-QString name_h;
+QString name_h,Type_h;
 
-home::home(int number,QWidget *parent) :
+home::home(int number,QString type,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::home)
 {
     ui->setupUi(this);
+    Type_h = type;
     QString name_L_or_C;
     QSqlQuery findname;
     findname.prepare("SELECT username FROM loginpage WHERE account_id = :number");
@@ -46,10 +48,10 @@ home::home(int number,QWidget *parent) :
 
 
     int frameHeight = 200;
-    int currentY = 9;
+    int currentY = 3;
 
-    ui->frame_2->setGeometry(10, 10, 500, frameHeight);
-    ui->frame_2->setStyleSheet("background-color:rgb(235, 235, 235);");
+    ui->frame_2->setGeometry(1,10, 500, frameHeight);
+    ui->frame_2->setStyleSheet("background-color:rgb(255, 255, 255);");
 
     QSqlQuery q;
     q.exec("SELECT post_text,post_image,username,post_id FROM post ORDER BY account_id");
@@ -58,7 +60,7 @@ home::home(int number,QWidget *parent) :
 
         ui->frame_2->setMinimumHeight(frameHeight);
         QGroupBox *groupBox = new QGroupBox(ui->frame_2);
-        groupBox->setGeometry(10, currentY, 510,360);
+        groupBox->setGeometry(1,currentY, 510,360);
         groupBox->setStyleSheet("background-color:rgb(255, 255, 255);");
 
         QString text = q.value(0).toString();
@@ -147,7 +149,7 @@ home::home(int number,QWidget *parent) :
 }
 
 void home::on_comment_Clicked(QString name_Comment,int id){
-    comment *w = new comment(name_Comment,id);
+    comment *w = new comment(name_Comment,id,Type_h);
     w->show();
 }
 
@@ -176,7 +178,7 @@ home::~home()
 
 void home::on_commandLinkButton_clicked()
 {
-        home *w3 = new home(adad_h);
+        home *w3 = new home(adad_h,Type_h);
         this->close();
         w3->show();
 }
@@ -214,9 +216,14 @@ void home::on_commandLinkButton_5_clicked()
 }
 void home::on_commandLinkButton_7_clicked()
 {
-    jobscompany *w3 = new jobscompany;
+    if(Type_h == "P"){
+        QMessageBox::warning(this, "home" , "Only companies can enter the desired window.");
+    }
+    else{
+    jobscompany *w3 = new jobscompany(adad_h);
     this->close();
     w3->show();
+    }
 }
 void home::on_commandLinkButton_6_clicked()
 {
@@ -228,7 +235,7 @@ void home::on_commandLinkButton_6_clicked()
 void home::on_pushButton_clicked()
 {
     //int number = o;
-    post *w3 = new post(adad_h);
+    post *w3 = new post(adad_h,Type_h);
     this->close();
     w3->show();
 }

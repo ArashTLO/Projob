@@ -10,7 +10,7 @@
 
 QString name_C;
 int id_C;
-comment::comment(QString name,int id,QWidget *parent) :
+comment::comment(QString name,int id,QString type,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::comment)
 {

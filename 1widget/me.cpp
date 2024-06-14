@@ -21,7 +21,7 @@ me::~me()
 
 void me::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(0);
+    home *w3 = new home(0,"s");
     this->close();
     w3->show();
 }
@@ -61,7 +61,7 @@ void me::on_commandLinkButton_5_clicked()
 
 void me::on_commandLinkButton_7_clicked()
 {
-    jobscompany *w3 = new jobscompany;
+    jobscompany *w3 = new jobscompany(1);
     this->close();
     w3->show();
 }

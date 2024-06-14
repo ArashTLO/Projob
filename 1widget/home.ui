@@ -20,6 +20,7 @@
    <string notr="true">QMainWindow#home{
 	background-color: rgb(255, 255, 255);
  background-color: rgb(255, 255, 255);
+
 }
 QFrame#frame{
 border-bottom: 3px solid rgb(52, 103, 110);
@@ -466,6 +467,9 @@ border-bottom-right-radius: 40px;</string>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
     <property name="locale">
      <locale language="English" country="TuvaluCountry"/>
     </property>
@@ -566,7 +570,6 @@ background-color: rgb(235, 235, 235);</string>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
   <include location="navig.qrc"/>

@@ -14,10 +14,35 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QFrame#frame{
+   <string notr="true">QMainWindow{
+	background-color: rgb(255, 255, 255);
+ background-color: rgb(255, 255, 255);
+
+}
+QFrame#frame{
+background-color: rgb(255, 255, 255);
 border-bottom: 3px solid rgb(52, 103, 110);
 }
-</string>
+QPushButton#pushButton{
+background-color: rgb(52, 103, 110);
+color: white;
+font: bold 17px;
+border-radius: 10px;
+transition: 0.2s;
+}
+QPushButton#pushButton:hover {
+background-color: rgb(72, 123, 130);
+font: bold 19px;
+}
+QPushButton#pushButton:pressed {
+background-color: rgb(62, 113, 120);
+}
+QPushButton#pushButtone:focus{
+background-color: rgb(62, 113, 120);
+box-shadow: 0 0 5px rgba(0,0,255,0.5);
+font: bold 19px;
+Width: 150px;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="frame">
@@ -371,6 +396,36 @@ color: rgb(0, 0, 0);</string>
        <normaloff>:/icon-portfolio-20.png</normaloff>:/icon-portfolio-20.png</iconset>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>80</y>
+      <width>191</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+color: white;
+padding: 5px;
+border-radius: 10px;
+border-top-left-radius: 40px;
+border-bottom-right-radius: 40px;</string>
+    </property>
+    <property name="text">
+     <string>Create Job</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -12,8 +12,13 @@ class createjob : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit createjob(QWidget *parent = nullptr);
+    explicit createjob(int number,QWidget *parent = nullptr);
     ~createjob();
+
+private slots:
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::createjob *ui;

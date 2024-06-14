@@ -7,13 +7,15 @@
 #include "jobsuser.h"
 #include "me.h"
 #include "messaging.h"
+#include "createjob.h"
 
-
-jobscompany::jobscompany(QWidget *parent) :
+int adad_j_c;
+jobscompany::jobscompany(int number,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::jobscompany)
 {
     ui->setupUi(this);
+    adad_j_c = number;
 }
 
 jobscompany::~jobscompany()
@@ -23,7 +25,7 @@ jobscompany::~jobscompany()
 
 void jobscompany::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(0);
+    home *w3 = new home(0,"s");
     this->close();
     w3->show();
 }
@@ -49,7 +51,7 @@ void jobscompany::on_commandLinkButton_3_clicked()
 
 void jobscompany::on_commandLinkButton_7_clicked()
 {
-    jobscompany *w3 = new jobscompany;
+    jobscompany *w3 = new jobscompany(adad_j_c);
     this->close();
     w3->show();
 }
@@ -76,5 +78,13 @@ void jobscompany::on_commandLinkButton_6_clicked()
     mynetworkcompany *w3 = new mynetworkcompany;
     this->close();
     w3->show();
+}
+
+
+void jobscompany::on_pushButton_clicked()
+{
+    createjob *w = new createjob(adad_j_c);
+    this->close();
+    w->show();
 }
 

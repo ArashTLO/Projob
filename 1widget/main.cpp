@@ -11,11 +11,11 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 
-    loginpage loginpage;
-    loginpage.show();
-    int number = loginpage.getNumber();
-    post post(number);
-    post.show();
+    //loginpage loginpage;
+    //loginpage.show();
+   // int number = loginpage.getNumber();
+   // post post(number);
+   // post.show();
 }
 
 /*

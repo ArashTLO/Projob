@@ -12,7 +12,7 @@ class jobscompany : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit jobscompany(QWidget *parent = nullptr);
+    explicit jobscompany(int number,QWidget *parent = nullptr);
     ~jobscompany();
 
 private slots:
@@ -29,6 +29,8 @@ private slots:
     void on_commandLinkButton_5_clicked();
 
     void on_commandLinkButton_6_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::jobscompany *ui;
