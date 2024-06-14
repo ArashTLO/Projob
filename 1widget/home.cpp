@@ -20,7 +20,11 @@
 #include "QDebug"
 #include "likelist.h"
 #include "comment.h"
+<<<<<<< HEAD
 #include "QMessageBox"
+=======
+#include "viewprofile.h"
+>>>>>>> 36168f9dbb790d21d7f814422640d74ba625a696
 
 int adad_h;
 QVariant id;
@@ -239,4 +243,3 @@ void home::on_pushButton_clicked()
     this->close();
     w3->show();
 }
-
