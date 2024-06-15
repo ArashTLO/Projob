@@ -52,8 +52,7 @@ mynetworkcompany::mynetworkcompany(QWidget *parent) :
                     // Display the post text and image
                     qDebug() << "Post ID: " << postId;
                     qDebug() << "Post Text: " << postText;
-                    ui->label_2->setText(postText);
-                    ui->label_3->setPixmap(pixmap.scaled(ui->label_3->size(), Qt::KeepAspectRatio));
+
                 }
             }
         } else {

@@ -23,7 +23,7 @@ viewprofile::~viewprofile()
 
 void viewprofile::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(0);
+    home *w3 = new home(0,"c");
     this->close();
     w3->show();
 }
@@ -47,7 +47,7 @@ void viewprofile::on_commandLinkButton_3_clicked()
 
 void viewprofile::on_commandLinkButton_7_clicked()
 {
-    jobscompany *w3 = new jobscompany;
+    jobscompany *w3 = new jobscompany(0);
     this->close();
     w3->show();
 }
@@ -81,7 +81,7 @@ void viewprofile::on_commandLinkButton_6_clicked()
 
 void viewprofile::on_pushButton_3_clicked()
 {
-    home *w3 = new home(0);
+    home *w3 = new home(0,"c");
     this->close();
     w3->show();
 }

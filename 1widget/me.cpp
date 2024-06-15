@@ -2,16 +2,16 @@
 #include "ui_me.h"
 #include "home.h"
 #include "jobsuser.h"
+#include "jobscompany.h"
 #include "messaging.h"
 #include "mynetworkuser.h"
-#include "jobscompany.h"
 #include "mynetworkcompany.h"
-
+#include "addcompany.h"
 me::me(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::me)
 {
-
+    ui->setupUi(this);
 }
 
 me::~me()
@@ -43,6 +43,14 @@ void me::on_commandLinkButton_3_clicked()
 }
 
 
+void me::on_commandLinkButton_7_clicked()
+{
+    jobscompany *w3 = new jobscompany(1);
+    this->close();
+    w3->show();
+}
+
+
 void me::on_commandLinkButton_4_clicked()
 {
     messaging *w3 = new messaging;
@@ -59,17 +67,17 @@ void me::on_commandLinkButton_5_clicked()
 }
 
 
-void me::on_commandLinkButton_7_clicked()
+void me::on_commandLinkButton_6_clicked()
 {
-    jobscompany *w3 = new jobscompany(1);
+    mynetworkcompany *w3 = new mynetworkcompany;
     this->close();
     w3->show();
 }
 
 
-void me::on_commandLinkButton_6_clicked()
+void me::on_pushButton_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany;
+    addcompany *w3 = new addcompany;
     this->close();
     w3->show();
 }
