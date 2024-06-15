@@ -105,18 +105,6 @@ public:
         } else {
             qDebug() << "Record updated successfully!";
         }
-
-        /*
-        q.prepare("UPDATE CompanyInformation SET jobs = :newJobsString WHERE rowid = :id_company");
-        q.bindValue(":id_company",id_company);
-        q.bindValue(":newJobsString", newJobsString);
-
-        if (!q.exec()) {
-            qDebug() << "Error: ";
-        } else {
-            qDebug() << "Record updated successfully!";
-        }*/
-
             } else {
             qDebug() << "Error: Failed to retrieve jobs from Database.";
             }
