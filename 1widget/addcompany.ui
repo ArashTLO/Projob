@@ -137,7 +137,7 @@ background-color: rgb(255, 255, 255);
      <string notr="true">color: rgb(54, 66, 51);</string>
     </property>
     <property name="text">
-     <string>Companey name :</string>
+     <string>Company name :</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_username_2">
@@ -415,7 +415,7 @@ border-bottom-right-radius: 40px;
      <x>0</x>
      <y>0</y>
      <width>918</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
