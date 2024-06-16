@@ -18,9 +18,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow#home{
-	background-color: rgb(255, 255, 255);
  background-color: rgb(255, 255, 255);
-
 }
 QFrame#frame{
 border-bottom: 3px solid rgb(52, 103, 110);
@@ -439,7 +437,7 @@ border-bottom-right-radius: 40px;</string>
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>140</y>
+      <y>150</y>
       <width>550</width>
       <height>430</height>
      </rect>
@@ -487,7 +485,7 @@ border-bottom-right-radius: 40px;</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>534</width>
+       <width>531</width>
        <height>468</height>
       </rect>
      </property>
@@ -537,9 +535,9 @@ background-color: rgb(235, 235, 235);</string>
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>80</y>
+      <y>90</y>
       <width>141</width>
-      <height>51</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -566,7 +564,7 @@ background-color: rgb(235, 235, 235);</string>
      <x>0</x>
      <y>0</y>
      <width>1150</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

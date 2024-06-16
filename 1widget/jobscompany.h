@@ -16,6 +16,11 @@ public:
     ~jobscompany();
 
 private slots:
+
+    void on_accept_clicked(int number,int id_user, int id_job);
+
+    void on_ignor_clicked(int number,int id_user, int id_job);
+
     void on_commandLinkButton_clicked();
 
     void on_commandLinkButton_2_clicked();

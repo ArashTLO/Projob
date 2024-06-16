@@ -12,15 +12,20 @@ class jobsuser : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit jobsuser(QWidget *parent = nullptr);
+    explicit jobsuser(int number,QWidget *parent = nullptr);
     ~jobsuser();
 
 private slots:
+
+    QString check_request(int id_Man, int id_com, int id_job);
+
+    void on_apply_clicked(int i_Man, int i_com, int i_job, QString situation);
+
     void on_commandLinkButton_clicked();
 
     void on_commandLinkButton_2_clicked();
 
-    void on_commandLinkButton_3_clicked();
+    //void on_commandLinkButton_3_clicked();
 
     void on_commandLinkButton_4_clicked();
 

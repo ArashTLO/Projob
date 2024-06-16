@@ -20,9 +20,7 @@
 #include "QDebug"
 #include "likelist.h"
 #include "comment.h"
-
 #include "QMessageBox"
-
 #include "viewprofile.h"
 
 
@@ -198,7 +196,7 @@ void home::on_commandLinkButton_2_clicked()
 
 void home::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser;
+    jobsuser *w3 = new jobsuser(adad_h);
     this->close();
     w3->show();
 }

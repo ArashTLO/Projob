@@ -407,7 +407,7 @@ background-color: rgb(255, 255, 255);
 </string>
     </property>
     <property name="placeholderText">
-     <string>Enter recent company</string>
+     <string>Enter your skills</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -479,7 +479,7 @@ background-color: rgb(255, 255, 255);
      <string notr="true">color: rgb(54, 66, 51);</string>
     </property>
     <property name="text">
-     <string>Most recent company :</string>
+     <string>Skills :</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">

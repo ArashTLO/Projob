@@ -72,44 +72,8 @@ void post::on_pushButton_clicked()
 
         else if(Type_p == "C"){
 
-        post_company mypost;
-        mypost.id_C = adad_p;
-        mypost.post_text = s1;
-        mypost.post_image = imageData;
-        mypost.post_id = mypost.nextPostid(mypost.id_C);
-
-        QJsonObject postObject;
-        postObject["post_id"] = mypost.post_id;
-        postObject["id_C"] = mypost.id_C;
-        //postObject["post_id"] = mypost.post_id;
-        postObject["post_text"] = mypost.post_text;
-        QString base64Image = QString(imageData.toBase64());
-        postObject["post_image"] = base64Image;
-
-        QSqlQuery q;
-        q.prepare("SELECT posts FROM CompanyInformation WHERE rowid = :id_company");
-        q.bindValue(":id_company", adad_p);
-
-        if(q.exec() && q.next()) {
-            QString postsString = q.value(0).toString();
-            QJsonDocument doc = QJsonDocument::fromJson(postsString.toUtf8());
-            QJsonArray postsArray = doc.array();
-            postsArray.append(postObject);
-            QJsonDocument newDoc(postsArray);
-            QString newPostsString = newDoc.toJson();
-
-            q.prepare("UPDATE CompanyInformation SET posts = :newPostsString WHERE rowid = :id_company");
-            q.bindValue(":id_company", adad_p);
-            q.bindValue(":newPostsString", newPostsString);
-
-            if (!q.exec()) {
-                qDebug() << "Error: trrrrrrr";
-            } else {
-                qDebug() << "Record updated successfully!";
-            }
-        } else {
-            qDebug() << "Error: Failed to retrieve posts from Database.";
-        }
+        POST mypost(adad_p,s1,imageData);
+        mypost.posting_company();
     }
 }
 }

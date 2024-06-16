@@ -9,6 +9,9 @@
 #include "QSqlDriver"
 #include "QSqlQuery"
 #include "QSqlQueryModel"
+#include "QByteArray"
+#include "QShowEvent"
+#include "QFile"
 
 class content : public QObject
 {
@@ -26,40 +29,23 @@ signals:
 
 };
 
-class post_company{
+class POST{
 public:
     int id_C;
     QString post_text;
     QByteArray post_image;
     int post_id;
 
-    int nextPostid(int id_C){
-            QSqlDatabase database;
-            database = QSqlDatabase::addDatabase("QSQLITE");
-            database.setDatabaseName("d:\\DB_project.db");
-            if(!database.open()){
-                qDebug() << "hhhhhhhhhHHH ";
-                return -1;
-            }
-            QSqlQuery q;
-            q.prepare("SELECT CASE WHEN EXISTS (SELECT * FROM CompanyInformation WHERE id_C = :id_C) THEN MAX(post_id) ELSE 0 END FROM CompanyInformation WHERE id_C = :id_C");
-            q.bindValue(":id_C", id_C);
-            if(q.exec()){
-             while(q.next()){
-                qDebug() << "OK";
-                return q.value(0).toInt() + 1;
-            }
-            } else {
-                qDebug() << "Error: not found.";
-                return 1;
-            }
-            return 0;
-        }
+    POST(int i_c, QString p_text, QByteArray p_image){
+        id_C = i_c;
+        post_text = p_text;
+        post_image = p_image;
+    }
+    void posting_company();
 };
 
 
 class job{
-
     QString skills;
     QString address;
     int salary;
@@ -67,7 +53,19 @@ class job{
     QString job_name;
     QString job_type;
     int id_company;
+
 public:
+    void job_build();
+    void Delete_request(int id_com,int id_job,int id_user);
+    job(){
+        skills = "";
+        address = "";
+        salary = 0;
+        workPlace_type = "";
+        job_name = "";
+        job_type = "";
+        id_company = 0;
+    }
     job(QString sk,QString ad,int sa,QString wo,QString jn,QString jt,int id_c){
         skills = sk;
         address = ad;
@@ -77,39 +75,6 @@ public:
         job_type = jt;
         id_company = id_c;
     }
-    void job_build(){
-
-    QJsonObject jobObject;
-    jobObject["job_name"] = job_name;
-    jobObject["address"] = address;
-    jobObject["salary"] = salary;
-    jobObject["skills"] = skills;
-    jobObject["job_type"] = job_type;
-    jobObject["workPlace_type"] = workPlace_type;
-
-    QSqlQuery q;
-    q.prepare("SELECT jobs FROM CompanyInformation WHERE rowid = :id_company");
-    q.bindValue(":id_company", id_company);
-
-    if(q.exec() && q.next()) {
-        QString jobsString = q.value(0).toString();
-        QJsonDocument doc = QJsonDocument::fromJson(jobsString.toUtf8());
-        QJsonArray jobsArray = doc.array();
-        jobsArray.append(jobObject);
-        QJsonDocument newDoc(jobsArray);
-        //QString newJobsString = newDoc.toJson();
-        QString newJobsString = newDoc.toJson();
-        QString updateQuery = QString("UPDATE CompanyInformation SET jobs = '%1' WHERE rowid = %2").arg(newJobsString).arg(id_company);
-        if (!q.exec(updateQuery)) {
-            qDebug() << "Error: ";
-        } else {
-            qDebug() << "Record updated successfully!";
-        }
-            } else {
-            qDebug() << "Error: Failed to retrieve jobs from Database.";
-            }
-    }
-
     };
 
 #endif // CONTENT_H

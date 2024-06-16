@@ -83,7 +83,7 @@ void mynetworkcompany::on_commandLinkButton_2_clicked()
 
 void mynetworkcompany::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser;
+    jobsuser *w3 = new jobsuser(0);
     this->close();
     w3->show();
 }
