@@ -485,7 +485,7 @@ border-bottom-right-radius: 40px;</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>531</width>
+       <width>534</width>
        <height>468</height>
       </rect>
      </property>
@@ -564,7 +564,7 @@ background-color: rgb(235, 235, 235);</string>
      <x>0</x>
      <y>0</y>
      <width>1150</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
