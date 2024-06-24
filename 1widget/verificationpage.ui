@@ -140,7 +140,7 @@ Width: 150px;
     <property name="checkable">
      <bool>false</bool>
     </property>
-    <widget class="QLineEdit" name="lineEdit_4">
+    <widget class="QLineEdit" name="lineEdit_school">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -184,7 +184,7 @@ Width: 150px;
       <string notr="true">Enter your school or college name</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox_2">
+    <widget class="QSpinBox" name="spinBox_start_year">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -200,7 +200,7 @@ Width: 150px;
       <number>2024</number>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox_3">
+    <widget class="QSpinBox" name="spinBox_end_year">
      <property name="geometry">
       <rect>
        <x>250</x>
@@ -289,102 +289,11 @@ Width: 150px;
      </property>
     </widget>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>280</y>
-      <width>241</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Nirmala UI</family>
-      <pointsize>-1</pointsize>
-      <weight>75</weight>
-      <italic>false</italic>
-      <bold>true</bold>
-      <kerning>false</kerning>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: bold 15px;
-border-radius: 8px;
-border: 1px solid #0640ff;
-padding: 5px;
-</string>
-    </property>
-    <property name="placeholderText">
-     <string>Please enter your address</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_5">
+   <widget class="QLineEdit" name="lineEdit_skills">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>300</y>
-      <width>211</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Nirmala UI</family>
-      <pointsize>-1</pointsize>
-      <weight>75</weight>
-      <italic>false</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: bold 15px;
-border-radius: 8px;
-border: 1px solid #0640ff;
-padding: 5px;
-background-color: rgb(255, 255, 255);
-</string>
-    </property>
-    <property name="placeholderText">
-     <string>Enter recent job title </string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>360</y>
-      <width>211</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Nirmala UI</family>
-      <pointsize>-1</pointsize>
-      <weight>75</weight>
-      <italic>false</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-font: bold 15px;
-border-radius: 8px;
-border: 1px solid #0640ff;
-padding: 5px;
-background-color: rgb(255, 255, 255);
-</string>
-    </property>
-    <property name="placeholderText">
-     <string>Enter employment type</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>420</y>
+      <y>410</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -414,7 +323,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>270</y>
+      <y>310</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -431,38 +340,14 @@ background-color: rgb(255, 255, 255);
      <string notr="true">color: rgb(54, 66, 51);</string>
     </property>
     <property name="text">
-     <string>Most recent job title :</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>330</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Nirmala UI</family>
-      <pointsize>9</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(54, 66, 51);</string>
-    </property>
-    <property name="text">
-     <string>Employment type :</string>
+     <string>Email :</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>390</y>
+      <y>380</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -485,8 +370,8 @@ background-color: rgb(255, 255, 255);
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>370</y>
+      <x>690</x>
+      <y>270</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -512,36 +397,12 @@ background-color: rgb(255, 255, 255);
      <string>Birth date :</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>250</y>
-      <width>51</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Nirmala UI</family>
-      <pointsize>9</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(54, 66, 51);</string>
-    </property>
-    <property name="text">
-     <string>Address :</string>
-    </property>
-   </widget>
    <widget class="QDateEdit" name="dateEdit">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>400</y>
-      <width>121</width>
+      <x>690</x>
+      <y>300</y>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
@@ -580,7 +441,7 @@ border-bottom-right-radius: 40px;
    <widget class="QPushButton" name="pushButton_back">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>690</x>
       <y>460</y>
       <width>171</width>
       <height>51</height>
@@ -608,7 +469,7 @@ border-bottom-right-radius: 40px;</string>
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>240</y>
+      <y>270</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -631,14 +492,14 @@ background-color: rgb(255, 255, 255);
 </string>
     </property>
     <property name="placeholderText">
-     <string>Enter lastname</string>
+     <string>Enter last name</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_lname">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>210</y>
+      <y>240</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -662,7 +523,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>180</y>
+      <y>200</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -685,14 +546,14 @@ background-color: rgb(255, 255, 255);
 </string>
     </property>
     <property name="placeholderText">
-     <string>Enter firstname</string>
+     <string>Enter first name</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_lname_2">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>150</y>
+      <y>170</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -716,7 +577,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>120</y>
+      <y>130</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -746,7 +607,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>90</y>
+      <y>100</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -823,10 +684,10 @@ background-color: rgb(255, 255, 255);
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>280</y>
-      <width>141</width>
-      <height>111</height>
+      <x>440</x>
+      <y>270</y>
+      <width>211</width>
+      <height>181</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -842,10 +703,10 @@ background-color: rgb(255, 255, 255);
    <widget class="QPushButton" name="pushButton_select_photo">
     <property name="geometry">
      <rect>
-      <x>765</x>
-      <y>400</y>
+      <x>440</x>
+      <y>460</y>
       <width>71</width>
-      <height>41</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -859,11 +720,94 @@ background-color: rgb(255, 255, 255);
     </property>
     <property name="styleSheet">
      <string notr="true">border-radius: 10px;
-border-top-left-radius: 30px;
-border-bottom-right-radius: 30px;</string>
+</string>
     </property>
     <property name="text">
      <string>select</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_email">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>340</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 15px;
+border-radius: 8px;
+border: 1px solid #0640ff;
+padding: 5px;
+background-color: rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="placeholderText">
+     <string>Enter your email</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>450</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 66, 51);</string>
+    </property>
+    <property name="text">
+     <string>nationality :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_na">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>480</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 15px;
+border-radius: 8px;
+border: 1px solid #0640ff;
+padding: 5px;
+background-color: rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="placeholderText">
+     <string>Enter your nationality</string>
     </property>
    </widget>
   </widget>

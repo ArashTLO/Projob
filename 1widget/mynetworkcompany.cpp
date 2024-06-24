@@ -16,7 +16,7 @@
 #include "QJsonArray"
 #include <QDebug>
 
-
+int adad_m_c;
 mynetworkcompany::mynetworkcompany(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::mynetworkcompany)
@@ -75,7 +75,7 @@ void mynetworkcompany::on_commandLinkButton_clicked()
 
 void mynetworkcompany::on_commandLinkButton_2_clicked()
 {
-    me *w3 = new me;
+    me *w3 = new me(adad_m_c,"C");
     this->close();
     w3->show();
 }

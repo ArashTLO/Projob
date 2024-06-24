@@ -31,7 +31,7 @@ void viewprofile::on_commandLinkButton_clicked()
 
 void viewprofile::on_commandLinkButton_2_clicked()
 {
-    me *w3 = new me;
+    me *w3 = new me(0,"");
     this->close();
     w3->show();
 }

@@ -87,7 +87,7 @@ Width: 150px;
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>110</y>
+      <y>90</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -120,7 +120,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>80</y>
+      <y>60</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -144,7 +144,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>320</y>
+      <y>380</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -168,7 +168,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>160</y>
+      <y>220</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -192,7 +192,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>240</y>
+      <y>300</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -216,7 +216,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>190</y>
+      <y>250</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -246,7 +246,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>270</y>
+      <y>330</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -276,7 +276,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>350</y>
+      <y>410</y>
       <width>241</width>
       <height>81</height>
      </rect>
@@ -408,6 +408,60 @@ border-bottom-right-radius: 40px;
      <string>PORJOB</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_username_5">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>140</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 66, 51);</string>
+    </property>
+    <property name="text">
+     <string>Company password :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_password">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>170</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 15px;
+border-radius: 8px;
+border: 1px solid #0640ff;
+padding: 5px;
+background-color: rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="placeholderText">
+     <string>Enter company password</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -415,7 +469,7 @@ border-bottom-right-radius: 40px;
      <x>0</x>
      <y>0</y>
      <width>918</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

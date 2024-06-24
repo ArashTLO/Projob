@@ -12,7 +12,7 @@ class addcompany : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit addcompany(QWidget *parent = nullptr);
+    explicit addcompany(int number,QWidget *parent = nullptr);
     ~addcompany();
 
 private slots:

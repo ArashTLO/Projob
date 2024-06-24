@@ -76,16 +76,18 @@ home::home(int number,QString type,QWidget *parent) :
         imageLabel->setPixmap(image.scaled(476,180));
         imageLabel->setGeometry(315,95,150,125);
         imageLabel->setScaledContents(true);
+
         QFont font("Nirmala", 10, QFont::Light);
         QFont font_2("Nirmala IU",12, QFont::Light);
 
         QLineEdit *namelabel = new QLineEdit(username,groupBox);
         namelabel->setGeometry(50,25,200,35);
+        namelabel->setStyleSheet("background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 10px;");
         namelabel->setStyleSheet("padding:6px;background-color:rgb(238,238,238);border-radius:13px;border:2px solid rgb(181, 56, 75);");
         QTextEdit *tex = new QTextEdit(groupBox);
         tex->setText(text);
-        tex->setStyleSheet("background-color:rgb(242,242,242);border: 3px solid rgb(52, 103, 110); border-radius: 9px;");
-        tex->setGeometry(10,75,280,170);
+        tex->setStyleSheet("background-color:rgb(238,238,238);border:2px solid rgb(52, 103, 110);border-radius: 13px; padding: 6px;");
+        tex->setGeometry(15,80,280,170);
         tex->setReadOnly(true);
 
         QGroupBox *in_groupBox = new QGroupBox(groupBox);
@@ -97,31 +99,41 @@ home::home(int number,QString type,QWidget *parent) :
         like->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(255, 255, 255); border-radius:9px;");
         like->setText("Like");
         like->setFont(font);
+        QIcon iconLike(":/unnamed.jpg");
+        like->setIcon(iconLike);
 
         QCommandLinkButton *comment = new QCommandLinkButton(in_groupBox);
-        comment->setGeometry(130,10,100,40);
+        comment->setGeometry(140,10,100,40);
         comment->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(255, 255, 255); border-radius:9px;");
         comment->setText("Comment");
         comment->setFont(font);
+        QIcon iconComment(":/425269-icone-de-bate-papo-de-gratis-vetor.jpg");
+        comment->setIcon(iconComment);
         connect(comment, &QCommandLinkButton::clicked, this,[this,name_L_or_C,id_p](){on_comment_Clicked(name_L_or_C,id_p.toInt());});
 
         QCommandLinkButton *repost = new QCommandLinkButton(in_groupBox);
         repost->setGeometry(270,10,100,40);
         repost->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(255, 255, 255); border-radius:9px;");
         repost->setText("Repot");
+        QIcon iconRepost(":/download (2).png");
+        repost->setIcon(iconRepost);
         repost->setFont(font);
 
         QCommandLinkButton *send = new QCommandLinkButton(in_groupBox);
-        send->setGeometry(390,10, 82,40);
+        send->setGeometry(400,10, 82,40);
         send->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(255, 255, 255); border-radius:9px;");
         send->setText("Send");
+        QIcon iconSend(":/images (9).png");
+        send->setIcon(iconSend);
         send->setFont(font);
 
         QFont font_1("Segoe IU", 13, QFont::Bold);
         QCommandLinkButton *follow = new QCommandLinkButton(groupBox);
         follow->setGeometry(335,25,110,40);
-        follow->setStyleSheet("color: rgb(14, 90, 230);");
+        follow->setStyleSheet("color: rgb(24, 110, 170);");
         follow->setText("Follow");
+        QIcon iconfollow(":/2795.png");
+        follow->setIcon(iconfollow);
         follow->setFont(font_1);
 
         QLineEdit *post_number_lineEdit = new QLineEdit(groupBox);
@@ -188,9 +200,14 @@ void home::on_commandLinkButton_clicked()
 
 void home::on_commandLinkButton_2_clicked()
 {
-    me *w3 = new me;
+    if(Type_h == "C"){
+        QMessageBox::information(this,"Login","Only individuals can enter this window and companies cannot enter this window.");
+    }
+    else{
+    me *w3 = new me(adad_h,Type_h);
     this->close();
     w3->show();
+    }
 }
 
 

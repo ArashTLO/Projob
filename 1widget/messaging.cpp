@@ -12,6 +12,8 @@
 #include <QSqlError>
 #include "QMessageBox"
 
+int adad_M;
+QString Type_M;
 messaging::messaging(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::messaging)
@@ -69,7 +71,7 @@ void messaging::on_commandLinkButton_clicked()
 
 void messaging::on_commandLinkButton_2_clicked()
 {
-    me *w3 = new me;
+    me *w3 = new me(adad_M,Type_M);
     this->close();
     w3->show();
 }

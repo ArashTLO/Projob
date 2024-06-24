@@ -93,27 +93,8 @@ void loginpage::on_pushButton_clicked()
 ///////////////////////////////////////////////////////////////////////////////////////////
 
     else if(!ui->lineEdit_C_name->text().isEmpty() && !ui->lineEdit_C_password->text().isEmpty()){
-        QString C_name = ui->lineEdit_C_name->text();
-        QString C_password = ui->lineEdit_C_password->text();
-        content myContent;
 
-        if(ui->lineEdit_enter->text() != ui->lineEdit_generate->text()){
-            QMessageBox::warning(this,"Login","Captcha is not verified!");
-        }
-        else if(myContent.check_loginCompaney(C_name,C_password)){
-            QMessageBox::warning(this,"Login","You are already registered, please login");
-        }
-        else {
-            QSqlQuery q;
-            q.prepare("INSERT INTO loginCompany (C_name,C_password)VALUES(:username,:password)");
-            q.bindValue(":username", C_name);
-            q.bindValue(":password", C_password);
-            q.exec();
-
-            addcompany *w3 = new addcompany;
-            this->close();
-            w3->show();
-    }
+        QMessageBox::information(this,"Login","To register the company, you must proceed from the me window!");
     }
 }
 void loginpage::on_pushButton_login_clicked()
@@ -155,7 +136,7 @@ void loginpage::on_pushButton_login_clicked()
             w3->show();
         }
         else {
-            QMessageBox::warning(this, "Login", "You have not registered before, please register");
+            QMessageBox::warning(this, "Login", "the company with the enterd information is not already registered, please register");
         }
     }
 

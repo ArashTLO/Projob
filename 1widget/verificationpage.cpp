@@ -34,14 +34,13 @@ void verificationpage::on_pushButton_back_clicked()
     QString p = ui->lineEdit_password->text();
     QString f = ui->lineEdit_fname->text();
     QString l = ui->lineEdit_lname->text();
-    QString s1 = ui->lineEdit->text();
-    QString s2 = ui->lineEdit_2->text();
-    QString s3 = ui->lineEdit_4->text();
-    QString s4 = ui->dateEdit->text();
-    QString s5 = ui->lineEdit_5->text();
-    QString s6 = ui->spinBox_2->text();
-    QString s7 = ui->spinBox_3->text();
-    QString s8 = ui->textEdit->toPlainText();
+    QString e = ui->lineEdit_email->text();
+    QString sk = ui->lineEdit_skills->text();
+    QString school = ui->lineEdit_school->text();
+    QString start_y = ui->spinBox_start_year->text();
+    QString end_y = ui->spinBox_end_year->text();
+    QString birth = ui->dateEdit->text();
+    QString n = ui->lineEdit_na->text();
 
     /*QFile file(filePath_1);
     if(file.open(QIODevice::ReadOnly)){
@@ -63,24 +62,23 @@ void verificationpage::on_pushButton_back_clicked()
     if (file.open(QIODevice::ReadOnly)) {
         QByteArray imageData = file.readAll();
 
-        if (s1.isEmpty() || s2.isEmpty() || s3.isEmpty() || s5.isEmpty()) {
+        if (e.isEmpty() || sk.isEmpty() || school.isEmpty() || s9.isEmpty()) {
             QMessageBox::warning(this, "verification", "Please complete all information");
         } else {
             QSqlQuery q;
-            q.prepare("INSERT INTO verificationpage (username, password, frstname, lastname, recent_job_title, emploment_type, recent_company, date_birth, school, Start_year, end_year, address, image) VALUES (:username, :password, :frstname, :lastname, :recent_job_title, :emploment_type, :recent_company, :date_birth, :school, :Start_year, :end_year, :address, :image)");
-            q.bindValue(":username", s9);
+            q.prepare("INSERT INTO verificationpage (username,password,frstname,lastname,email,skills,school,start_year,end_year,date_birth,image,nationality) VALUES (:username,:password,:frstname,:lastname,:email,:skills,:school,:Start_year,:end_year,:birth,:image,:nationality)");
             q.bindValue(":password", p);
+            q.bindValue(":username", s9);
             q.bindValue(":frstname", f);
             q.bindValue(":lastname", l);
-            q.bindValue(":recent_job_title", s5);
-            q.bindValue(":emploment_type", s1);
-            q.bindValue(":recent_company", s2);
-            q.bindValue(":date_birth", s4);
-            q.bindValue(":school", s3);
-            q.bindValue(":Start_year", s6);
-            q.bindValue(":end_year", s7);
-            q.bindValue(":address", s8);
+            q.bindValue(":email", e);
+            q.bindValue(":skills", sk);
+            q.bindValue(":school", school);
+            q.bindValue(":Start_year", start_y);
+            q.bindValue(":end_year", end_y);
+            q.bindValue(":birth", birth);
             q.bindValue(":image", imageData);
+            q.bindValue(":nationality", n);
 
             if (q.exec()) {
                 loginpage *w3 = new loginpage;

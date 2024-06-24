@@ -146,7 +146,7 @@ void jobscompany::on_accept_clicked(int number,int id_user,int id_job){
 }
 void jobscompany::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(0,"s");
+    home *w3 = new home(0,"C");
     this->close();
     w3->show();
 }
@@ -155,7 +155,7 @@ void jobscompany::on_commandLinkButton_clicked()
 
 void jobscompany::on_commandLinkButton_2_clicked()
 {
-    me *w3 = new me;
+    me *w3 = new me(adad_j_c,"C");
     this->close();
     w3->show();
 }

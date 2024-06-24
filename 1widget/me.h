@@ -12,7 +12,7 @@ class me : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit me(QWidget *parent = nullptr);
+    explicit me(int number,QString type,QWidget *parent = nullptr);
     ~me();
 
 private slots:

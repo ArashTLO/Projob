@@ -36,12 +36,12 @@ int content::check_id_loginpage(const QString& username,const QString& password)
 int content::check_id_loginCompaney(const QString &username, const QString &password){
 
     QSqlQuery checkQuery;
-    checkQuery.prepare("SELECT company_id FROM loginCompany WHERE C_name = :username AND C_password = :password");
+    checkQuery.prepare("SELECT id_C FROM CompanyInformation WHERE name = :username AND password = :password");
     checkQuery.bindValue(":username", username);
     checkQuery.bindValue(":password", password);
 
     if (checkQuery.exec() && checkQuery.next()) {
-        int id = checkQuery.value("company_id").toInt();
+        int id = checkQuery.value("id_C").toInt();
         return id;
         } else {
         return 0;
