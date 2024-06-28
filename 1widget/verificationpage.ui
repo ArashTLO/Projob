@@ -152,7 +152,6 @@ Width: 150px;
      <property name="font">
       <font>
        <family>Nirmala UI</family>
-       <pointsize>-1</pointsize>
        <weight>75</weight>
        <italic>false</italic>
        <bold>true</bold>
@@ -293,7 +292,7 @@ Width: 150px;
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>410</y>
+      <y>400</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -323,7 +322,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>310</y>
+      <y>300</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -347,7 +346,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>380</y>
+      <y>370</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -442,7 +441,7 @@ border-bottom-right-radius: 40px;
     <property name="geometry">
      <rect>
       <x>690</x>
-      <y>460</y>
+      <y>450</y>
       <width>171</width>
       <height>51</height>
      </rect>
@@ -469,7 +468,7 @@ border-bottom-right-radius: 40px;</string>
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>270</y>
+      <y>260</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -499,7 +498,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>240</y>
+      <y>230</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -523,7 +522,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>200</y>
+      <y>190</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -553,7 +552,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>170</y>
+      <y>160</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -577,7 +576,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>130</y>
+      <y>120</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -607,7 +606,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>100</y>
+      <y>90</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -631,7 +630,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>60</y>
+      <y>50</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -661,7 +660,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>30</y>
+      <y>20</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -730,7 +729,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>340</y>
+      <y>330</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -760,7 +759,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>450</y>
+      <y>440</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -784,7 +783,7 @@ background-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>480</y>
+      <y>470</y>
       <width>211</width>
       <height>31</height>
      </rect>

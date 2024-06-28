@@ -12,7 +12,7 @@ class mynetworkcompany : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit mynetworkcompany(QWidget *parent = nullptr);
+    explicit mynetworkcompany(int number, QString type, QWidget *parent = nullptr);
     ~mynetworkcompany();
 
 private slots:

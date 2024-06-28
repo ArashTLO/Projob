@@ -12,7 +12,7 @@ class viewprofile : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit viewprofile(QWidget *parent = nullptr);
+    explicit viewprofile(int number , QString type, QWidget *parent = nullptr);
     ~viewprofile();
 
 private slots:
@@ -31,6 +31,8 @@ private slots:
     void on_commandLinkButton_6_clicked();
 
     void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::viewprofile *ui;

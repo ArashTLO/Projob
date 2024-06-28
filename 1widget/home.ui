@@ -436,10 +436,10 @@ border-bottom-right-radius: 40px;</string>
    <widget class="QScrollArea" name="scrollArea_2">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>150</y>
+      <x>13</x>
+      <y>200</y>
       <width>550</width>
-      <height>430</height>
+      <height>371</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -466,7 +466,7 @@ border-bottom-right-radius: 40px;</string>
      <bool>true</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(235, 235, 235);</string>
     </property>
     <property name="locale">
      <locale language="English" country="TuvaluCountry"/>
@@ -485,7 +485,7 @@ border-bottom-right-radius: 40px;</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>534</width>
+       <width>531</width>
        <height>468</height>
       </rect>
      </property>
@@ -501,13 +501,19 @@ border-bottom-right-radius: 40px;</string>
         <property name="minimumSize">
          <size>
           <width>400</width>
-          <height>450</height>
+          <height>365</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
          </size>
         </property>
         <property name="sizeIncrement">
          <size>
           <width>400</width>
-          <height>450</height>
+          <height>365</height>
          </size>
         </property>
         <property name="baseSize">
@@ -534,8 +540,8 @@ background-color: rgb(235, 235, 235);</string>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>90</y>
+      <x>20</x>
+      <y>140</y>
       <width>141</width>
       <height>61</height>
      </rect>
@@ -554,7 +560,137 @@ background-color: rgb(235, 235, 235);</string>
      <string notr="true">color: rgb(52, 103, 110);</string>
     </property>
     <property name="text">
-     <string>Posts</string>
+     <string>Posts users</string>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea_3">
+    <property name="geometry">
+     <rect>
+      <x>587</x>
+      <y>200</y>
+      <width>550</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>530</width>
+      <height>300</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::WheelFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::PreventContextMenu</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(235, 235, 235);</string>
+    </property>
+    <property name="locale">
+     <locale language="English" country="TuvaluCountry"/>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>531</width>
+       <height>468</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QFrame" name="frame_3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>211</horstretch>
+          <verstretch>100</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>360</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="sizeIncrement">
+         <size>
+          <width>400</width>
+          <height>360</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>400</width>
+          <height>300</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(132, 183, 190);
+background-color: rgb(235, 235, 235);</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>140</y>
+      <width>201</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(52, 103, 110);</string>
+    </property>
+    <property name="text">
+     <string>Posts companies</string>
     </property>
    </widget>
   </widget>
@@ -564,7 +700,7 @@ background-color: rgb(235, 235, 235);</string>
      <x>0</x>
      <y>0</y>
      <width>1150</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

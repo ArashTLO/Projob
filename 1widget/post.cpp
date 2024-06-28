@@ -20,6 +20,7 @@
 #include "QJsonDocument"
 #include "QJsonArray"
 #include <QDebug>
+#include "QMessageBox"
 
 int adad_p;
 QString name_p,Type_p;
@@ -53,28 +54,23 @@ post::~post()
 }
 void post::on_pushButton_clicked()
 {
-    QString s1 = ui->textEdit_post->toPlainText();
+    QString text_post = ui->textEdit_post->toPlainText();
 
     QFile imageFile(filePath1);
 
     if (imageFile.open(QIODevice::ReadOnly)) {
         QByteArray imageData = imageFile.readAll();
 
-        QSqlQuery q;
         if(Type_p == "P"){
-            q.prepare("INSERT INTO post(post_text, post_image, account_id, username) VALUES (:text, :imageData, :id, :username)");
-            q.bindValue(":text", s1);
-            q.bindValue(":imageData", imageData);
-            q.bindValue(":id", adad_p);
-            q.bindValue(":username", name_p);
-            q.exec();
-        }
 
+        POST mypost(adad_p,text_post,imageData);
+        mypost.posting_user();
+        }
         else if(Type_p == "C"){
 
-        POST mypost(adad_p,s1,imageData);
+        POST mypost(adad_p,text_post,imageData);
         mypost.posting_company();
-    }
+        }
 }
 }
 void post::on_pushButton_2_clicked()

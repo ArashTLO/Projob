@@ -21,13 +21,15 @@
 #include "content.h"
 
 int adad_j_c;
-jobscompany::jobscompany(int number,QWidget *parent) :
+QString Type_j_c;
+jobscompany::jobscompany(int number,QString type,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::jobscompany)
 {
     ui->setupUi(this);
 
     adad_j_c = number;
+    Type_j_c = type;
 
     QSqlDatabase database;    // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
     database = QSqlDatabase::addDatabase("QSQLITE");
@@ -110,7 +112,7 @@ void jobscompany::on_ignor_clicked(int number,int id_user,int id_job){
     job delet;
     delet.Delete_request(number,id_job,id_user);
 
-    jobscompany *w = new jobscompany(adad_j_c);
+    jobscompany *w = new jobscompany(adad_j_c,Type_j_c);
     this->close();
     w->show();
 }
@@ -140,7 +142,7 @@ void jobscompany::on_accept_clicked(int number,int id_user,int id_job){
     job delet;
     delet.Delete_request(number,id_job,id_user);
 
-    jobscompany *w = new jobscompany(adad_j_c);
+    jobscompany *w = new jobscompany(adad_j_c,Type_j_c);
     this->close();
     w->show();
 }
@@ -164,7 +166,7 @@ void jobscompany::on_commandLinkButton_2_clicked()
 
 void jobscompany::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser(adad_j_c);
+    jobsuser *w3 = new jobsuser(adad_j_c,Type_j_c);
     this->close();
     w3->show();
 }
@@ -172,7 +174,7 @@ void jobscompany::on_commandLinkButton_3_clicked()
 
 void jobscompany::on_commandLinkButton_7_clicked()
 {
-    jobscompany *w3 = new jobscompany(adad_j_c);
+    jobscompany *w3 = new jobscompany(adad_j_c,Type_j_c);
     this->close();
     w3->show();
 }
@@ -180,7 +182,7 @@ void jobscompany::on_commandLinkButton_7_clicked()
 
 void jobscompany::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging;
+    messaging *w3 = new messaging(adad_j_c,Type_j_c);
     this->close();
     w3->show();
 }
@@ -188,15 +190,13 @@ void jobscompany::on_commandLinkButton_4_clicked()
 
 void jobscompany::on_commandLinkButton_5_clicked()
 {
-    mynetworkuser *w3 = new mynetworkuser;
-    this->close();
-    w3->show();
+    QMessageBox::information(this,"Login","Only individuals can enter this window and companies cannot enter this window.");
 }
 
 
 void jobscompany::on_commandLinkButton_6_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany;
+    mynetworkcompany *w3 = new mynetworkcompany(adad_j_c,Type_j_c);
     this->close();
     w3->show();
 }
@@ -204,7 +204,7 @@ void jobscompany::on_commandLinkButton_6_clicked()
 
 void jobscompany::on_pushButton_clicked()
 {
-    createjob *w = new createjob(adad_j_c);
+    createjob *w = new createjob(adad_j_c,Type_j_c);
     this->close();
     w->show();
 }

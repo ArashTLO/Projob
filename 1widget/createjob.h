@@ -12,7 +12,7 @@ class createjob : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit createjob(int number,QWidget *parent = nullptr);
+    explicit createjob(int number,QString type,QWidget *parent = nullptr);
     ~createjob();
 
 private slots:

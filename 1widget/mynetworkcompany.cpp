@@ -15,50 +15,23 @@
 #include "QJsonDocument"
 #include "QJsonArray"
 #include <QDebug>
+#include "QMessageBox"
 
 int adad_m_c;
-mynetworkcompany::mynetworkcompany(QWidget *parent) :
+QString Type_m_c;
+mynetworkcompany::mynetworkcompany(int number,QString type, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::mynetworkcompany)
 {
     ui->setupUi(this);
+    adad_m_c = number;
+    Type_m_c = type;
     ///////////////
 
     QSqlDatabase database;    // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
     database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("d:\\DB_project.db");
     database.open();
-
-
-        QSqlQuery q;
-        q.prepare("SELECT posts FROM CompanyInformation WHERE rowid = 1");
-
-        if (q.exec()) {
-            while (q.next()) {
-                QByteArray jsonData = q.value(0).toByteArray();
-                QJsonDocument doc = QJsonDocument::fromJson(jsonData);
-                QJsonArray postArray = doc.array();
-                for (const QJsonValue &postValue : postArray) {
-                    QJsonObject postObject = postValue.toObject();
-                    QString postId = postObject["post_id"].toString();
-                    QString postText = postObject["post_text"].toString();
-                    QString base64Image = postObject["post_image"].toString();
-                    QByteArray imageData = QByteArray::fromBase64(base64Image.toLatin1());
-
-                    // Process the retrieved data as needed
-                    // For example, convert the image data back to QPixmap and display it
-                    QPixmap pixmap;
-                    pixmap.loadFromData(imageData);
-                    // Display the post text and image
-                    qDebug() << "Post ID: " << postId;
-                    qDebug() << "Post Text: " << postText;
-
-                }
-            }
-        } else {
-            qDebug() << "Error in retrieving company posts from database: ";
-        }
-
 }
 
 mynetworkcompany::~mynetworkcompany()
@@ -83,7 +56,7 @@ void mynetworkcompany::on_commandLinkButton_2_clicked()
 
 void mynetworkcompany::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser(0);
+    jobsuser *w3 = new jobsuser(adad_m_c,Type_m_c);
     this->close();
     w3->show();
 }
@@ -91,7 +64,7 @@ void mynetworkcompany::on_commandLinkButton_3_clicked()
 
 void mynetworkcompany::on_commandLinkButton_7_clicked()
 {
-    jobscompany *w3 = new jobscompany(1);
+    jobscompany *w3 = new jobscompany(adad_m_c,Type_m_c);
     this->close();
     w3->show();
 }
@@ -99,7 +72,7 @@ void mynetworkcompany::on_commandLinkButton_7_clicked()
 
 void mynetworkcompany::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging;
+    messaging *w3 = new messaging(adad_m_c,Type_m_c);
     this->close();
     w3->show();
 }
@@ -107,15 +80,13 @@ void mynetworkcompany::on_commandLinkButton_4_clicked()
 
 void mynetworkcompany::on_commandLinkButton_5_clicked()
 {
-    mynetworkuser *w3 = new mynetworkuser;
-    this->close();
-    w3->show();
+        QMessageBox::information(this,"Login","Only individuals can enter this window and companies cannot enter this window.");
 }
 
 
 void mynetworkcompany::on_commandLinkButton_6_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany;
+    mynetworkcompany *w3 = new mynetworkcompany(adad_m_c, Type_m_c);
     this->close();
     w3->show();
 }

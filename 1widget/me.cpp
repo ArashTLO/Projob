@@ -20,14 +20,15 @@ me::me(int number,QString type,QWidget *parent) :
     ui(new Ui::me)
 {
     ui->setupUi(this);
+    Type_m = type;
+    adad_m = number;
+
     QSqlDatabase database;    // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
     database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("d:\\DB_project.db");
     database.open();
 
     QSqlQuery q;
-    Type_m = type;
-    adad_m = number;
     if(type == "P"){
         //q.prepare("SELECT frstname,lastname,skills,imsge FROM verificationpage WHERE account_id = :number");
         q.prepare("SELECT frstname,lastname,nationality,skills,image,date_birth,start_year,end_year,school FROM verificationpage WHERE account_id = :number");
@@ -74,7 +75,7 @@ void me::on_commandLinkButton_2_clicked()
 
 void me::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser(0);
+    jobsuser *w3 = new jobsuser(adad_m,Type_m);
     this->close();
     w3->show();
 }
@@ -82,7 +83,7 @@ void me::on_commandLinkButton_3_clicked()
 
 void me::on_commandLinkButton_7_clicked()
 {
-    jobscompany *w3 = new jobscompany(1);
+    jobscompany *w3 = new jobscompany(adad_m,Type_m);
     this->close();
     w3->show();
 }
@@ -90,7 +91,7 @@ void me::on_commandLinkButton_7_clicked()
 
 void me::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging;
+    messaging *w3 = new messaging(adad_m,Type_m);
     this->close();
     w3->show();
 }
@@ -98,7 +99,7 @@ void me::on_commandLinkButton_4_clicked()
 
 void me::on_commandLinkButton_5_clicked()
 {
-    mynetworkuser *w3 = new mynetworkuser;
+    mynetworkuser *w3 = new mynetworkuser(adad_m,Type_m);
     this->close();
     w3->show();
 }
@@ -106,7 +107,7 @@ void me::on_commandLinkButton_5_clicked()
 
 void me::on_commandLinkButton_6_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany;
+    mynetworkcompany *w3 = new mynetworkcompany(adad_m, Type_m);
     this->close();
     w3->show();
 }

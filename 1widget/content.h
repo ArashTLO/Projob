@@ -23,6 +23,7 @@ public:
     bool check_loginCompaney(const QString &username, const QString &password);
     bool check_loginpage(const QString &username, const QString &password);
     QString check_type(QString type, int number);
+    void sand_connection_request(int applicant, int receiver, QString type_applicant, QString type_reveiver);
     virtual ~content(){};
 
 signals:
@@ -42,6 +43,7 @@ public:
         post_image = p_image;
     }
     void posting_company();
+    void posting_user();
 };
 
 

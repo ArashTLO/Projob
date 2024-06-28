@@ -19,6 +19,22 @@ content::content(QObject *parent) : QObject(parent)
     }
 }
 
+void content::sand_connection_request(int applicant, int receiver, QString type_applicant, QString type_receiver){
+
+    QSqlQuery q;
+    q.prepare("INSERT INTO list_connection(Applicant,receiver,type_Applicant,type_receiver) VALUES (:applicant,:receiver,:type,:type_receiver)");
+    q.bindValue(":applicant", applicant);
+    q.bindValue(":receiver", receiver);
+    q.bindValue(":type", type_applicant);
+    q.bindValue(":type_receiver", type_receiver);
+
+    if (q.exec()) {
+        QMessageBox::information(nullptr, "my network user", "your request has been sccessfully sent.");
+    } else {
+        QMessageBox::information(nullptr, "my network user", "your request was not sent.");
+    }
+}
+
 int content::check_id_loginpage(const QString& username,const QString& password){
 
         QSqlQuery checkQuery;
@@ -82,11 +98,11 @@ QString content::check_type(QString type,int number){
     }
     else {
         QSqlQuery q;
-        q.prepare("SELECT C_name FROM loginCompany WHERE company_id = :account_id");
+        q.prepare("SELECT name FROM CompanyInformation WHERE id_C = :account_id");
         q.bindValue(":account_id", number);
         q.exec();
         if(q.next())
-        return q.value("C_name").toString();
+        return q.value(0).toString();
     }
     return "null";
 }
@@ -133,6 +149,42 @@ void job::Delete_request(int id_com,int id_job,int id_user){
         query.bindValue(":id_man", id_user);
         query.exec();
 }
+
+void POST::posting_user(){
+    QJsonObject postObject;
+        postObject["id_P"] = id_C;
+        postObject["post_text"] = post_text;
+        QString base64Image = QString(post_image.toBase64());
+        postObject["post_image"] = base64Image;
+
+        QSqlQuery q;
+        q.prepare("SELECT posts FROM verificationpage WHERE rowid = :account_id");
+        q.bindValue(":account_id", id_C);
+
+        if(q.exec() && q.next()) {
+            QString postsString = q.value(0).toString();
+            QJsonDocument doc = QJsonDocument::fromJson(postsString.toUtf8());
+            QJsonArray postsArray = doc.array();
+            postObject["post_id"] = postsArray.size()+1;
+            postsArray.append(postObject);
+            QJsonDocument newDoc(postsArray);
+            QString newPostsString = newDoc.toJson();
+
+            q.prepare("UPDATE verificationpage SET posts = :newPostsString WHERE rowid = :account_id");
+            q.bindValue(":account_id", id_C);
+            q.bindValue(":newPostsString", newPostsString);
+            if (!q.exec()) {
+                qDebug() << "Error: trrrrrrr";
+            } else {
+                QMessageBox::warning(nullptr, "send post", "Your post has been successfully uploaded.");
+
+                qDebug() << "Record updated successfully!";
+            }
+        } else {
+            qDebug() << "Error: Failed to retrieve posts from Database.";
+        }
+}
+
 void POST::posting_company(){
     QJsonObject postObject;
     postObject["id_C"] = id_C;
@@ -160,6 +212,8 @@ void POST::posting_company(){
         if (!q.exec()) {
             qDebug() << "Error: trrrrrrr";
         } else {
+            QMessageBox::warning(nullptr, "send post", "Your post has been successfully uploaded.");
+
             qDebug() << "Record updated successfully!";
         }
     } else {

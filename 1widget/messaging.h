@@ -12,7 +12,7 @@ class messaging : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit messaging(QWidget *parent = nullptr);
+    explicit messaging(int number, QString type,QWidget *parent = nullptr);
     ~messaging();
 
 private slots:

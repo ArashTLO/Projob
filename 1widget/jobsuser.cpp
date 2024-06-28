@@ -22,12 +22,13 @@
 #include "QTextEdit"
 
 int adad_ju;
-jobsuser::jobsuser(int number,QWidget *parent) :
+QString Type_ju;
+jobsuser::jobsuser(int number,QString type,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::jobsuser)
 {
     ui->setupUi(this);
-
+    Type_ju = type;
     adad_ju = number;
     QSqlDatabase database;    // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
     database = QSqlDatabase::addDatabase("QSQLITE");
@@ -222,7 +223,7 @@ void jobsuser::on_apply_clicked(int i_Man, int i_com, int i_job, QString situati
         else {
             QMessageBox::information(this,"job user","your request was not sent.");
         }
-        jobsuser *w = new jobsuser(adad_ju);
+        jobsuser *w = new jobsuser(adad_ju,Type_ju);
         this->close();
         w->show();
     }
@@ -256,7 +257,7 @@ void jobsuser::on_commandLinkButton_2_clicked()
 
 void jobsuser::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging;
+    messaging *w3 = new messaging(adad_ju,Type_ju);
     this->close();
     w3->show();
 }
@@ -264,7 +265,7 @@ void jobsuser::on_commandLinkButton_4_clicked()
 
 void jobsuser::on_commandLinkButton_5_clicked()
 {
-    mynetworkuser *w3 = new mynetworkuser;
+    mynetworkuser *w3 = new mynetworkuser(adad_ju,Type_ju);
     this->close();
     w3->show();
 }
@@ -272,7 +273,7 @@ void jobsuser::on_commandLinkButton_5_clicked()
 
 void jobsuser::on_commandLinkButton_7_clicked()
 {
-    jobscompany *w3 = new jobscompany(1);
+    jobscompany *w3 = new jobscompany(adad_ju,Type_ju);
     this->close();
     w3->show();
 }
@@ -280,7 +281,7 @@ void jobsuser::on_commandLinkButton_7_clicked()
 
 void jobsuser::on_commandLinkButton_6_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany;
+    mynetworkcompany *w3 = new mynetworkcompany(adad_ju,Type_ju);
     this->close();
     w3->show();
 }

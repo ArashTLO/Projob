@@ -14,11 +14,13 @@
 
 int adad_M;
 QString Type_M;
-messaging::messaging(QWidget *parent) :
+messaging::messaging(int number, QString type,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::messaging)
 {
     ui->setupUi(this);
+    adad_M = number;
+    type = Type_M;
     QSqlDatabase database;    // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
        database = QSqlDatabase::addDatabase("QSQLITE");
        database.setDatabaseName("d:\\DB_project.db");
@@ -79,7 +81,7 @@ void messaging::on_commandLinkButton_2_clicked()
 
 void messaging::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser(0);
+    jobsuser *w3 = new jobsuser(adad_M,Type_M);
     this->close();
     w3->show();
 }
@@ -87,7 +89,7 @@ void messaging::on_commandLinkButton_3_clicked()
 
 void messaging::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging;
+    messaging *w3 = new messaging(adad_M,Type_M);
     this->close();
     w3->show();
 }
@@ -95,15 +97,20 @@ void messaging::on_commandLinkButton_4_clicked()
 
 void messaging::on_commandLinkButton_5_clicked()
 {
-    mynetworkuser *w3 = new mynetworkuser;
+    if(Type_M == "P"){
+    mynetworkuser *w3 = new mynetworkuser(adad_M, Type_M);
     this->close();
     w3->show();
+    }
+    if(Type_M == "C"){
+        QMessageBox::information(this,"Login","Only individuals can enter this window and companies cannot enter this window.");
+    }
 }
 
 
 void messaging::on_commandLinkButton_7_clicked()
 {
-    jobscompany *w3 = new jobscompany(1);
+    jobscompany *w3 = new jobscompany(adad_M,Type_M);
     this->close();
     w3->show();
 }
@@ -111,7 +118,7 @@ void messaging::on_commandLinkButton_7_clicked()
 
 void messaging::on_commandLinkButton_6_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany;
+    mynetworkcompany *w3 = new mynetworkcompany(adad_M, Type_M);
     this->close();
     w3->show();
 }

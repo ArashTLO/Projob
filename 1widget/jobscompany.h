@@ -12,7 +12,7 @@ class jobscompany : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit jobscompany(int number,QWidget *parent = nullptr);
+    explicit jobscompany(int number,QString type,QWidget *parent = nullptr);
     ~jobscompany();
 
 private slots:

@@ -12,12 +12,14 @@
 #include "QDebug"
 
 int adad_c;
-createjob::createjob(int number,QWidget *parent) :
+QString Type_c;
+createjob::createjob(int number,QString type,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::createjob)
 {
     ui->setupUi(this);
     adad_c = number;
+    Type_c = type;
     QSqlDatabase database;    // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
     database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("d:\\DB_project.db");
@@ -32,7 +34,7 @@ createjob::~createjob()
 
 void createjob::on_pushButton_2_clicked()
 {
-    jobscompany *w = new jobscompany(adad_c);
+    jobscompany *w = new jobscompany(adad_c,Type_c);
     this->close();
     w->show();
 }
