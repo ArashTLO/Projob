@@ -73,7 +73,6 @@ home::home(int number,QString type,QWidget *parent) :
         QSqlQuery q;
         q.prepare("SELECT name FROM CompanyInformation WHERE id_C = :id");
         q.bindValue(":id", id_Company);
-        //q.next();
         q.exec();
         q.next();
 

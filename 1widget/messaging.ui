@@ -375,20 +375,285 @@ color: rgb(0, 0, 0);</string>
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QScrollArea" name="scrollArea_2">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>130</y>
-      <width>231</width>
-      <height>201</height>
+      <x>805</x>
+      <y>60</y>
+      <width>345</width>
+      <height>589</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>345</width>
+      <height>300</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::WheelFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::PreventContextMenu</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="locale">
+     <locale language="English" country="TuvaluCountry"/>
+    </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>343</width>
+       <height>587</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QFrame" name="frame_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>31</horstretch>
+          <verstretch>50</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>310</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>310</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="sizeIncrement">
+         <size>
+          <width>400</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>400</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Nirmala UI</family>
+          <pointsize>11</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>560</y>
+      <width>75</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Icn1006124www.tiktarh.com_.jpg);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>60</y>
+      <width>806</width>
+      <height>501</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>530</width>
+      <height>300</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::WheelFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::PreventContextMenu</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(235, 235, 235);</string>
+    </property>
+    <property name="locale">
+     <locale language="English" country="TuvaluCountry"/>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>804</width>
+       <height>499</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QFrame" name="frame_3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>211</horstretch>
+          <verstretch>100</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>365</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="sizeIncrement">
+         <size>
+          <width>400</width>
+          <height>365</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>400</width>
+          <height>300</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/new/prefix1/Black-15.jpg);
+background-color: rgb(255, 255, 255);
+</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>570</y>
+      <width>471</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 15px;
+border-radius: 24px;
+border: 1px solid rgb(43, 170, 255);
+padding: 10px;
+background-color: rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="placeholderText">
+     <string>Write your message ...</string>
     </property>
    </widget>
   </widget>
