@@ -27,8 +27,6 @@ messaging::messaging(int number, QString type,QWidget *parent) :
     ui(new Ui::messaging)
 {
     ui->setupUi(this);
-<<<<<<< HEAD
-=======
 
     ui->frame_3->setGeometry(0,0,786,481);
     QSqlDatabase database; // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
@@ -80,7 +78,6 @@ messaging::messaging(int number, QString type,QWidget *parent) :
         frameHeight += 50;
         currentY += 50;
     }
->>>>>>> 7bf3d3d4c325c304f29d15dd66f5153c9d492b99
 }
 
 messaging::~messaging()
