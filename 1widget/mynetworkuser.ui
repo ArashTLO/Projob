@@ -645,7 +645,7 @@ font: 10pt &quot;Rockwell&quot;;</string>
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
-       <string>Fraom users</string>
+       <string>From users</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -888,7 +888,7 @@ background-color: rgb(245, 245, 245);</string>
      <x>0</x>
      <y>0</y>
      <width>1150</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

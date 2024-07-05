@@ -19,43 +19,6 @@ messaging::messaging(int number, QString type,QWidget *parent) :
     ui(new Ui::messaging)
 {
     ui->setupUi(this);
-    adad_M = number;
-    type = Type_M;
-    QSqlDatabase database;    // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
-       database = QSqlDatabase::addDatabase("QSQLITE");
-       database.setDatabaseName("d:\\DB_project.db");
-       database.open();
-    if (!database.open()){
-        qDebug() <<"Error connecting to database";
-
-        QMessageBox::warning(nullptr, "Database Error", "Could not open database.");
-    }
-
-    QSqlQuery query;
-    query.prepare("SELECT post_video FROM post WHERE post_id = :postId");
-    query.bindValue(":postId", 9);
-    if (!query.exec()) {
-        qDebug() << "Error executing query:" << query.lastError().text();
-                QMessageBox::warning(this, "Database Error", "Error executing query");
-        return;
-    }
-
-    if (query.next()) {
-        QByteArray videoData = query.value(0).toByteArray();
-
-        QImage image;
-        image.loadFromData(videoData); // Load the image data
-
-
-        ui->label->setPixmap(QPixmap::fromImage(image));
-        ui->label->show();
-
-    } else {
-        qDebug() << "No video found for post_id=9";
-        QMessageBox::warning(this, "Database Error", "No video found for post_id=9");
-    }
-
-    database.close();
 }
 
 messaging::~messaging()
