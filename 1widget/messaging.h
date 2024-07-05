@@ -16,6 +16,9 @@ public:
     ~messaging();
 
 private slots:
+
+    void on_user_clicked(int sender, int receiver);
+
     void on_commandLinkButton_clicked();
 
     void on_commandLinkButton_2_clicked();
@@ -29,6 +32,8 @@ private slots:
     void on_commandLinkButton_7_clicked();
 
     void on_commandLinkButton_6_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::messaging *ui;

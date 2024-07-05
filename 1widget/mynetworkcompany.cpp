@@ -41,7 +41,7 @@ mynetworkcompany::~mynetworkcompany()
 
 void mynetworkcompany::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(0,"s");
+    home *w3 = new home(adad_m_c,Type_m_c);
     this->close();
     w3->show();
 }
