@@ -16,6 +16,8 @@ public:
     ~home();
 
 private slots:
+    void on_send_Clicked(int adad_h,QString Type_h, QString text_message);
+
     void onLikeClicked(QString name,int id);
 
     void on_likelistshow_clicked(int id);

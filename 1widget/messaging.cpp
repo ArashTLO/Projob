@@ -19,15 +19,23 @@
 #include "QPushButton"
 #include "QCommandLinkButton"
 #include "QLabel"
+#include "QFile"
+#include "QFileDialog"
+#include "QModelIndex"
+#include "QModelIndexList"
+#include "QSqlQueryModel"
 
 int adad_M,ID_receiver;
-QString Type_M;
-messaging::messaging(int number, QString type,QWidget *parent) :
+QString Type_M,text_Message;
+messaging::messaging(int number, QString type, QString text_message, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::messaging)
 {
     ui->setupUi(this);
 
+    if(text_message != nullptr){
+        ui->textEdit->setText(text_message);
+    }
     ui->frame_3->setGeometry(0,0,786,481);
     QSqlDatabase database; // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
     database = QSqlDatabase::addDatabase("QSQLITE");
@@ -38,6 +46,7 @@ messaging::messaging(int number, QString type,QWidget *parent) :
     ui->frame_2->setGeometry(1,1,310,50);
     adad_M = number;
     Type_M = type;
+    text_Message = text_message;
 
     QSqlQuery q;
     q.prepare("SELECT frstname,lastname,image,account_id FROM verificationpage ");
@@ -119,34 +128,76 @@ void messaging::on_user_clicked(int sender, int receiver){
 
            ui->frame_3->setMinimumHeight(frameHeight);
 
-           QTextEdit *tex = new QTextEdit(ui->frame_3);
 
-           tex->setText(postObject["texe_messag"].toString());
-           tex->setGeometry(10,currentY,280,170);
-           tex->setStyleSheet("background-image: url(:/new/prefix1/bc29ca60-4b40-11ee-b6aa-afa6de34b028.jpg);border:2px solid rgb(52, 103, 110);border-radius: 13px; padding: 6px;");
-           tex->setReadOnly(true);
-           tex->setFont(font);
+/////////////////////////////////////////////////////////////////////////
 
-           frameHeight += 170;
-           currentY += 170;
-           tex->show();
+            if(postObject["texe_messag"].toString() != nullptr){
+
+                QTextEdit *tex = new QTextEdit(ui->frame_3);
+                tex->setText(postObject["texe_messag"].toString());
+                tex->setGeometry(10,currentY,280,170);
+                tex->setStyleSheet("background-image: url(:/new/prefix1/bc29ca60-4b40-11ee-b6aa-afa6de34b028.jpg);border:2px solid rgb(52, 103, 110);border-radius: 13px; padding: 6px;");
+                tex->setReadOnly(true);
+                tex->setFont(font);
+
+                frameHeight += 178;
+                currentY += 178;
+                tex->show();
+            }
+            if (!postObject["image_messag"].isNull()) {
+                QString imagePath = postObject["image_messag"].toString();
+                QPixmap image(imagePath);
+
+                if (!image.isNull()) {
+                    QLabel *imageLabel = new QLabel(ui->frame_3);
+                    imageLabel->setPixmap(image.scaled(476, 180));
+                    imageLabel->setGeometry(14, currentY, 170, 150);
+                    imageLabel->setStyleSheet("border-radius: 13px;");
+                    imageLabel->setScaledContents(true);
+
+                    frameHeight += 178;
+                    currentY += 178;
+                    imageLabel->show();
+                } else {
+                    qDebug() << "Failed to load image from file: " << imagePath;
+                }
+            }
+///////////////////////////////////////////////////////////////////////////
        }
        else if(postObject["id_sender"].toInt() == receiver){
 
            ui->frame_3->setMinimumHeight(frameHeight);
 
+           if(postObject["texe_messag"].toString() != nullptr){
            QTextEdit *tex = new QTextEdit(ui->frame_3);
-
            tex->setText(postObject["texe_messag"].toString());
            tex->setStyleSheet("background-image: url(:/new/prefix1/bc29ca60-4b40-11ee-b6aa-afa6de34b028.jpg);border:2px solid rgb(52, 103, 110);border-radius: 13px; padding: 6px;");
            tex->setGeometry(480,currentY,280,170);
            tex->setReadOnly(true);
            tex->setFont(font);
 
-
-           frameHeight += 170;
-           currentY += 170;
+           frameHeight += 178;
+           currentY += 178;
            tex->show();
+           }
+           if (!postObject["image_messag"].isNull()) {
+               QString imagePath = postObject["image_messag"].toString();
+               QPixmap image(imagePath);
+
+               if (!image.isNull()) {
+                   QLabel *imageLabel = new QLabel(ui->frame_3);
+                   imageLabel->setPixmap(image.scaled(476, 180));
+                   imageLabel->setGeometry(584,currentY, 170, 150);
+                   imageLabel->setStyleSheet("border-radius: 13px;");
+                   imageLabel->setScaledContents(true);
+
+                   frameHeight += 178;
+                   currentY += 178;
+                   imageLabel->show();
+               } else {
+                   qDebug() << "Failed to load image from file: " << imagePath;
+               }
+           }
        }
    }
 }
@@ -177,7 +228,7 @@ void messaging::on_commandLinkButton_3_clicked()
 
 void messaging::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging(adad_M,Type_M);
+    messaging *w3 = new messaging(adad_M,Type_M,text_Message);
     this->close();
     w3->show();
 }
@@ -260,7 +311,67 @@ void messaging::on_pushButton_clicked()
             qDebug() << "Record updated successfully!";
         }
     }
-    messaging *e = new messaging(adad_M,Type_M);
+    messaging *e = new messaging(adad_M,Type_M,text_Message);
     this->close();
     e->show();
 }
+
+void messaging::on_pushButton_2_clicked()
+{
+    QString filePath1 = QFileDialog::getOpenFileName(this, "Select Image", "", "Image Files (*.png *.jpg *.jpeg *.bmp)");
+
+    if (!filePath1.isEmpty()) {
+
+        QJsonObject messagingObject_1;
+        messagingObject_1["id_sender"] = adad_M;
+        messagingObject_1["image_messag"] = filePath1;
+
+        QSqlQuery p;
+        p.prepare("SELECT DM FROM verificationpage WHERE rowid = :id");
+        p.bindValue(":id", ID_receiver);
+
+        if(p.exec() && p.next()) {
+            QString jobsString = p.value(0).toString();
+            QJsonDocument doc = QJsonDocument::fromJson(jobsString.toUtf8());
+            QJsonArray jobsArray = doc.array();
+            jobsArray.append(messagingObject_1);
+            QJsonDocument newDoc(jobsArray);
+
+            QString newJobsString = newDoc.toJson();
+            QString updateQuery = QString("UPDATE verificationpage SET DM = '%1' WHERE rowid = %2").arg(newJobsString).arg(ID_receiver);
+            if (!p.exec(updateQuery)) {
+                qDebug() << "Error: ";
+            } else {
+                qDebug() << "Record updated successfully!";
+            }
+        }
+        /////////////////////////////////////////////////////////////////////////////////////////////
+            QJsonObject messagingObject;
+            messagingObject["id_receiver"] = ID_receiver;
+            messagingObject["image_messag"] = filePath1;
+
+            QSqlQuery q;
+            q.prepare("SELECT DM FROM verificationpage WHERE rowid = :id");
+            q.bindValue(":id", adad_M);
+
+            if(q.exec() && q.next()) {
+                QString jobsString = q.value(0).toString();
+                QJsonDocument doc = QJsonDocument::fromJson(jobsString.toUtf8());
+                QJsonArray jobsArray = doc.array();
+                jobsArray.append(messagingObject);
+                QJsonDocument newDoc(jobsArray);
+
+                QString newJobsString = newDoc.toJson();
+                QString updateQuery = QString("UPDATE verificationpage SET DM = '%1' WHERE rowid = %2").arg(newJobsString).arg(adad_M);
+                if (!q.exec(updateQuery)) {
+                    qDebug() << "Error: ";
+                } else {
+                    qDebug() << "Record updated successfully!";
+                }
+            }
+            messaging *e = new messaging(adad_M,Type_M,text_Message);
+            this->close();
+            e->show();
+    }
+}
+

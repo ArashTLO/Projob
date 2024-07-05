@@ -183,7 +183,7 @@ void viewprofile::on_commandLinkButton_7_clicked()
 
 void viewprofile::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging(adad_v, Type_v);
+    messaging *w3 = new messaging(adad_v, Type_v,nullptr);
     this->close();
     w3->show();
 }

@@ -72,7 +72,7 @@ void mynetworkcompany::on_commandLinkButton_7_clicked()
 
 void mynetworkcompany::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging(adad_m_c,Type_m_c);
+    messaging *w3 = new messaging(adad_m_c,Type_m_c,nullptr);
     this->close();
     w3->show();
 }

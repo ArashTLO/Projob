@@ -12,7 +12,7 @@ class messaging : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit messaging(int number, QString type,QWidget *parent = nullptr);
+    explicit messaging(int number, QString type, QString text_message, QWidget *parent = nullptr);
     ~messaging();
 
 private slots:
@@ -34,6 +34,8 @@ private slots:
     void on_commandLinkButton_6_clicked();
 
     void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::messaging *ui;

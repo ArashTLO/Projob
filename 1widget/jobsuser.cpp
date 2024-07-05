@@ -257,7 +257,7 @@ void jobsuser::on_commandLinkButton_2_clicked()
 
 void jobsuser::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging(adad_ju,Type_ju);
+    messaging *w3 = new messaging(adad_ju,Type_ju,nullptr);
     this->close();
     w3->show();
 }

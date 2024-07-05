@@ -91,7 +91,7 @@ void me::on_commandLinkButton_7_clicked()
 
 void me::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging(adad_m,Type_m);
+    messaging *w3 = new messaging(adad_m,Type_m,nullptr);
     this->close();
     w3->show();
 }

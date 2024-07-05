@@ -145,6 +145,7 @@ home::home(int number,QString type,QWidget *parent) :
         QIcon iconSend(":/images (9).png");
         send->setIcon(iconSend);
         send->setFont(font);
+        connect(send, &QCommandLinkButton::clicked, this,[this,number,type,postObject](){on_send_Clicked(number,type,postObject["post_text"].toString());});
 
         QFont font_1("Segoe IU", 13, QFont::Bold);
         QCommandLinkButton *follow = new QCommandLinkButton(groupBox);
@@ -265,6 +266,7 @@ home::home(int number,QString type,QWidget *parent) :
         QIcon iconSend(":/images (9).png");
         send->setIcon(iconSend);
         send->setFont(font);
+        connect(send, &QCommandLinkButton::clicked, this,[this,number,type,postObject](){on_send_Clicked(number,type,postObject["post_text"].toString());});
 
         QFont font_1("Segoe IU", 13, QFont::Bold);
         QCommandLinkButton *follow = new QCommandLinkButton(groupBox);
@@ -296,116 +298,14 @@ home::home(int number,QString type,QWidget *parent) :
     }
     }
 
-/*
-    QSqlQuery q;
-    q.exec("SELECT post_text,post_image,username,post_id FROM post ORDER BY account_id");
-    QSqlQuery p_info;
-
-    while(q.next()){
-
-        ui->frame_2->setMinimumHeight(frameHeight);
-        QGroupBox *groupBox = new QGroupBox(ui->frame_2);
-        groupBox->setGeometry(1,currentY, 510,360);
-        groupBox->setStyleSheet("background-color:rgb(255, 255, 255);");
-
-        QString text = q.value(0).toString();
-        QByteArray imageData = q.value(1).toByteArray();
-        QString username = q.value(2).toString();
-        QString id_p = q.value(3).toString();
-
-        QLabel *imageLabel = new QLabel(groupBox);
-        QPixmap image;
-        image.loadFromData(imageData);
-        imageLabel->setPixmap(image.scaled(476,180));
-        imageLabel->setGeometry(315,95,150,125);
-        imageLabel->setScaledContents(true);
-
-        QFont font("Nirmala", 10, QFont::Light);
-        QFont font_2("Nirmala IU",12, QFont::Light);
-
-        QLineEdit *namelabel = new QLineEdit(username,groupBox);
-        namelabel->setGeometry(50,25,200,35);
-        namelabel->setStyleSheet("background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 10px;");
-        namelabel->setStyleSheet("padding:6px;background-color:rgb(238,238,238);border-radius:13px;border:2px solid rgb(181, 56, 75);");
-
-        QTextEdit *tex = new QTextEdit(groupBox);
-        tex->setText(text);
-        tex->setStyleSheet("background-color:rgb(238,238,238);border:2px solid rgb(52, 103, 110);border-radius: 13px; padding: 6px;");
-        tex->setGeometry(15,80,280,170);
-        tex->setReadOnly(true);
-
-        QGroupBox *in_groupBox = new QGroupBox(groupBox);
-        in_groupBox->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(181, 56, 75); border-radius:9px;");
-        in_groupBox->setGeometry(10,270,485,60);
-
-        QCommandLinkButton *like = new QCommandLinkButton(in_groupBox);
-        like->setGeometry(20,10,70,40);
-        like->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(255, 255, 255); border-radius:9px;");
-        like->setText("Like");
-        like->setFont(font);
-        QIcon iconLike(":/unnamed.jpg");
-        like->setIcon(iconLike);
-
-        QCommandLinkButton *comment = new QCommandLinkButton(in_groupBox);
-        comment->setGeometry(140,10,100,40);
-        comment->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(255, 255, 255); border-radius:9px;");
-        comment->setText("Comment");
-        comment->setFont(font);
-        QIcon iconComment(":/425269-icone-de-bate-papo-de-gratis-vetor.jpg");
-        comment->setIcon(iconComment);
-        connect(comment, &QCommandLinkButton::clicked, this,[this,name_L_or_C,id_p](){on_comment_Clicked(name_L_or_C,id_p.toInt());});
-
-        QCommandLinkButton *repost = new QCommandLinkButton(in_groupBox);
-        repost->setGeometry(270,10,100,40);
-        repost->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(255, 255, 255); border-radius:9px;");
-        repost->setText("Repot");
-        QIcon iconRepost(":/download (2).png");
-        repost->setIcon(iconRepost);
-        repost->setFont(font);
-
-        QCommandLinkButton *send = new QCommandLinkButton(in_groupBox);
-        send->setGeometry(400,10, 82,40);
-        send->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(255, 255, 255); border-radius:9px;");
-        send->setText("Send");
-        QIcon iconSend(":/images (9).png");
-        send->setIcon(iconSend);
-        send->setFont(font);
-
-        QFont font_1("Segoe IU", 13, QFont::Bold);
-        QCommandLinkButton *follow = new QCommandLinkButton(groupBox);
-        follow->setGeometry(335,25,110,40);
-        follow->setStyleSheet("color: rgb(24, 110, 170);");
-        follow->setText("Follow");
-        QIcon iconfollow(":/2795.png");
-        follow->setIcon(iconfollow);
-        follow->setFont(font_1);
-
-        QLineEdit *post_number_lineEdit = new QLineEdit(groupBox);
-        post_number_lineEdit->setText(id_p);
-        post_number_lineEdit->setGeometry(5,5,30,20);
-        post_number_lineEdit->setStyleSheet(" border:3px solid rgb(255,255,255)");
-        connect(like, &QCommandLinkButton::clicked, this,[this,name_L_or_C,id_p](){onLikeClicked(name_L_or_C,id_p.toInt());});
-
-        QPushButton *whoLike = new QPushButton(groupBox);
-        whoLike->setGeometry(315,234,150,30);
-        whoLike->setText("who like this");
-        whoLike->setFont(font_2);
-        whoLike->setStyleSheet("background-color:rgb(255,255,255);color:#2980b9;border-radius:2px;");
-        connect(whoLike, &QPushButton::clicked,this,[this,id_p](){home::on_likelistshow_clicked(id_p.toInt());});
-
-        groupBox->show();
-        frameHeight += 360;
-        currentY += 360;
-        //i++;
-    }
-
-    ui->frame_2->setFixedHeight(currentY);
-
-    QScrollArea *s = new QScrollArea;
-    s->setWidgetResizable(true);
-*/
 }
 
+void home::on_send_Clicked(int number,QString type,QString text_message){
+
+    messaging *w = new messaging(number,type,text_message);
+    w->show();
+
+}
 void home::on_comment_Clicked(QString name_Comment,int id){
     comment *w = new comment(name_Comment,id,Type_h);
     w->show();
@@ -465,7 +365,7 @@ void home::on_commandLinkButton_3_clicked()
 
 void home::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging(adad_h,Type_h);
+    messaging *w3 = new messaging(adad_h,Type_h,nullptr);
     this->close();
     w3->show();
 }

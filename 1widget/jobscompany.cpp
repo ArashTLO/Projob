@@ -182,7 +182,7 @@ void jobscompany::on_commandLinkButton_7_clicked()
 
 void jobscompany::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging(adad_j_c,Type_j_c);
+    messaging *w3 = new messaging(adad_j_c,Type_j_c,nullptr);
     this->close();
     w3->show();
 }

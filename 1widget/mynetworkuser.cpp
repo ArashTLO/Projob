@@ -415,7 +415,7 @@ void mynetworkuser::on_commandLinkButton_3_clicked()
 
 void mynetworkuser::on_commandLinkButton_4_clicked()
 {
-    messaging *w3 = new messaging(adad_m_u, Type_m_u);
+    messaging *w3 = new messaging(adad_m_u, Type_m_u,nullptr);
     this->close();
     w3->show();
 }
