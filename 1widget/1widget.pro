@@ -1,5 +1,7 @@
 QT       += core gui
 QT       += sql
+QT += network
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -13,6 +15,7 @@ SOURCES += \
     comment.cpp \
     content.cpp \
     createjob.cpp \
+    editinformation.cpp \
     home.cpp \
     jobscompany.cpp \
     jobsuser.cpp \
@@ -33,6 +36,7 @@ HEADERS += \
     comment.h \
     content.h \
     createjob.h \
+    editinformation.h \
     home.h \
     jobscompany.h \
     jobsuser.h \
@@ -51,6 +55,7 @@ FORMS += \
     addcompany.ui \
     comment.ui \
     createjob.ui \
+    editinformation.ui \
     home.ui \
     jobscompany.ui \
     jobsuser.ui \
