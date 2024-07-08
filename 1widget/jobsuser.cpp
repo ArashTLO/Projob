@@ -23,7 +23,7 @@
 
 int adad_ju;
 QString Type_ju;
-jobsuser::jobsuser(int number,QString type,QWidget *parent) :
+jobsuser::jobsuser(int number, QString type ,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::jobsuser)
 {
@@ -54,8 +54,6 @@ jobsuser::jobsuser(int number,QString type,QWidget *parent) :
     if (!q.exec(selectQuery)) {
         qDebug() << "Error: ";
     } else {
-        //int currentY = 200;
-        //int frameHeight = 200;
 
         while (q.next()) {
             QString jobsString = q.value(0).toString();

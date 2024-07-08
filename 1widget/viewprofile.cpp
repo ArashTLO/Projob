@@ -19,6 +19,7 @@
 #include "QByteArray"
 #include "QTextEdit"
 #include "QVariant"
+#include "QMessageBox"
 
 int adad_v;
 QString Type_v;
@@ -165,9 +166,19 @@ void viewprofile::on_commandLinkButton_2_clicked()
 
 void viewprofile::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser(adad_v,Type_v);
-    this->close();
-    w3->show();
+    if (Type_v == "P"){
+
+        jobsuser *w3 = new jobsuser(adad_v,Type_v);
+        this->close();
+        w3->show();
+
+    }
+    else if (Type_v == "C") {
+        QMessageBox::warning(this, "home", "Only persons can enter the desired window.");
+    }
+    else{
+        QMessageBox::warning(this, "home", "the account is valid.");
+    }
 }
 
 

@@ -11,6 +11,7 @@
 #include "QByteArray"
 #include <QFileDialog>
 #include "QDebug"
+#include "content.h"
 
 verificationpage::verificationpage(QWidget *parent) :
     QMainWindow(parent),
@@ -42,53 +43,15 @@ void verificationpage::on_pushButton_back_clicked()
     QString birth = ui->dateEdit->text();
     QString n = ui->lineEdit_na->text();
 
-    /*QFile file(filePath_1);
-    if(file.open(QIODevice::ReadOnly)){
-    QByteArray imageData = file.readAll();
-
-    if(ui->lineEdit->text() == "" || ui->lineEdit_2->text() == "" || ui->lineEdit_4->text() == "" || ui->lineEdit_5->text() == "")
-       QMessageBox::warning(this,"verification","Please complete all information");
-
-    else{
-        QSqlQuery q;
-        q.exec("INSERT INTO verificationpage(username,password,frstname,lastname,recent_job_title,emploment_type,recent_company,date_birth,school,Start_year,end_year,address,image)VALUES('"+s9+"','"+p+"','"+f+"','"+l+"','"+s5+"','"+s1+"','"+s2+"','"+s4+"','"+s3+"','"+s6+"','"+s7+"','"+s8+"','"+imageData+"')");
-        loginpage *w3 = new loginpage;
-        this->close();
-        w3->show();
-    }
-    }
-}*/
     QFile file(filePath_1);
     if (file.open(QIODevice::ReadOnly)) {
         QByteArray imageData = file.readAll();
 
-        if (e.isEmpty() || sk.isEmpty() || school.isEmpty() || s9.isEmpty()) {
-            QMessageBox::warning(this, "verification", "Please complete all information");
-        } else {
-            QSqlQuery q;
-            q.prepare("INSERT INTO verificationpage (username,password,frstname,lastname,email,skills,school,start_year,end_year,date_birth,image,nationality) VALUES (:username,:password,:frstname,:lastname,:email,:skills,:school,:Start_year,:end_year,:birth,:image,:nationality)");
-            q.bindValue(":password", p);
-            q.bindValue(":username", s9);
-            q.bindValue(":frstname", f);
-            q.bindValue(":lastname", l);
-            q.bindValue(":email", e);
-            q.bindValue(":skills", sk);
-            q.bindValue(":school", school);
-            q.bindValue(":Start_year", start_y);
-            q.bindValue(":end_year", end_y);
-            q.bindValue(":birth", birth);
-            q.bindValue(":image", imageData);
-            q.bindValue(":nationality", n);
+        Account newaccount(f,l,sk,0,e);
+        newaccount.create_account_user(p,s9,school,start_y,end_y,birth,n,imageData);
 
-            if (q.exec()) {
-                loginpage *w3 = new loginpage;
-                this->close();
-                w3->show();
-            } else {
-                qDebug() << "Error: ";
-            }
-        }
-}
+        this->close(); 
+    }
 }
 
 void verificationpage::on_pushButton_select_photo_clicked()

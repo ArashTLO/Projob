@@ -39,6 +39,26 @@ background-color: rgb(62, 113, 120);
 box-shadow: 0 0 5px rgba(0,0,255,0.5);
 font: bold 19px;
 Width: 150px;
+}
+QPushButton#pushButton_2{
+background-color: rgb(52, 103, 110);
+color: white;
+font: bold 17px;
+border-radius: 10px;
+transition: 0.2s;
+}
+QPushButton#pushButton_2:hover {
+background-color: rgb(72, 123, 130);
+font: bold 19px;
+}
+QPushButton#pushButton_2:pressed {
+background-color: rgb(62, 113, 120);
+}
+QPushButton#pushButtone_2:focus{
+background-color: rgb(62, 113, 120);
+box-shadow: 0 0 5px rgba(0,0,255,0.5);
+font: bold 19px;
+Width: 150px;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -618,7 +638,7 @@ font: 12pt &quot;Rockwell&quot;;</string>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>490</x>
+      <x>590</x>
       <y>450</y>
       <width>161</width>
       <height>33</height>
@@ -642,6 +662,35 @@ border-radius: 10px;
     </property>
     <property name="text">
      <string>Add Company</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>450</y>
+      <width>201</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+color: white;
+padding: 6px;
+border-radius: 10px;
+</string>
+    </property>
+    <property name="text">
+     <string>Change Information</string>
     </property>
    </widget>
   </widget>

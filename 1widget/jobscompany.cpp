@@ -117,30 +117,10 @@ void jobscompany::on_ignor_clicked(int number,int id_user,int id_job){
     w->show();
 }
 void jobscompany::on_accept_clicked(int number,int id_user,int id_job){
-    QJsonObject acceptObject;
-    acceptObject["id_user"] = id_user;
-    acceptObject["id_job"] = id_job;
-    QSqlQuery q;
-    q.prepare("SELECT Employee FROM CompanyInformation WHERE rowid = :id_company");
-    q.bindValue(":id_company", number);
-    if(q.exec() && q.next()) {
-        QString jobsString = q.value(0).toString();
-        QJsonDocument doc = QJsonDocument::fromJson(jobsString.toUtf8());
-        QJsonArray jobsArray = doc.array();
-        jobsArray.append(acceptObject);
-        QJsonDocument newDoc(jobsArray);
 
-        QString newEmployee = newDoc.toJson();
-        QString updateQuery = QString("UPDATE CompanyInformation SET Employee = '%1' WHERE rowid = %2").arg(newEmployee).arg(number);
-        if (!q.exec(updateQuery)) {
-            qDebug() << "Error: ";
-        } else {
-            QMessageBox::information(this,"job company","A new employee has been added to your company.");
-            qDebug() << "Record updated successfully!";
-        }
-    }
-    job delet;
-    delet.Delete_request(number,id_job,id_user);
+    job myjob;
+    myjob.User_acceptance(number,id_job,id_user);
+    myjob.Delete_request(number,id_job,id_user);
 
     jobscompany *w = new jobscompany(adad_j_c,Type_j_c);
     this->close();
@@ -166,9 +146,19 @@ void jobscompany::on_commandLinkButton_2_clicked()
 
 void jobscompany::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser(adad_j_c,Type_j_c);
-    this->close();
-    w3->show();
+    if (Type_j_c == "P"){
+
+        jobsuser *w3 = new jobsuser(adad_j_c,Type_j_c);
+        this->close();
+        w3->show();
+
+    }
+    else if (Type_j_c == "C") {
+        QMessageBox::warning(this, "home", "Only persons can enter the desired window.");
+    }
+    else{
+        QMessageBox::warning(this, "home", "the account is valid.");
+    }
 }
 
 

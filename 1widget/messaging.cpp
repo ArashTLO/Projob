@@ -24,6 +24,7 @@
 #include "QModelIndex"
 #include "QModelIndexList"
 #include "QSqlQueryModel"
+#include "content.h"
 
 int adad_M,ID_receiver;
 QString Type_M,text_Message;
@@ -54,8 +55,8 @@ messaging::messaging(int number, QString type, QString text_message, QWidget *pa
 
     while (q.next()) {
 
-        ui->frame_2->setMaximumHeight(frameHeight);
-
+        ui->frame_2->setMinimumHeight(frameHeight);
+        qDebug() << "frameHeight : " <<frameHeight;
         QGroupBox *group = new QGroupBox(ui->frame_2);
         group->setGeometry(0,currentY,318,53);
         group->setStyleSheet("background-color: rgb(255, 255, 255);");
@@ -105,6 +106,10 @@ void messaging::on_user_clicked(int sender, int receiver){
     textEdit->deleteLater();
     }
 
+    QList<QLabel*> labels = ui->frame_3->findChildren<QLabel*>();
+    for (QLabel* label : labels) {
+    label->deleteLater();
+    }
    QSqlQuery query;
    query.prepare("SELECT DM FROM verificationpage WHERE account_id = :sender");
    query.bindValue(":sender", sender);
@@ -155,13 +160,14 @@ void messaging::on_user_clicked(int sender, int receiver){
                     imageLabel->setStyleSheet("border-radius: 13px;");
                     imageLabel->setScaledContents(true);
 
-                    frameHeight += 178;
-                    currentY += 178;
+                    frameHeight += 160;
+                    currentY += 160;
                     imageLabel->show();
                 } else {
                     qDebug() << "Failed to load image from file: " << imagePath;
                 }
             }
+
 ///////////////////////////////////////////////////////////////////////////
        }
        else if(postObject["id_sender"].toInt() == receiver){
@@ -191,8 +197,8 @@ void messaging::on_user_clicked(int sender, int receiver){
                    imageLabel->setStyleSheet("border-radius: 13px;");
                    imageLabel->setScaledContents(true);
 
-                   frameHeight += 178;
-                   currentY += 178;
+                   frameHeight += 160;
+                   currentY += 160;
                    imageLabel->show();
                } else {
                    qDebug() << "Failed to load image from file: " << imagePath;
@@ -220,9 +226,19 @@ void messaging::on_commandLinkButton_2_clicked()
 
 void messaging::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser(adad_M,Type_M);
-    this->close();
-    w3->show();
+    if (Type_M == "P"){
+
+        jobsuser *w3 = new jobsuser(adad_M,Type_M);
+        this->close();
+        w3->show();
+
+    }
+    else if (Type_M == "C") {
+        QMessageBox::warning(this, "home", "Only persons can enter the desired window.");
+    }
+    else{
+        QMessageBox::warning(this, "home", "the account is valid.");
+    }
 }
 
 
@@ -264,53 +280,9 @@ void messaging::on_commandLinkButton_6_clicked()
 
 void messaging::on_pushButton_clicked()
 {
-    QJsonObject messagingObject_1;
-    messagingObject_1["id_sender"] = adad_M;
-    messagingObject_1["texe_messag"] = ui->textEdit->toPlainText();
+    message newmessage(ID_receiver,adad_M,ui->textEdit->toPlainText(),nullptr);
+    newmessage.send_text_message();
 
-    QSqlQuery p;
-    p.prepare("SELECT DM FROM verificationpage WHERE rowid = :id");
-    p.bindValue(":id", ID_receiver);
-
-    if(p.exec() && p.next()) {
-        QString jobsString = p.value(0).toString();
-        QJsonDocument doc = QJsonDocument::fromJson(jobsString.toUtf8());
-        QJsonArray jobsArray = doc.array();
-        jobsArray.append(messagingObject_1);
-        QJsonDocument newDoc(jobsArray);
-
-        QString newJobsString = newDoc.toJson();
-        QString updateQuery = QString("UPDATE verificationpage SET DM = '%1' WHERE rowid = %2").arg(newJobsString).arg(ID_receiver);
-        if (!p.exec(updateQuery)) {
-            qDebug() << "Error: ";
-        } else {
-            qDebug() << "Record updated successfully!";
-        }
-    }
-/////////////////////////////////////////////////////////////////////////////////////////////
-    QJsonObject messagingObject;
-    messagingObject["id_receiver"] = ID_receiver;
-    messagingObject["texe_messag"] = ui->textEdit->toPlainText();
-
-    QSqlQuery q;
-    q.prepare("SELECT DM FROM verificationpage WHERE rowid = :id");
-    q.bindValue(":id", adad_M);
-
-    if(q.exec() && q.next()) {
-        QString jobsString = q.value(0).toString();
-        QJsonDocument doc = QJsonDocument::fromJson(jobsString.toUtf8());
-        QJsonArray jobsArray = doc.array();
-        jobsArray.append(messagingObject);
-        QJsonDocument newDoc(jobsArray);
-
-        QString newJobsString = newDoc.toJson();
-        QString updateQuery = QString("UPDATE verificationpage SET DM = '%1' WHERE rowid = %2").arg(newJobsString).arg(adad_M);
-        if (!q.exec(updateQuery)) {
-            qDebug() << "Error: ";
-        } else {
-            qDebug() << "Record updated successfully!";
-        }
-    }
     messaging *e = new messaging(adad_M,Type_M,text_Message);
     this->close();
     e->show();
@@ -322,53 +294,9 @@ void messaging::on_pushButton_2_clicked()
 
     if (!filePath1.isEmpty()) {
 
-        QJsonObject messagingObject_1;
-        messagingObject_1["id_sender"] = adad_M;
-        messagingObject_1["image_messag"] = filePath1;
+        message newmessage(ID_receiver,adad_M,nullptr,filePath1);
+        newmessage.send_image_message();
 
-        QSqlQuery p;
-        p.prepare("SELECT DM FROM verificationpage WHERE rowid = :id");
-        p.bindValue(":id", ID_receiver);
-
-        if(p.exec() && p.next()) {
-            QString jobsString = p.value(0).toString();
-            QJsonDocument doc = QJsonDocument::fromJson(jobsString.toUtf8());
-            QJsonArray jobsArray = doc.array();
-            jobsArray.append(messagingObject_1);
-            QJsonDocument newDoc(jobsArray);
-
-            QString newJobsString = newDoc.toJson();
-            QString updateQuery = QString("UPDATE verificationpage SET DM = '%1' WHERE rowid = %2").arg(newJobsString).arg(ID_receiver);
-            if (!p.exec(updateQuery)) {
-                qDebug() << "Error: ";
-            } else {
-                qDebug() << "Record updated successfully!";
-            }
-        }
-        /////////////////////////////////////////////////////////////////////////////////////////////
-            QJsonObject messagingObject;
-            messagingObject["id_receiver"] = ID_receiver;
-            messagingObject["image_messag"] = filePath1;
-
-            QSqlQuery q;
-            q.prepare("SELECT DM FROM verificationpage WHERE rowid = :id");
-            q.bindValue(":id", adad_M);
-
-            if(q.exec() && q.next()) {
-                QString jobsString = q.value(0).toString();
-                QJsonDocument doc = QJsonDocument::fromJson(jobsString.toUtf8());
-                QJsonArray jobsArray = doc.array();
-                jobsArray.append(messagingObject);
-                QJsonDocument newDoc(jobsArray);
-
-                QString newJobsString = newDoc.toJson();
-                QString updateQuery = QString("UPDATE verificationpage SET DM = '%1' WHERE rowid = %2").arg(newJobsString).arg(adad_M);
-                if (!q.exec(updateQuery)) {
-                    qDebug() << "Error: ";
-                } else {
-                    qDebug() << "Record updated successfully!";
-                }
-            }
             messaging *e = new messaging(adad_M,Type_M,text_Message);
             this->close();
             e->show();

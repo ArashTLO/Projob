@@ -25,6 +25,7 @@
 #include "QJsonArray"
 #include "QJsonDocument"
 #include "QJsonObject"
+#include "content.h"
 
 int adad_h;
 QVariant id;
@@ -36,13 +37,26 @@ home::home(int number,QString type,QWidget *parent) :
 {
     ui->setupUi(this);
     Type_h = type;
-    QString name_L_or_C;
+    QString name_user;
+    ////////////////////////////////////////////////////////////////////////////
+    if(type == "P"){
     QSqlQuery findname;
     findname.prepare("SELECT username FROM loginpage WHERE account_id = :number");
     findname.bindValue(":number", number);
     if(findname.exec()&&findname.next()){
-    name_L_or_C = findname.value(0).toString();
+    name_user = findname.value(0).toString();
     }
+    }
+    ///////////////////////////////////////////////////////////////////////////
+    if(type == "C"){
+    QSqlQuery findname;
+    findname.prepare("SELECT name FROM CompanyInformation WHERE id_C = :number");
+    findname.bindValue(":number", number);
+    if(findname.exec()&&findname.next()){
+    name_user = findname.value(0).toString();
+    }
+    }
+    ///////////////////////////////////////////////////////////////////////////
     adad_h = number;
 
     QSqlDatabase database; // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
@@ -128,7 +142,7 @@ home::home(int number,QString type,QWidget *parent) :
         comment->setFont(font);
         QIcon iconComment(":/425269-icone-de-bate-papo-de-gratis-vetor.jpg");
         comment->setIcon(iconComment);
-        connect(comment, &QCommandLinkButton::clicked, this,[this,name_L_or_C,id_p](){on_comment_Clicked(name_L_or_C,id_p);});
+        connect(comment, &QCommandLinkButton::clicked, this,[this,name_user,id_p](){on_comment_Clicked(name_user,id_p);});
 
         QCommandLinkButton *repost = new QCommandLinkButton(in_groupBox);
         repost->setGeometry(270,10,100,40);
@@ -160,14 +174,14 @@ home::home(int number,QString type,QWidget *parent) :
         post_number_lineEdit->setText(QString::number(id_p));
         post_number_lineEdit->setGeometry(5,5,30,20);
         post_number_lineEdit->setStyleSheet(" border:3px solid rgb(255,255,255)");
-        connect(like, &QCommandLinkButton::clicked, this,[this,name_L_or_C,id_p](){onLikeClicked(name_L_or_C,id_p);});
+        connect(like, &QCommandLinkButton::clicked, this,[this,name_user,id_p,id_Company](){onLikeClicked(name_user,id_p,"C",id_Company);});
 
         QPushButton *whoLike = new QPushButton(groupBox);
         whoLike->setGeometry(325,234,150,30);
         whoLike->setText("who like this");
         whoLike->setFont(font_2);
         whoLike->setStyleSheet("background-color:rgb(255,255,255);color:#2980b9;border-radius:2px;");
-        connect(whoLike, &QPushButton::clicked,this,[this,id_p](){home::on_likelistshow_clicked(id_p);});
+        connect(whoLike, &QPushButton::clicked,this,[this,id_p,id_Company](){home::on_likelistshow_clicked(id_p,"C",id_Company);});
 
         groupBox->show();
         frameHeight_3 += 360;
@@ -249,7 +263,7 @@ home::home(int number,QString type,QWidget *parent) :
         comment->setFont(font);
         QIcon iconComment(":/425269-icone-de-bate-papo-de-gratis-vetor.jpg");
         comment->setIcon(iconComment);
-        connect(comment, &QCommandLinkButton::clicked, this,[this,name_L_or_C,id_p](){on_comment_Clicked(name_L_or_C,id_p);});
+        connect(comment, &QCommandLinkButton::clicked, this,[this,name_user,id_p](){on_comment_Clicked(name_user,id_p);});
 
         QCommandLinkButton *repost = new QCommandLinkButton(in_groupBox);
         repost->setGeometry(270,10,100,40);
@@ -281,14 +295,14 @@ home::home(int number,QString type,QWidget *parent) :
         post_number_lineEdit->setText(QString::number(id_p));
         post_number_lineEdit->setGeometry(5,5,30,20);
         post_number_lineEdit->setStyleSheet(" border:3px solid rgb(255,255,255)");
-        connect(like, &QCommandLinkButton::clicked, this,[this,name_L_or_C,id_p](){onLikeClicked(name_L_or_C,id_p);});
+        connect(like, &QCommandLinkButton::clicked, this,[this,name_user,id_p,id_person](){onLikeClicked(name_user,id_p,"P",id_person);});
 
         QPushButton *whoLike = new QPushButton(groupBox);
         whoLike->setGeometry(325,234,150,30);
         whoLike->setText("who like this");
         whoLike->setFont(font_2);
         whoLike->setStyleSheet("background-color:rgb(255,255,255);color:#2980b9;border-radius:2px;");
-        connect(whoLike, &QPushButton::clicked,this,[this,id_p](){home::on_likelistshow_clicked(id_p);});
+        connect(whoLike, &QPushButton::clicked,this,[this,id_p,id_person](){home::on_likelistshow_clicked(id_p,"P",id_person);});
 
         groupBox->show();
         frameHeight += 360;
@@ -311,24 +325,17 @@ void home::on_comment_Clicked(QString name_Comment,int id){
     w->show();
 }
 
-void home::on_likelistshow_clicked(int id){
-    likelist *w = new likelist(id);
+void home::on_likelistshow_clicked(int post_id, QString post_type,int account_id){
+    likelist *w = new likelist(post_id,post_type,account_id);
     w->show();
 }
 
-void home::onLikeClicked(QString username_like,int id) {
-       QSqlQuery query;
-       query.prepare("INSERT INTO postLike (username,post_id) VALUES (:username,:adad)");
-       query.bindValue(":username", username_like);
-       query.bindValue(":adad",id);
-       //id.clear();
+void home::onLikeClicked(QString username_like,int post_id,QString post_type, int liked_account_id) {
 
-       if(query.exec()) {
-           qDebug() << "Like saved to database";
-       } else {
-           qDebug() << "Error saving like to database";
-       }
-   }
+    Like addlike( post_type, username_like, post_id, liked_account_id);
+    addlike.Register_like();
+
+}
 home::~home()
 {
     delete ui;
@@ -357,20 +364,25 @@ void home::on_commandLinkButton_2_clicked()
 
 void home::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser(adad_h,Type_h);
-    this->close();
-    w3->show();
+    if (Type_h == "P"){
+
+        jobsuser *w3 = new jobsuser(adad_h,Type_h);
+        this->close();
+        w3->show();
+    }
+    else if (Type_h == "C") {
+        QMessageBox::warning(this, "home", "Only persons can enter the desired window.");
+    }
+    else{
+        QMessageBox::warning(this, "home", "the account is valid.");
+    }
 }
-
-
 void home::on_commandLinkButton_4_clicked()
 {
     messaging *w3 = new messaging(adad_h,Type_h,nullptr);
     this->close();
     w3->show();
 }
-
-
 void home::on_commandLinkButton_5_clicked()
 {
 
@@ -395,10 +407,8 @@ void home::on_commandLinkButton_6_clicked()
     this->close();
     w3->show();
 }
-
 void home::on_pushButton_clicked()
 {
-    //int number = o;
     post *w3 = new post(adad_h,Type_h);
     this->close();
     w3->show();

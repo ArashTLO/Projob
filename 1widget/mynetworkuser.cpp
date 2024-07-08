@@ -406,9 +406,19 @@ void mynetworkuser::on_commandLinkButton_2_clicked()
 
 void mynetworkuser::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser(adad_m_u,Type_m_u);
-    this->close();
-    w3->show();
+    if (Type_m_u == "P"){
+
+        jobsuser *w3 = new jobsuser(adad_m_u,Type_m_u);
+        this->close();
+        w3->show();
+
+    }
+    else if (Type_m_u == "C") {
+        QMessageBox::warning(this, "home", "Only persons can enter the desired window.");
+    }
+    else{
+        QMessageBox::warning(this, "home", "the account is valid.");
+    }
 }
 
 

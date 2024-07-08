@@ -12,7 +12,7 @@ class likelist : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit likelist(int id,QWidget *parent = nullptr);
+    explicit likelist(int id, QString post_type,int account_id_liked,QWidget *parent = nullptr);
     ~likelist();
 
 private slots:

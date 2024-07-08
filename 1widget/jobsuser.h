@@ -12,7 +12,7 @@ class jobsuser : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit jobsuser(int number,QString type, QWidget *parent = nullptr);
+    explicit jobsuser(int number, QString type,QWidget *parent = nullptr);
     ~jobsuser();
 
 private slots:

@@ -12,6 +12,8 @@
 #include "QSqlQuery"
 #include "QSqlQueryModel"
 #include "QDebug"
+#include "editinformation.h"
+#include "QMessageBox"
 
 QString Type_m;
 int adad_m;
@@ -75,9 +77,19 @@ void me::on_commandLinkButton_2_clicked()
 
 void me::on_commandLinkButton_3_clicked()
 {
-    jobsuser *w3 = new jobsuser(adad_m,Type_m);
-    this->close();
-    w3->show();
+    if (Type_m == "P"){
+
+        jobsuser *w3 = new jobsuser(adad_m,Type_m);
+        this->close();
+        w3->show();
+
+    }
+    else if (Type_m == "C") {
+        QMessageBox::warning(this, "home", "Only persons can enter the desired window.");
+    }
+    else{
+        QMessageBox::warning(this, "home", "the account is valid.");
+    }
 }
 
 
@@ -118,5 +130,13 @@ void me::on_pushButton_clicked()
     addcompany *w3 = new addcompany(adad_m);
     this->close();
     w3->show();
+}
+
+
+void me::on_pushButton_2_clicked()
+{
+    editinformation *w = new editinformation(adad_m,Type_m);
+    this->close();
+    w->show();
 }
 

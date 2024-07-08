@@ -18,9 +18,9 @@ public:
 private slots:
     void on_send_Clicked(int adad_h,QString Type_h, QString text_message);
 
-    void onLikeClicked(QString name,int id);
+    void onLikeClicked(QString name,int post_id,QString post_type, int liked_account_id);
 
-    void on_likelistshow_clicked(int id);
+    void on_likelistshow_clicked(int post_id ,QString type_post,int account_id);
 
     void on_comment_Clicked(QString name,int id);
 

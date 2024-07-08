@@ -6,8 +6,12 @@
 #include "QSqlQueryModel"
 #include "QLineEdit"
 #include "QGroupBox"
+#include "QJsonArray"
+#include "QJsonDocument"
+#include "QJsonObject"
+#include "content.h"
 
-likelist::likelist(int id,QWidget *parent) :
+likelist::likelist(int id,QString post_type,int account_id_liked,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::likelist)
 {
@@ -17,18 +21,64 @@ likelist::likelist(int id,QWidget *parent) :
     database.setDatabaseName("d:\\DB_project.db");
     database.open();
 
-    QSqlQuery p;
-    p.prepare("SELECT post_text,post_image FROM post WHERE post_id = :id");
-    p.bindValue(":id", id);
-    p.exec();
-    p.next();
+    if(post_type == "P"){
+        QSqlQuery p_info;
+        p_info.prepare("SELECT posts FROM verificationpage WHERE account_id = :account_id_liked");
+        p_info.bindValue(":account_id_liked", account_id_liked);
+        p_info.exec();
 
-    ui->textEdit_2->setText(p.value(0).toString());
-   // ui->lineEdit->setText(p.value(2).toString());
-    QByteArray imageData = p.value(1).toByteArray();
-    QPixmap image;
-    image.loadFromData(imageData);
-    ui->label->setPixmap(image.scaled(476,180));
+        while(p_info.next()){
+
+        QString postsJsonString = p_info.value(0).toString();
+        QJsonDocument doc = QJsonDocument::fromJson(postsJsonString.toUtf8());
+        QJsonArray postsArray = doc.array();
+
+        foreach (const QJsonValue &postValue,postsArray){
+
+            QJsonObject postObject = postValue.toObject();
+
+            if(id == postObject["post_id"].toInt()){
+
+                QString postImageb64 = postObject["post_image"].toString();
+                QByteArray Image_Data = QByteArray::fromBase64(postImageb64.toUtf8());
+                QPixmap image;
+                image.loadFromData(Image_Data);
+                ui->label->setPixmap(image.scaled(476,180));
+
+                ui->textEdit_2->setText(postObject["post_text"].toString());
+            }
+        }
+        }
+    }
+    else if(post_type == "C"){
+        QSqlQuery p_info;
+        p_info.prepare("SELECT posts FROM CompanyInformation WHERE id_C = :account_id_liked");
+        p_info.bindValue(":account_id_liked", account_id_liked);
+        p_info.exec();
+
+        while(p_info.next()){
+
+        QString postsJsonString = p_info.value(0).toString();
+        QJsonDocument doc = QJsonDocument::fromJson(postsJsonString.toUtf8());
+        QJsonArray postsArray = doc.array();
+
+        foreach (const QJsonValue &postValue,postsArray){
+
+            QJsonObject postObject = postValue.toObject();
+
+            if(id == postObject["post_id"].toInt()){
+
+                QString postImageb64 = postObject["post_image"].toString();
+                QByteArray Image_Data = QByteArray::fromBase64(postImageb64.toUtf8());
+                QPixmap image;
+                image.loadFromData(Image_Data);
+                ui->label->setPixmap(image.scaled(476,180));
+
+                ui->textEdit_2->setText(postObject["post_text"].toString());
+            }
+        }
+        }
+    }
 
 
     int frameHeight = 51;
@@ -38,8 +88,11 @@ likelist::likelist(int id,QWidget *parent) :
     ui->frame_2->setStyleSheet("background-color: rgb(255,255,255);");
 
     QSqlQuery q;
-    QString query = QString("SELECT username FROM postLike WHERE post_id = %1 ORDER BY post_id").arg(id);
-    q.exec(query);
+    q.prepare("SELECT username FROM postLike WHERE post_id = :post_id AND post_type = :post_type AND liked_account_id = :liked_account_id");
+    q.bindValue(":post_id", id);
+    q.bindValue(":post_type", post_type);
+    q.bindValue(":liked_account_id", account_id_liked);
+    q.exec();
     while(q.next()){
         QFont font("Nirmala", 10, QFont::Light);
         ui->frame_2->setMinimumHeight(frameHeight);

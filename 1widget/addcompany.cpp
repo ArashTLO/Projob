@@ -10,6 +10,7 @@
 #include "loginpage.h"
 #include "QDebug"
 #include "me.h"
+#include "content.h"
 
 int adad_add;
 addcompany::addcompany(int number,QWidget *parent) :
@@ -59,27 +60,10 @@ void addcompany::on_pushButton_back_clicked()
         if (file.open(QIODevice::ReadOnly)) {
             QByteArray imageData = file.readAll();
 
-            if (name_c.isEmpty() || phone.isEmpty() || email.isEmpty() || address.isEmpty()) {
-                QMessageBox::warning(this, "Verification", "Please complete all information");
-            } else {
-                QSqlQuery q;
-                q.prepare("INSERT INTO CompanyInformation (name,password,phoneNumber,email,address,image_C,id_user) VALUES (:name_c,:password,:phone,:email,:address,:imageData,:iduser)");
-                q.bindValue(":name_c", name_c);
-                q.bindValue(":password", password);
-                q.bindValue(":phone", phone);
-                q.bindValue(":email", email);
-                q.bindValue(":address", address);
-                q.bindValue(":imageData", imageData);
-                q.bindValue(":iduser", adad_add);
+            Company myCompany(name_c,email,adad_add);
+            myCompany.Creat_Company(phone,address,password,imageData);
+            this->close();
 
-                if (q.exec()) {
-                    me *w3 = new me(adad_add,"P");
-                    this->close();
-                    w3->show();
-                } else {
-                    QMessageBox::warning(this, "Verification","Error: ") ;
-                }
-            }
         }
     }
 }
