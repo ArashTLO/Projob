@@ -450,11 +450,11 @@ void Like::Register_like(){
     checkQuery.exec();
 
     if (checkQuery.next()) {
-        // رکورد با این اطلاعات وجود دارد
+
         qDebug() << "Record already exists";
-        QMessageBox::information(nullptr, "Home", "Record already exists");
+        QMessageBox::information(nullptr, "Home", "this post has already been liked by you.");
     } else {
-        // رکورد با این اطلاعات وجود ندارد، اطلاعات به جدول اضافه شود
+
         QSqlQuery query;
         query.prepare("INSERT INTO postLike (username, post_id, post_type, liked_account_id) VALUES (:username, :adad, :post_type, :liked_account_id)");
         query.bindValue(":username", name_liker);
@@ -469,21 +469,11 @@ void Like::Register_like(){
             qDebug() << "Error saving like to database";
         }
     }
-    /*QSqlQuery query;
-    query.prepare("INSERT INTO postLike (username,post_id,post_type,liked_account_id) VALUES (:username,:adad,:post_type,:liked_account_id)");
-    query.bindValue(":username", name_liker);
-    query.bindValue(":adad",post_id);
-    query.bindValue(":post_type", post_type);
-    query.bindValue(":liked_account_id", liked_account_id);
 
-    if(query.exec()) {
-        qDebug() << "Like saved to database";
-        QMessageBox::information(nullptr,"Home","Like saved to database");
-    } else {
-        qDebug() << "Error saving like to database";
-    }*/
 }
+
 QSqlQuery Like::show_list_Like() {
+
     QSqlQuery q;
     q.prepare("SELECT username FROM postLike WHERE post_id = :post_id AND post_type = :post_type AND liked_account_id = :liked_account_id");
     q.bindValue(":post_id", post_id);
@@ -492,4 +482,16 @@ QSqlQuery Like::show_list_Like() {
     q.exec();
 
     return q;
+}
+
+void Comment::add_comment(){
+
+    QSqlQuery q;
+    q.prepare("INSERT INTO postComment(post_id,textComment,username,id_recieve,type_recieve) VALUES(:id,:text,:username,:id_recieve,:type_recieve)");
+    q.bindValue(":text",text_comment);
+    q.bindValue(":id", id_post);
+    q.bindValue(":username", name_sender);
+    q.bindValue(":id_recieve", id_recieve);
+    q.bindValue(":type_recieve", type_post);
+    q.exec();
 }

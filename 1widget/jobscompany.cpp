@@ -128,7 +128,7 @@ void jobscompany::on_accept_clicked(int number,int id_user,int id_job){
 }
 void jobscompany::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(0,"C");
+    home *w3 = new home(adad_j_c,"C");
     this->close();
     w3->show();
 }

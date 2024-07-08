@@ -61,7 +61,7 @@ me::~me()
 
 void me::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(0,Type_m);
+    home *w3 = new home(adad_m,Type_m);
     this->close();
     w3->show();
 }

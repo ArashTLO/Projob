@@ -81,6 +81,29 @@ public:
     void posting_user();
 };
 
+class Comment{
+
+public:
+
+    QString name_sender;
+    QString text_comment;
+    QString type_post;
+    int id_recieve;
+    int id_post;
+
+    Comment(QString name_sender, QString text_comment, QString type_post, int id_recieve, int id_post){
+
+        this->name_sender = name_sender;
+        this->text_comment = text_comment;
+        this->type_post = type_post;
+        this->id_recieve = id_recieve;
+        this->id_post = id_post;
+    }
+
+    void add_comment();
+};
+
+
 class Like{
 
 public:
@@ -197,6 +220,6 @@ public:
         job_type = jt;
         id_company = id_c;
     }
-    };
+};
 
 #endif // CONTENT_H

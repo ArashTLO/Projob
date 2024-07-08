@@ -7,33 +7,86 @@
 #include "QLineEdit"
 #include "QGroupBox"
 #include "QTextEdit"
+#include "QJsonArray"
+#include "QJsonDocument"
+#include "QJsonObject"
+#include "QMessageBox"
+#include "content.h"
 
-QString name_C;
-int id_C;
-comment::comment(QString name,int id,QString type,QWidget *parent) :
+QString name_User,type_Recieve;
+int id_Post,id_Recieve;
+comment::comment( QString name_user, int id_post, QString type_post, int id_recieve, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::comment)
 {
     ui->setupUi(this);
-    name_C = name;
-    id_C = id;
+    name_User = name_user;
+    id_Post = id_post;
+    id_Recieve = id_recieve;
+    type_Recieve = type_post;
     QSqlDatabase database;    // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
     database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("d:\\DB_project.db");
     database.open();
 
+    if(type_post == "P"){
+        QSqlQuery p_info;
+        p_info.prepare("SELECT posts FROM verificationpage WHERE account_id = :account_id_liked");
+        p_info.bindValue(":account_id_liked", id_recieve);
+        p_info.exec();
 
-    QSqlQuery p;
-    p.prepare("SELECT post_text,post_image,username FROM post WHERE post_id = :id");
-    p.bindValue(":id", id);
-    p.exec();
-    p.next();
-    ui->textEdit_2->setText(p.value(0).toString());
-    ui->lineEdit->setText(p.value(2).toString());
-    QByteArray imageData = p.value(1).toByteArray();
-    QPixmap image;
-    image.loadFromData(imageData);
-    ui->label->setPixmap(image.scaled(476,180));
+        while(p_info.next()){
+
+        QString postsJsonString = p_info.value(0).toString();
+        QJsonDocument doc = QJsonDocument::fromJson(postsJsonString.toUtf8());
+        QJsonArray postsArray = doc.array();
+
+        foreach (const QJsonValue &postValue,postsArray){
+
+            QJsonObject postObject = postValue.toObject();
+
+            if(id_post == postObject["post_id"].toInt()){
+
+                QString postImageb64 = postObject["post_image"].toString();
+                QByteArray Image_Data = QByteArray::fromBase64(postImageb64.toUtf8());
+                QPixmap image;
+                image.loadFromData(Image_Data);
+                ui->label->setPixmap(image.scaled(476,180));
+
+                ui->textEdit_2->setText(postObject["post_text"].toString());
+            }
+        }
+        }
+    }
+    else if(type_post == "C"){
+        QSqlQuery p_info;
+        p_info.prepare("SELECT posts FROM CompanyInformation WHERE id_C = :account_id_liked");
+        p_info.bindValue(":account_id_liked", id_recieve);
+        p_info.exec();
+
+        while(p_info.next()){
+
+        QString postsJsonString = p_info.value(0).toString();
+        QJsonDocument doc = QJsonDocument::fromJson(postsJsonString.toUtf8());
+        QJsonArray postsArray = doc.array();
+
+        foreach (const QJsonValue &postValue,postsArray){
+
+            QJsonObject postObject = postValue.toObject();
+
+            if(id_post == postObject["post_id"].toInt()){
+
+                QString postImageb64 = postObject["post_image"].toString();
+                QByteArray Image_Data = QByteArray::fromBase64(postImageb64.toUtf8());
+                QPixmap image;
+                image.loadFromData(Image_Data);
+                ui->label->setPixmap(image.scaled(476,180));
+
+                ui->textEdit_2->setText(postObject["post_text"].toString());
+            }
+        }
+        }
+    }
 
     int frameHeight = 265;
     int currentY = 9;
@@ -42,8 +95,11 @@ comment::comment(QString name,int id,QString type,QWidget *parent) :
     ui->frame_2->setStyleSheet("background-color: rgb(192, 221, 190);");
 
     QSqlQuery q;
-    QString query = QString("SELECT username,textcomment FROM postComment WHERE post_id = %1 ORDER BY post_id").arg(id);
-    q.exec(query);
+    q.prepare("SELECT username,textcomment FROM postComment WHERE post_id = :post_id AND id_recieve = :id_recieve AND type_recieve = :type_recieve");
+    q.bindValue(":id_recieve", id_recieve);
+    q.bindValue(":type_recieve", type_post);
+    q.bindValue(":post_id", id_post);
+    q.exec();
     while(q.next()){
 
         QFont font_2("Nirmala IU",12, QFont::Light);
@@ -83,16 +139,15 @@ comment::~comment()
 
 void comment::on_pushButton_clicked()
 {
-    if( ui->textEdit->toPlainText() != ""){
-        //QString text = ui->
-        QSqlQuery q;
-        q.prepare("INSERT INTO postComment(post_id,textComment,username) VALUES(:id,:text,:username)");
-        q.bindValue(":text",ui->textEdit->toPlainText());
-        q.bindValue(":id", id_C);
-        q.bindValue(":username", name_C);
-        q.exec();
+    if( !ui->textEdit->toPlainText().isEmpty()){
 
+        Comment newComment(name_User, ui->textEdit->toPlainText(), type_Recieve, id_Recieve, id_Post);
+        newComment.add_comment();
     }
+    QMessageBox::information(this,"Comment","The comment was sent successfully.");
+    comment *w = new comment(name_User,id_Post,type_Recieve,id_Recieve);
+    this->close();
+    w->show();
 }
 
 

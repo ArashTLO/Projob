@@ -330,10 +330,10 @@ margin: 5px;</string>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>298</x>
-       <y>71</y>
-       <width>151</width>
-       <height>131</height>
+       <x>278</x>
+       <y>31</y>
+       <width>181</width>
+       <height>161</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -347,23 +347,6 @@ margin: 5px;</string>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="geometry">
-      <rect>
-       <x>294</x>
-       <y>18</y>
-       <width>153</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: bold 15px;
-border-radius: 10px;
-border: 1px solid #0640ff;
-padding: 5px;
-margin: 3px;</string>
      </property>
     </widget>
    </widget>

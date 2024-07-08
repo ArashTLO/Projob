@@ -16,13 +16,18 @@ public:
     ~home();
 
 private slots:
+
+    QString check_follower(int id_follower, QString type_follower, QString type_following, int id_following);
+
+    void on_follow_Clicked(int id_follower, QString type_follower, QString type_following, int id_following);
+
     void on_send_Clicked(int adad_h,QString Type_h, QString text_message);
 
     void onLikeClicked(QString name,int post_id,QString post_type, int liked_account_id);
 
     void on_likelistshow_clicked(int post_id ,QString type_post,int account_id);
 
-    void on_comment_Clicked(QString name,int id);
+    void on_comment_Clicked(QString name_user,int id_post, QString type_post, int id_recieve);
 
     void on_commandLinkButton_clicked();
 
