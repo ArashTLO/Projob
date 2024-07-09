@@ -25,12 +25,18 @@
 int adad_p;
 QString name_p,Type_p;
 QString *n;
-post::post(int number,QString type,QWidget *parent) :
+post::post(int number,QString type,QString image_repost, QString text_repost, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::post)
 {
     Type_p = type;
 
+    if(image_repost != nullptr && text_repost != nullptr){
+
+        ui->textEdit_post->setText(text_repost);
+
+
+    }
     content myContent;
     name_p = myContent.check_type(type,number);
     numberLabel = new QLabel(name_p, this);

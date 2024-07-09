@@ -17,6 +17,8 @@ public:
 
 private slots:
 
+    void on_repost_Clicked(int number,QString type,QString repost_image,QString repost_text);
+
     QString check_follower(int id_follower, QString type_follower, QString type_following, int id_following);
 
     void on_follow_Clicked(int id_follower, QString type_follower, QString type_following, int id_following);

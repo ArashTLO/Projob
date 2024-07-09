@@ -16,6 +16,9 @@ public:
     ~mynetworkcompany();
 
 private slots:
+
+    int show_follower(int id_followeng);
+
     void on_commandLinkButton_clicked();
 
     void on_commandLinkButton_2_clicked();

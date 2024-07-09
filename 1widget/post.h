@@ -15,7 +15,7 @@ class post : public QMainWindow
 
 public:
 
-    explicit post(int number,QString type,QWidget *parent = nullptr);
+    explicit post(int number,QString type,QString image_repost, QString text_repost, QWidget *parent = nullptr);
     ~post();
 
 public slots:

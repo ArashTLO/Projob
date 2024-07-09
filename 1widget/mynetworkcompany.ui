@@ -19,7 +19,11 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QFrame#frame{
+   <string notr="true">QMainWindow{
+	background-color: rgb(255, 255, 255);
+}
+QFrame#frame{
+
 border-bottom: 3px solid rgb(52, 103, 110);
 }</string>
   </property>
@@ -380,10 +384,10 @@ color: rgb(0, 0, 0);</string>
    <widget class="QScrollArea" name="scrollArea_2">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>140</y>
+      <x>253</x>
+      <y>200</y>
       <width>641</width>
-      <height>438</height>
+      <height>321</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -410,7 +414,7 @@ color: rgb(0, 0, 0);</string>
      <bool>true</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(235, 235, 235);</string>
     </property>
     <property name="locale">
      <locale language="English" country="TuvaluCountry"/>
@@ -421,6 +425,9 @@ color: rgb(0, 0, 0);</string>
     <property name="frameShadow">
      <enum>QFrame::Plain</enum>
     </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
     <property name="widgetResizable">
      <bool>true</bool>
     </property>
@@ -428,9 +435,9 @@ color: rgb(0, 0, 0);</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
+       <y>-3</y>
        <width>639</width>
-       <height>436</height>
+       <height>383</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -445,25 +452,25 @@ color: rgb(0, 0, 0);</string>
         <property name="minimumSize">
          <size>
           <width>400</width>
-          <height>390</height>
+          <height>365</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>415</height>
+          <height>1000</height>
          </size>
         </property>
         <property name="sizeIncrement">
          <size>
           <width>400</width>
-          <height>414</height>
+          <height>365</height>
          </size>
         </property>
         <property name="baseSize">
          <size>
           <width>400</width>
-          <height>414</height>
+          <height>300</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -480,6 +487,30 @@ background-color: rgb(235, 235, 235);</string>
       </item>
      </layout>
     </widget>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>140</y>
+      <width>111</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Nirmala UI</family>
+      <pointsize>15</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(52, 103, 110);</string>
+    </property>
+    <property name="text">
+     <string>Followers :</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
