@@ -210,7 +210,7 @@ void messaging::on_user_clicked(int sender, int receiver){
 }
 void messaging::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(adad_M,Type_M);
+    home *w3 = new home(adad_M,Type_M,10);
     this->close();
     w3->show();
 }

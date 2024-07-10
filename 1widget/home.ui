@@ -484,9 +484,9 @@ border-bottom-right-radius: 40px;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
+       <y>-10</y>
        <width>531</width>
-       <height>468</height>
+       <height>383</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -501,7 +501,7 @@ border-bottom-right-radius: 40px;</string>
         <property name="minimumSize">
          <size>
           <width>400</width>
-          <height>365</height>
+          <height>360</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -616,7 +616,7 @@ background-color: rgb(235, 235, 235);</string>
        <x>0</x>
        <y>0</y>
        <width>531</width>
-       <height>468</height>
+       <height>378</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">

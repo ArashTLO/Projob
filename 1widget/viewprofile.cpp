@@ -150,7 +150,7 @@ viewprofile::~viewprofile()
 
 void viewprofile::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(0,"c");
+    home *w3 = new home(adad_v,Type_v,10);
     this->close();
     w3->show();
 }
@@ -158,7 +158,7 @@ void viewprofile::on_commandLinkButton_clicked()
 
 void viewprofile::on_commandLinkButton_2_clicked()
 {
-    me *w3 = new me(0,"");
+    me *w3 = new me(adad_v,Type_v);
     this->close();
     w3->show();
 }

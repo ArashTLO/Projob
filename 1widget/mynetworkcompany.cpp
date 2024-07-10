@@ -130,7 +130,7 @@ int mynetworkcompany::show_follower(int id_following){
 
 void mynetworkcompany::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(adad_m_c,Type_m_c);
+    home *w3 = new home(adad_m_c,Type_m_c,10);
     this->close();
     w3->show();
 }

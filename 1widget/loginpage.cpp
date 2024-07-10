@@ -110,7 +110,7 @@ void loginpage::on_pushButton_login_clicked()
         QMessageBox::warning(this,"Login","Captcha is not verified!");
     }
     else if(myContent.check_id_loginpage(username,password) != 0){
-        home *w3 = new home(myContent.check_id_loginpage(username,password), "P");
+        home *w3 = new home(myContent.check_id_loginpage(username,password), "P",10);
         this->close();
         w3->show();
     }
@@ -131,7 +131,7 @@ void loginpage::on_pushButton_login_clicked()
         }
         else if(myContent.check_id_loginCompaney(C_name,C_password) != 0){
 
-            home *w3 = new home(myContent.check_id_loginCompaney(C_name,C_password), "C");
+            home *w3 = new home(myContent.check_id_loginCompaney(C_name,C_password), "C",10);
             this->close();
             w3->show();
         }

@@ -91,7 +91,7 @@ void post::on_pushButton_2_clicked()
 
 void post::on_pushButton_3_clicked()
 {
-    home *s = new home(adad_p,Type_p);
+    home *s = new home(adad_p,Type_p,10);
     this->close();
     s->show();
 }

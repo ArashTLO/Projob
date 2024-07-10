@@ -12,10 +12,12 @@ class home : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit home(int number,QString type,QWidget *parent = nullptr);
+    explicit home(int number,QString type, int number_post_show,QWidget *parent = nullptr);
     ~home();
 
 private slots:
+
+    void on_SeeMore_clicked(int number,QString type,int number_post_show);
 
     void on_repost_Clicked(int number,QString type,QString repost_image,QString repost_text);
 

@@ -31,11 +31,12 @@ int adad_h;
 QVariant id;
 QString name_h,Type_h;
 
-home::home(int number,QString type,QWidget *parent) :
+home::home(int number,QString type,int number_post_show,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::home)
 {
     ui->setupUi(this);
+    qDebug() << number_post_show;
     Type_h = type;
     QString name_user;
     ////////////////////////////////////////////////////////////////////////////
@@ -75,6 +76,8 @@ home::home(int number,QString type,QWidget *parent) :
     c_info.exec();
     c_info.seek(-1);
 
+    int i = 0;
+
     while(c_info.next()){
 
     QString postsJsonString = c_info.value(0).toString();
@@ -86,7 +89,7 @@ home::home(int number,QString type,QWidget *parent) :
         QJsonObject postObject = postValue.toObject();
         int id_Company = postObject["id_C"].toInt();
 
-        if(check_follower(number,type,"C",id_Company) == "Followed"){
+        if(check_follower(number,type,"C",id_Company) == "Followed" && i < number_post_show){
 
         QSqlQuery q;
         q.prepare("SELECT name FROM CompanyInformation WHERE id_C = :id");
@@ -189,9 +192,12 @@ home::home(int number,QString type,QWidget *parent) :
         whoLike->setStyleSheet("background-color:rgb(255,255,255);color:#2980b9;border-radius:2px;");
         connect(whoLike, &QPushButton::clicked,this,[this,id_post,id_Company](){home::on_likelistshow_clicked(id_post,"C",id_Company);});
 
+        if( i >= number_post_show - 10){
         groupBox->show();
         frameHeight_3 += 360;
         currentY_3 += 360;
+        }
+        i++;
     }
     }
 }
@@ -209,7 +215,7 @@ home::home(int number,QString type,QWidget *parent) :
         QJsonObject postObject = postValue.toObject();
         int id_Company = postObject["id_C"].toInt();
 
-        if(check_follower(number,type,"C",id_Company) == "Follow"){
+        if(check_follower(number,type,"C",id_Company) == "Follow" && i < number_post_show){
 
         QSqlQuery q;
         q.prepare("SELECT name FROM CompanyInformation WHERE id_C = :id");
@@ -311,15 +317,25 @@ home::home(int number,QString type,QWidget *parent) :
         whoLike->setStyleSheet("background-color:rgb(255,255,255);color:#2980b9;border-radius:2px;");
         connect(whoLike, &QPushButton::clicked,this,[this,id_post,id_Company](){home::on_likelistshow_clicked(id_post,"C",id_Company);});
 
+        if( i >= number_post_show - 10){
         groupBox->show();
         frameHeight_3 += 360;
         currentY_3 += 360;
+        }
+        i++;
     }
     }
 }
+    ui->frame_3->setMinimumHeight(frameHeight_3 - 325);
+    QPushButton *seemore_C = new QPushButton(ui->frame_3);
+    seemore_C->setGeometry(15,currentY_3 ,90,33);
+    seemore_C->setStyleSheet("color: rgb(52, 103, 110); border-radius: 10px;");
+    seemore_C->setText("See More ... ");
+    connect(seemore_C, &QPushButton::clicked,this,[this,number,type,number_post_show](){home::on_SeeMore_clicked(number,type,number_post_show);});
+
 ///////////////////////////////////////////////////
 
-    int i = 0;
+    int j = 0;
     QSqlQuery p_info;
     p_info.prepare("SELECT posts FROM verificationpage");
     p_info.exec();
@@ -336,7 +352,7 @@ home::home(int number,QString type,QWidget *parent) :
         QJsonObject postObject = postValue.toObject();
         int id_person = postObject["id_P"].toInt();
 
-        if(check_follower(number,type,"P",id_person) == "Connect"){
+        if(check_follower(number,type,"P",id_person) == "Connect" && j < number_post_show ){
 
         QSqlQuery q;
         q.prepare("SELECT frstname,lastname FROM verificationpage WHERE account_id = :id_person");
@@ -437,10 +453,12 @@ home::home(int number,QString type,QWidget *parent) :
         whoLike->setStyleSheet("background-color:rgb(255,255,255);color:#2980b9;border-radius:2px;");
         connect(whoLike, &QPushButton::clicked,this,[this,id_post,id_person](){home::on_likelistshow_clicked(id_post,"P",id_person);});
 
+        if( j >= number_post_show - 10){
         groupBox->show();
         frameHeight += 360;
         currentY += 360;
-
+        }
+        j++;
         }
     }
     }
@@ -457,7 +475,8 @@ home::home(int number,QString type,QWidget *parent) :
         QJsonObject postObject = postValue.toObject();
         int id_person = postObject["id_P"].toInt();
 
-        if(check_follower(number,type,"P",id_person) == "Connection"){
+        if(check_follower(number,type,"P",id_person) == "Connection" && j < number_post_show ){
+
         QSqlQuery q;
         q.prepare("SELECT frstname,lastname FROM verificationpage WHERE account_id = :id_person");
         q.bindValue(":id_person", id_person);
@@ -557,14 +576,32 @@ home::home(int number,QString type,QWidget *parent) :
         whoLike->setStyleSheet("background-color:rgb(255,255,255);color:#2980b9;border-radius:2px;");
         connect(whoLike, &QPushButton::clicked,this,[this,id_post,id_person](){home::on_likelistshow_clicked(id_post,"P",id_person);});
 
+        if(j >= number_post_show - 10){
         groupBox->show();
         frameHeight += 360;
         currentY += 360;
         }
+        j++;
+        }
     }
     }
+
+    ui->frame_2->setMinimumHeight(frameHeight - 325);
+    QPushButton *seemore_P = new QPushButton(ui->frame_2);
+    seemore_P->setGeometry(15,currentY ,90,33);
+    seemore_P->setStyleSheet("color: rgb(52, 103, 110); border-radius: 10px;");
+    seemore_P->setText("See More ... ");
+    connect(seemore_P, &QPushButton::clicked,this,[this,number,type,number_post_show](){home::on_SeeMore_clicked(number,type,number_post_show);});
+
 }
 
+void home::on_SeeMore_clicked(int number,QString type,int number_post_show){
+
+    number_post_show += 10;
+    home *w = new home(number,type,number_post_show);
+    this->close();
+    w->show();
+}
 QString home::check_follower(int id_follower, QString type_follower, QString type_following, int id_following){
 
     QJsonObject follow;
@@ -708,7 +745,7 @@ void home::on_follow_Clicked(int id_follower, QString type_follower, QString typ
             }
         }
     }
-    home *W = new home(adad_h,Type_h);
+    home *W = new home(adad_h,Type_h,10);
     this->close();
     W->show();
 }
@@ -741,7 +778,7 @@ home::~home()
 
 void home::on_commandLinkButton_clicked()
 {
-        home *w3 = new home(adad_h,Type_h);
+        home *w3 = new home(adad_h,Type_h,10);
         this->close();
         w3->show();
 }

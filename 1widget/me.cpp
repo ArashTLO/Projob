@@ -14,6 +14,7 @@
 #include "QDebug"
 #include "editinformation.h"
 #include "QMessageBox"
+#include "QDateTime"
 
 QString Type_m;
 int adad_m;
@@ -29,6 +30,9 @@ me::me(int number,QString type,QWidget *parent) :
     database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("d:\\DB_project.db");
     database.open();
+
+    QDateTime dateANDtime = QDateTime::currentDateTime();
+    qDebug() << "Date Time : " << dateANDtime.toString();
 
     QSqlQuery q;
     if(type == "P"){
@@ -61,7 +65,7 @@ me::~me()
 
 void me::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(adad_m,Type_m);
+    home *w3 = new home(adad_m,Type_m,10);
     this->close();
     w3->show();
 }

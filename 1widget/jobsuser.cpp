@@ -232,7 +232,7 @@ void jobsuser::on_apply_clicked(int i_Man, int i_com, int i_job, QString situati
 }
 void jobsuser::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(adad_ju,"P");
+    home *w3 = new home(adad_ju,Type_ju,10);
     this->close();
     w3->show();
 }
@@ -240,18 +240,12 @@ void jobsuser::on_commandLinkButton_clicked()
 
 void jobsuser::on_commandLinkButton_2_clicked()
 {
-    me *w3 = new me(adad_ju,"P");
+    me *w3 = new me(adad_ju,Type_ju);
     this->close();
     w3->show();
 }
 
 
-//void jobsuser::on_commandLinkButton_3_clicked()
-//{
-    //jobsuser *w3 = new jobsuser;
-    //this->close();
-    //w3->show();
-//}
 
 void jobsuser::on_commandLinkButton_4_clicked()
 {

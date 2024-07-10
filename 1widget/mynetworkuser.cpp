@@ -390,7 +390,7 @@ void mynetworkuser::on_Connect_clicked(int applicant,int receiver){
 
 void mynetworkuser::on_commandLinkButton_clicked()
 {
-    home *w3 = new home(adad_m_u,Type_m_u);
+    home *w3 = new home(adad_m_u,Type_m_u,10);
     this->close();
     w3->show();
 }
