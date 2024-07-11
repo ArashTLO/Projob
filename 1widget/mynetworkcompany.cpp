@@ -17,6 +17,8 @@
 #include <QDebug>
 #include "QMessageBox"
 #include "QGroupBox"
+#include "QVariantList"
+#include "QListWidgetItem"
 
 int adad_m_c;
 QString Type_m_c;
@@ -33,6 +35,8 @@ mynetworkcompany::mynetworkcompany(int number,QString type, QWidget *parent) :
     database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("d:\\DB_project.db");
     database.open();
+
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &mynetworkcompany::searchInDatabase);
 
     QSqlQuery query;
     query.prepare("SELECT following FROM CompanyInformation WHERE rowid = :id");
@@ -81,13 +85,13 @@ mynetworkcompany::mynetworkcompany(int number,QString type, QWidget *parent) :
                 QLineEdit *linename = new QLineEdit(box);
                 linename->setGeometry(10,202,180,30);
                 linename->setText(p.value(0).toString() + " " + p.value(1).toString());
-                linename->setStyleSheet("color: rgb(52, 103, 110);background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 10px;");
+                linename->setStyleSheet("background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 5px;");
                 linename->setFont(font);
 
                 QLineEdit *skillsline = new QLineEdit(box);
                 skillsline->setText(p.value(3).toString());
                 skillsline->setGeometry(10,243,180,30);
-                skillsline->setStyleSheet("background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 10px;");
+                skillsline->setStyleSheet("background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 5px;");
                 skillsline->setFont(font);
 
 
@@ -99,6 +103,45 @@ mynetworkcompany::mynetworkcompany(int number,QString type, QWidget *parent) :
         }
     }
 }
+
+void mynetworkcompany::searchInDatabase()
+{
+    QString searchUsername = ui->lineEdit->text();
+
+    if (searchUsername.isEmpty()) {
+        ui->listWidget->clear();
+        ui->listWidget->setVisible(false);
+        return;
+    }
+
+    else if(!searchUsername.isEmpty()){
+        ui->listWidget->setVisible(true);
+    }
+    QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
+    database.setDatabaseName("d:\\DB_project.db");
+    database.open();
+
+    QSqlQuery query;
+    query.prepare("SELECT username FROM verificationpage WHERE username LIKE :search");
+    query.bindValue(":search", "%" + searchUsername + "%");
+
+    if (!query.exec()) {
+        qDebug() << "Query failed";
+        return;
+    }
+    ui->listWidget->clear();
+
+    ui->listWidget->setMinimumHeight(0);
+
+    while (query.next()) {
+        QString username = query.value(0).toString();
+        QListWidgetItem *item = new QListWidgetItem(username);
+        ui->listWidget->addItem(item);
+
+        ui->listWidget->setMinimumHeight(qMax(ui->listWidget->minimumHeight(), ui->listWidget->sizeHintForColumn(0) + 20));
+    }
+}
+
 
 mynetworkcompany::~mynetworkcompany()
 {
@@ -151,7 +194,7 @@ void mynetworkcompany::on_commandLinkButton_3_clicked()
         w3->show();
     }
     else if (Type_m_c == "C") {
-        QMessageBox::warning(this, "home", "Only persons can enter the desired window.");
+        QMessageBox::warning(this, "My netWork Company", "Only persons can enter the desired window.");
     }
     else{
         QMessageBox::warning(this, "home", "the account is valid.");
@@ -183,8 +226,13 @@ void mynetworkcompany::on_commandLinkButton_5_clicked()
 
 void mynetworkcompany::on_commandLinkButton_6_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany(adad_m_c, Type_m_c);
-    this->close();
-    w3->show();
+    if(Type_m_c == "P"){
+        QMessageBox::warning(this, "My network Company" , "Only companies can enter the desired window.");
+    }
+    else if(Type_m_c == "C"){
+        mynetworkcompany *w3 = new mynetworkcompany(adad_m_c, Type_m_c);
+        this->close();
+        w3->show();
+    }
 }
 

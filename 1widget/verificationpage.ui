@@ -152,6 +152,7 @@ Width: 150px;
      <property name="font">
       <font>
        <family>Nirmala UI</family>
+       <pointsize>-1</pointsize>
        <weight>75</weight>
        <italic>false</italic>
        <bold>true</bold>
@@ -171,6 +172,11 @@ Width: 150px;
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
+font: bold 15px;
+border-radius: 8px;
+border: 1px solid #0640ff;
+padding: 5px;
+
 </string>
      </property>
      <property name="inputMask">
@@ -192,6 +198,15 @@ Width: 150px;
        <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: 14px;
+border-radius: 8px;
+border: 1px solid #0640ff;
+padding: 5px;
+background-color: rgb(255, 255, 255);
+border-top-right-radius: 1px;
+border-bottom-right-radius: 1px;</string>
+     </property>
      <property name="minimum">
       <number>2010</number>
      </property>
@@ -207,6 +222,15 @@ Width: 150px;
        <width>131</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 14px;
+border-radius: 8px;
+border: 1px solid #0640ff;
+padding: 5px;
+background-color: rgb(255, 255, 255);
+border-top-right-radius: 1px;
+border-bottom-right-radius: 1px;</string>
      </property>
      <property name="minimum">
       <number>2020</number>
@@ -405,11 +429,20 @@ background-color: rgb(255, 255, 255);
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">font: 14px;
+border-radius: 8px;
+border: 1px solid #0640ff;
+padding: 5px;
+background-color: rgb(255, 255, 255);
+border-top-right-radius: 1px;
+border-bottom-right-radius: 1px;</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>590</x>
       <y>0</y>
       <width>161</width>
       <height>51</height>
@@ -690,7 +723,12 @@ background-color: rgb(255, 255, 255);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">font: bold 15px;
+border-radius: 8px;
+border: 1px solid #0640ff;
+padding: 5px;
+background-color: rgb(255, 255, 255);
+</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>

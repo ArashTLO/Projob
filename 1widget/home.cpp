@@ -26,6 +26,8 @@
 #include "QJsonDocument"
 #include "QJsonObject"
 #include "content.h"
+#include "QVariantList"
+#include "QListWidgetItem"
 
 int adad_h;
 QVariant id;
@@ -39,6 +41,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
     qDebug() << number_post_show;
     Type_h = type;
     QString name_user;
+
     ////////////////////////////////////////////////////////////////////////////
     if(type == "P"){
     QSqlQuery findname;
@@ -65,6 +68,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
     database.setDatabaseName("d:\\DB_project.db");
     database.open();
 
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &home::searchInDatabase);
 
     int frameHeight = 368,currentY = 8,frameHeight_3 = 368,currentY_3 = 8;
 
@@ -106,7 +110,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         ui->frame_3->setMinimumHeight(frameHeight_3);
         ui->frame_3->setStyleSheet("background-color:rgb(235, 235, 235);");
         QGroupBox *groupBox = new QGroupBox(ui->frame_3);
-        groupBox->setGeometry(5,currentY_3,505,350);
+        groupBox->setGeometry(5,currentY_3,505,370);
         groupBox->setStyleSheet("background-color:rgb(255, 255, 255);border-radius: 8px;");
 
         QLineEdit *namelabel = new QLineEdit(name,groupBox);
@@ -130,6 +134,11 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         QGroupBox *in_groupBox = new QGroupBox(groupBox);
         in_groupBox->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(181, 56, 75); border-radius:9px;");
         in_groupBox->setGeometry(10,270,485,60);
+
+        QLineEdit *time_Date = new QLineEdit(groupBox);
+        time_Date->setGeometry(15,335,160,25);
+        time_Date->setText(postObject["Time_and_Date"].toString());
+        time_Date->setReadOnly(true);
 
         QFont font("Nirmala", 10, QFont::Light);
         QFont font_2("Nirmala IU",12, QFont::Light);
@@ -194,8 +203,8 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
 
         if( i >= number_post_show - 10){
         groupBox->show();
-        frameHeight_3 += 360;
-        currentY_3 += 360;
+        frameHeight_3 += 380;
+        currentY_3 += 380;
         }
         i++;
     }
@@ -232,7 +241,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         ui->frame_3->setMinimumHeight(frameHeight_3);
         ui->frame_3->setStyleSheet("background-color:rgb(235, 235, 235);");
         QGroupBox *groupBox = new QGroupBox(ui->frame_3);
-        groupBox->setGeometry(5,currentY_3,505,350);
+        groupBox->setGeometry(5,currentY_3,505,370);
         groupBox->setStyleSheet("background-color:rgb(255, 255, 255);border-radius: 8px;");
 
         QLineEdit *namelabel = new QLineEdit(name,groupBox);
@@ -256,6 +265,11 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         QGroupBox *in_groupBox = new QGroupBox(groupBox);
         in_groupBox->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(181, 56, 75); border-radius:9px;");
         in_groupBox->setGeometry(10,270,485,60);
+
+        QLineEdit *time_Date = new QLineEdit(groupBox);
+        time_Date->setGeometry(15,335,160,25);
+        time_Date->setText(postObject["Time_and_Date"].toString());
+        time_Date->setReadOnly(true);
 
         QFont font("Nirmala", 10, QFont::Light);
         QFont font_2("Nirmala IU",12, QFont::Light);
@@ -284,6 +298,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         QIcon iconRepost(":/download (2).png");
         repost->setIcon(iconRepost);
         repost->setFont(font);
+        connect(repost, &QCommandLinkButton::clicked, this,[this,number,type,postObject](){on_repost_Clicked(number,type,postObject["post_image"].toString(),postObject["post_text"].toString());});
 
         QCommandLinkButton *send = new QCommandLinkButton(in_groupBox);
         send->setGeometry(400,10, 82,40);
@@ -319,8 +334,8 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
 
         if( i >= number_post_show - 10){
         groupBox->show();
-        frameHeight_3 += 360;
-        currentY_3 += 360;
+        frameHeight_3 += 380;
+        currentY_3 += 380;
         }
         i++;
     }
@@ -369,7 +384,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         ui->frame_2->setMinimumHeight(frameHeight);
         ui->frame_2->setStyleSheet("background-color:rgb(235, 235, 235);");
         QGroupBox *groupBox = new QGroupBox(ui->frame_2);
-        groupBox->setGeometry(5,currentY,505,350);
+        groupBox->setGeometry(5,currentY,505,370);
         groupBox->setStyleSheet("background-color:rgb(255, 255, 255);border-radius: 8px;");
 
         QLineEdit *namelabel = new QLineEdit(name,groupBox);
@@ -392,6 +407,11 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         QGroupBox *in_groupBox = new QGroupBox(groupBox);
         in_groupBox->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(181, 56, 75); border-radius:9px;");
         in_groupBox->setGeometry(10,270,485,60);
+
+        QLineEdit *time_Date = new QLineEdit(groupBox);
+        time_Date->setGeometry(15,335,160,25);
+        time_Date->setText(postObject["Time_and_Date"].toString());
+        time_Date->setReadOnly(true);
 
         QFont font("Nirmala", 10, QFont::Light);
         QFont font_2("Nirmala IU",12, QFont::Light);
@@ -420,6 +440,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         QIcon iconRepost(":/download (2).png");
         repost->setIcon(iconRepost);
         repost->setFont(font);
+        connect(repost, &QCommandLinkButton::clicked, this,[this,number,type,postObject](){on_repost_Clicked(number,type,postObject["post_image"].toString(),postObject["post_text"].toString());});
 
         QCommandLinkButton *send = new QCommandLinkButton(in_groupBox);
         send->setGeometry(400,10, 82,40);
@@ -455,8 +476,8 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
 
         if( j >= number_post_show - 10){
         groupBox->show();
-        frameHeight += 360;
-        currentY += 360;
+        frameHeight += 380;
+        currentY += 380;
         }
         j++;
         }
@@ -492,7 +513,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         ui->frame_2->setMinimumHeight(frameHeight);
         ui->frame_2->setStyleSheet("background-color:rgb(235, 235, 235);");
         QGroupBox *groupBox = new QGroupBox(ui->frame_2);
-        groupBox->setGeometry(5,currentY,505,350);
+        groupBox->setGeometry(5,currentY,505,370);
         groupBox->setStyleSheet("background-color:rgb(255, 255, 255);border-radius: 8px;");
 
         QLineEdit *namelabel = new QLineEdit(name,groupBox);
@@ -515,6 +536,11 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         QGroupBox *in_groupBox = new QGroupBox(groupBox);
         in_groupBox->setStyleSheet("color:rgb(0, 0, 0); border:3px solid rgb(181, 56, 75); border-radius:9px;");
         in_groupBox->setGeometry(10,270,485,60);
+
+        QLineEdit *time_Date = new QLineEdit(groupBox);
+        time_Date->setGeometry(15,335,160,25);
+        time_Date->setText(postObject["Time_and_Date"].toString());
+        time_Date->setReadOnly(true);
 
         QFont font("Nirmala", 10, QFont::Light);
         QFont font_2("Nirmala IU",12, QFont::Light);
@@ -543,6 +569,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         QIcon iconRepost(":/download (2).png");
         repost->setIcon(iconRepost);
         repost->setFont(font);
+        connect(repost, &QCommandLinkButton::clicked, this,[this,number,type,postObject](){on_repost_Clicked(number,type,postObject["post_image"].toString(),postObject["post_text"].toString());});
 
         QCommandLinkButton *send = new QCommandLinkButton(in_groupBox);
         send->setGeometry(400,10, 82,40);
@@ -578,8 +605,8 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
 
         if(j >= number_post_show - 10){
         groupBox->show();
-        frameHeight += 360;
-        currentY += 360;
+        frameHeight += 380;
+        currentY += 380;
         }
         j++;
         }
@@ -602,6 +629,44 @@ void home::on_SeeMore_clicked(int number,QString type,int number_post_show){
     this->close();
     w->show();
 }
+void home::searchInDatabase()
+{
+    QString searchUsername = ui->lineEdit->text();
+
+    if (searchUsername.isEmpty()) {
+        ui->listWidget->clear();
+        ui->listWidget->setVisible(false);
+        return;
+    }
+
+    else if(!searchUsername.isEmpty()){
+        ui->listWidget->setVisible(true);
+    }
+    QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
+    database.setDatabaseName("d:\\DB_project.db");
+    database.open();
+
+    QSqlQuery query;
+    query.prepare("SELECT username FROM verificationpage WHERE username LIKE :search");
+    query.bindValue(":search", "%" + searchUsername + "%");
+
+    if (!query.exec()) {
+        qDebug() << "Query failed";
+        return;
+    }
+    ui->listWidget->clear();
+
+    ui->listWidget->setMinimumHeight(0);
+
+    while (query.next()) {
+        QString username = query.value(0).toString();
+        QListWidgetItem *item = new QListWidgetItem(username);
+        ui->listWidget->addItem(item);
+
+        ui->listWidget->setMinimumHeight(qMax(ui->listWidget->minimumHeight(), ui->listWidget->sizeHintForColumn(0) + 20));
+    }
+}
+
 QString home::check_follower(int id_follower, QString type_follower, QString type_following, int id_following){
 
     QJsonObject follow;
@@ -663,6 +728,7 @@ QString home::check_follower(int id_follower, QString type_follower, QString typ
 void home::on_repost_Clicked(int number,QString type,QString repost_image,QString repost_text){
 
     post *w = new post(number,type,repost_image,repost_text);
+    this->close();
     w->show();
 }
 void home::on_follow_Clicked(int id_follower, QString type_follower, QString type_post, int id_following){
@@ -786,21 +852,15 @@ void home::on_commandLinkButton_clicked()
 
 void home::on_commandLinkButton_2_clicked()
 {
-    if(Type_h == "C"){
-        QMessageBox::information(this,"Login","Only individuals can enter this window and companies cannot enter this window.");
-    }
-    else{
     me *w3 = new me(adad_h,Type_h);
     this->close();
     w3->show();
-    }
 }
 
 
 void home::on_commandLinkButton_3_clicked()
 {
     if (Type_h == "P"){
-
         jobsuser *w3 = new jobsuser(adad_h,Type_h);
         this->close();
         w3->show();
@@ -830,7 +890,7 @@ void home::on_commandLinkButton_7_clicked()
     if(Type_h == "P"){
         QMessageBox::warning(this, "home" , "Only companies can enter the desired window.");
     }
-    else{
+    else if (Type_h == "C"){
     jobscompany *w3 = new jobscompany(adad_h,Type_h);
     this->close();
     w3->show();
@@ -838,9 +898,14 @@ void home::on_commandLinkButton_7_clicked()
 }
 void home::on_commandLinkButton_6_clicked()
 {
+    if(Type_h == "P"){
+        QMessageBox::warning(this, "home" , "Only companies can enter the desired window.");
+    }
+    else if (Type_h == "C") {
     mynetworkcompany *w3 = new mynetworkcompany(adad_h,Type_h);
     this->close();
     w3->show();
+    }
 }
 void home::on_pushButton_clicked()
 {

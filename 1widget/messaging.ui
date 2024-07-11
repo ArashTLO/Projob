@@ -295,27 +295,6 @@ border-bottom-right-radius: 40px;</string>
       <string>PROJOB</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>15</y>
-       <width>201</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-background-color: rgb(202, 243, 250);
-color: rgb(0, 0, 0);
-border-radius: 10px;
-padding: 10px;
-</string>
-     </property>
-     <property name="placeholderText">
-      <string>Search</string>
-     </property>
-    </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton_6">
      <property name="geometry">
       <rect>
@@ -374,12 +353,33 @@ color: rgb(0, 0, 0);</string>
        <normaloff>:/icon-portfolio-20.png</normaloff>:/icon-portfolio-20.png</iconset>
      </property>
     </widget>
+    <widget class="QLineEdit" name="lineEdit_Search">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>15</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+background-color: rgb(202, 243, 250);
+color: rgb(0, 0, 0);
+border-radius: 10px;
+padding: 10px;
+</string>
+     </property>
+     <property name="placeholderText">
+      <string>Search</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QScrollArea" name="scrollArea_2">
     <property name="geometry">
      <rect>
       <x>806</x>
-      <y>60</y>
+      <y>61</y>
       <width>345</width>
       <height>579</height>
      </rect>
@@ -534,7 +534,7 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>60</y>
+      <y>61</y>
       <width>806</width>
       <height>501</height>
      </rect>

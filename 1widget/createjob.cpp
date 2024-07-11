@@ -10,6 +10,7 @@
 #include "QJsonDocument"
 #include "QJsonArray"
 #include "QDebug"
+#include "QMessageBox"
 
 int adad_c;
 QString Type_c;
@@ -34,9 +35,14 @@ createjob::~createjob()
 
 void createjob::on_pushButton_2_clicked()
 {
+    if(Type_c == "P"){
+        QMessageBox::warning(this, "My network Company" , "Only companies can enter the desired window.");
+    }
+    else if(Type_c == "C"){
     jobscompany *w = new jobscompany(adad_c,Type_c);
     this->close();
     w->show();
+    }
 }
 
 

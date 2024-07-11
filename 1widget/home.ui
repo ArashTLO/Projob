@@ -395,6 +395,7 @@ color: rgb(0, 0, 0);</string>
       <string notr="true">background-color: rgb(52, 103, 110);
 color: white;
 padding: 5px;
+border-radius:1px;
 border-top-left-radius: 40px;
 border-bottom-right-radius: 40px;</string>
      </property>
@@ -439,7 +440,7 @@ border-bottom-right-radius: 40px;</string>
       <x>13</x>
       <y>200</y>
       <width>550</width>
-      <height>371</height>
+      <height>401</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -484,9 +485,9 @@ border-bottom-right-radius: 40px;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>-10</y>
-       <width>531</width>
-       <height>383</height>
+       <y>0</y>
+       <width>548</width>
+       <height>399</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -569,7 +570,7 @@ background-color: rgb(235, 235, 235);</string>
       <x>587</x>
       <y>200</y>
       <width>550</width>
-      <height>371</height>
+      <height>401</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -615,8 +616,8 @@ background-color: rgb(235, 235, 235);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>531</width>
-       <height>378</height>
+       <width>548</width>
+       <height>399</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -691,6 +692,16 @@ background-color: rgb(235, 235, 235);</string>
     </property>
     <property name="text">
      <string>Posts companies</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>60</y>
+      <width>256</width>
+      <height>0</height>
+     </rect>
     </property>
    </widget>
   </widget>

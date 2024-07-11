@@ -17,6 +17,8 @@ public:
 
 private slots:
 
+    void searchInDatabase();
+
     void on_SeeMore_clicked(int number,QString type,int number_post_show);
 
     void on_repost_Clicked(int number,QString type,QString repost_image,QString repost_text);

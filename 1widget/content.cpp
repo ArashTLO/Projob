@@ -7,6 +7,7 @@
 #include "QDebug"
 #include "loginpage.h"
 #include "me.h"
+#include "QDateTime"
 
 content::content(QObject *parent) : QObject(parent)
 {
@@ -137,6 +138,7 @@ void job::job_build(){
             qDebug() << "Error: ";
         } else {
             qDebug() << "Record updated successfully!";
+            QMessageBox::information(nullptr, "creat job", "a job was created");
         }
 
     } else {
@@ -153,11 +155,19 @@ void job::Delete_request(int id_com,int id_job,int id_user){
 }
 
 void POST::posting_user(){
+
+    QDateTime dateANDtime = QDateTime::currentDateTime();
+
+    QDate date = dateANDtime.date();
+
+    QTime time = dateANDtime.time();
+
     QJsonObject postObject;
         postObject["id_P"] = id_account;
         postObject["post_text"] = post_text;
         QString base64Image = QString(post_image.toBase64());
         postObject["post_image"] = base64Image;
+        postObject["Time_and_Date"] = date.toString() + "    " + time.toString();
 
         QSqlQuery q;
         q.prepare("SELECT posts FROM verificationpage WHERE rowid = :account_id");
@@ -178,7 +188,7 @@ void POST::posting_user(){
             if (!q.exec()) {
                 qDebug() << "Error:";
             } else {
-                QMessageBox::warning(nullptr, "send post", "Your post has been successfully uploaded.");
+                QMessageBox::information(nullptr, "send post", "Your post has been successfully uploaded.");
 
                 qDebug() << "Record updated successfully!";
             }
@@ -188,11 +198,19 @@ void POST::posting_user(){
 }
 
 void POST::posting_company(){
+
+    QDateTime dateANDtime = QDateTime::currentDateTime();
+
+    QDate date = dateANDtime.date();
+
+    QTime time = dateANDtime.time();
+
     QJsonObject postObject;
     postObject["id_C"] = id_account;
     postObject["post_text"] = post_text;
     QString base64Image = QString(post_image.toBase64());
     postObject["post_image"] = base64Image;
+    postObject["Time_and_Date"] = date.toString() + "    " + time.toString();
 
     QSqlQuery q;
     q.prepare("SELECT posts FROM CompanyInformation WHERE rowid = :id_company");
@@ -214,7 +232,7 @@ void POST::posting_company(){
         if (!q.exec()) {
             qDebug() << "Error: trrrrrrr";
         } else {
-            QMessageBox::warning(nullptr, "send post", "Your post has been successfully uploaded.");
+            QMessageBox::information(nullptr, "send post", "Your post has been successfully uploaded.");
 
             qDebug() << "Record updated successfully!";
         }
@@ -276,7 +294,6 @@ void Company::Creat_Company(QString phone,QString address, QString password, QSt
 
         if (q.exec()) {
             me *w3 = new me(account_id,"P");
-            //this->close();
             w3->show();
         } else {
             QMessageBox::warning(nullptr, "Verification","Error: ") ;
@@ -309,7 +326,6 @@ void Account::Change_user_information(QString s9,QString P,QString school, QStri
 
         if (q.exec() && p.exec()) {
             me *w = new me(account_id,type);
-            //this->close();
             w->show();
         } else {
             qDebug() << "Error: ";
@@ -342,9 +358,16 @@ void job::User_acceptance(int id_com,int id_user,int id_job){
 }
 void message::send_text_message(){
 
+    QDateTime dateANDtime = QDateTime::currentDateTime();
+
+    QDate date = dateANDtime.date();
+
+    QTime time = dateANDtime.time();
+
     QJsonObject messagingObject_1;
         messagingObject_1["id_sender"] = id_sender;
         messagingObject_1["texe_messag"] = text;
+        messagingObject_1["Time_and_Date"] = date.toString() + "    " + time.toString();
 
         QSqlQuery p;
         p.prepare("SELECT DM FROM verificationpage WHERE rowid = :id");
@@ -368,6 +391,7 @@ void message::send_text_message(){
         QJsonObject messagingObject;
             messagingObject["id_receiver"] = id_receiver;
             messagingObject["texe_messag"] = text;
+            messagingObject["Time_and_Date"] = date.toString() + "    " + time.toString();
 
             QSqlQuery q;
             q.prepare("SELECT DM FROM verificationpage WHERE rowid = :id");
@@ -391,9 +415,16 @@ void message::send_text_message(){
 }
 void message::send_image_message(){
 
+    QDateTime dateANDtime = QDateTime::currentDateTime();
+
+    QDate date = dateANDtime.date();
+
+    QTime time = dateANDtime.time();
+
     QJsonObject messagingObject_1;
     messagingObject_1["id_sender"] = id_sender;
     messagingObject_1["image_messag"] = image;
+    messagingObject_1["Time_and_Date"] = date.toString() + "    " + time.toString();
 
     QSqlQuery p;
     p.prepare("SELECT DM FROM verificationpage WHERE rowid = :id");
@@ -418,6 +449,7 @@ void message::send_image_message(){
     QJsonObject messagingObject;
         messagingObject["id_receiver"] = id_receiver;
         messagingObject["image_messag"] = image;
+        messagingObject["Time_and_Date"] = date.toString() + "    " + time.toString();
 
         QSqlQuery q;
         q.prepare("SELECT DM FROM verificationpage WHERE rowid = :id");

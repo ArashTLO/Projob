@@ -20,6 +20,14 @@ private slots:
 
     void on_pushButton_back_clicked();
 
+    void on_pushButton_back_2_clicked();
+
+    void on_pushButton_select_photo_2_clicked();
+
+    void on_pushButton_back_3_clicked();
+
+    void on_pushButton_change_user_2_clicked();
+
 private:
     Ui::editinformation *ui;
 };

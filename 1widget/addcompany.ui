@@ -314,6 +314,11 @@ padding: 5px;
     <property name="styleSheet">
      <string notr="true">border-radius: 10px;
 border: 1px solid #0640ff;
+font: bold 15px;
+border-radius: 8px;
+border: 1px solid #0640ff;
+padding: 5px;
+background-color: rgb(255, 255, 255);
 </string>
     </property>
     <property name="frameShape">

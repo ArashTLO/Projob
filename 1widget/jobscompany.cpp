@@ -19,6 +19,8 @@
 #include "QJsonArray"
 #include "QMessageBox"
 #include "content.h"
+#include "QVariantList"
+#include "QListWidgetItem"
 
 int adad_j_c;
 QString Type_j_c;
@@ -35,6 +37,8 @@ jobscompany::jobscompany(int number,QString type,QWidget *parent) :
     database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("d:\\DB_project.db");
     database.open();
+
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &jobscompany::searchInDatabase);
 
 
     QSqlQuery query;
@@ -107,6 +111,45 @@ jobscompany::~jobscompany()
 {
     delete ui;
 }
+
+void jobscompany::searchInDatabase()
+{
+    QString searchUsername = ui->lineEdit->text();
+
+    if (searchUsername.isEmpty()) {
+        ui->listWidget->clear();
+        ui->listWidget->setVisible(false);
+        return;
+    }
+
+    else if(!searchUsername.isEmpty()){
+        ui->listWidget->setVisible(true);
+    }
+    QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
+    database.setDatabaseName("d:\\DB_project.db");
+    database.open();
+
+    QSqlQuery query;
+    query.prepare("SELECT username FROM verificationpage WHERE username LIKE :search");
+    query.bindValue(":search", "%" + searchUsername + "%");
+
+    if (!query.exec()) {
+        qDebug() << "Query failed";
+        return;
+    }
+    ui->listWidget->clear();
+
+    ui->listWidget->setMinimumHeight(0);
+
+    while (query.next()) {
+        QString username = query.value(0).toString();
+        QListWidgetItem *item = new QListWidgetItem(username);
+        ui->listWidget->addItem(item);
+
+        ui->listWidget->setMinimumHeight(qMax(ui->listWidget->minimumHeight(), ui->listWidget->sizeHintForColumn(0) + 20));
+    }
+}
+
 void jobscompany::on_ignor_clicked(int number,int id_user,int id_job){
     QMessageBox::information(this,"job company","the user request was deleted by you.");
     job delet;
@@ -137,6 +180,7 @@ void jobscompany::on_commandLinkButton_clicked()
 
 void jobscompany::on_commandLinkButton_2_clicked()
 {
+
     me *w3 = new me(adad_j_c,Type_j_c);
     this->close();
     w3->show();
@@ -147,14 +191,12 @@ void jobscompany::on_commandLinkButton_2_clicked()
 void jobscompany::on_commandLinkButton_3_clicked()
 {
     if (Type_j_c == "P"){
-
         jobsuser *w3 = new jobsuser(adad_j_c,Type_j_c);
         this->close();
         w3->show();
-
     }
     else if (Type_j_c == "C") {
-        QMessageBox::warning(this, "home", "Only persons can enter the desired window.");
+        QMessageBox::warning(this, "job company", "Only persons can enter the desired window.");
     }
     else{
         QMessageBox::warning(this, "home", "the account is valid.");
@@ -164,6 +206,7 @@ void jobscompany::on_commandLinkButton_3_clicked()
 
 void jobscompany::on_commandLinkButton_7_clicked()
 {
+
     jobscompany *w3 = new jobscompany(adad_j_c,Type_j_c);
     this->close();
     w3->show();
@@ -186,9 +229,14 @@ void jobscompany::on_commandLinkButton_5_clicked()
 
 void jobscompany::on_commandLinkButton_6_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany(adad_j_c,Type_j_c);
-    this->close();
-    w3->show();
+    if(Type_j_c == "P"){
+        QMessageBox::warning(this, "Job Company" , "Only companies can enter the desired window.");
+    }
+    else if(Type_j_c == "C"){
+        mynetworkcompany *w3 = new mynetworkcompany(adad_j_c,Type_j_c);
+        this->close();
+        w3->show();
+    }
 }
 
 

@@ -881,6 +881,16 @@ background-color: rgb(245, 245, 245);</string>
      </widget>
     </widget>
    </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>60</y>
+      <width>256</width>
+      <height>0</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -888,7 +898,7 @@ background-color: rgb(245, 245, 245);</string>
      <x>0</x>
      <y>0</y>
      <width>1150</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

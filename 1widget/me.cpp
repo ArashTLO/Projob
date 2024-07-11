@@ -15,6 +15,8 @@
 #include "editinformation.h"
 #include "QMessageBox"
 #include "QDateTime"
+#include "QVariantList"
+#include "QListWidgetItem"
 
 QString Type_m;
 int adad_m;
@@ -31,14 +33,32 @@ me::me(int number,QString type,QWidget *parent) :
     database.setDatabaseName("d:\\DB_project.db");
     database.open();
 
+
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &me::searchInDatabase);
+
     QDateTime dateANDtime = QDateTime::currentDateTime();
     qDebug() << "Date Time : " << dateANDtime.toString();
 
-    QSqlQuery q;
-    if(type == "P"){
-        //q.prepare("SELECT frstname,lastname,skills,imsge FROM verificationpage WHERE account_id = :number");
+    QDate date = dateANDtime.date();
+    qDebug() << "Date : " << date.toString();
+
+    QSqlQuery q,p;
+    if(type == "C"){
+        p.prepare("SELECT id_user FROM CompanyInformation WHERE id_C = :number");
+        p.bindValue(":number", number);
+        p.exec();
+        p.next();
+    }
+
         q.prepare("SELECT frstname,lastname,nationality,skills,image,date_birth,start_year,end_year,school FROM verificationpage WHERE account_id = :number");
-        q.bindValue(":number", number);
+        if(type == "P"){
+            ui->label_4->setText("User information : ");
+            q.bindValue(":number", number);
+        }
+        else if(type == "C"){
+            ui->label_4->setText("Company manufacturer information : ");
+            q.bindValue(":number", p.value(0).toInt());
+        }
         q.exec();
         q.next();
 
@@ -55,12 +75,49 @@ me::me(int number,QString type,QWidget *parent) :
         Biography = Biography.arg(q.value(0).toString()).arg(q.value(1).toString()).arg(q.value(2).toString()).arg(q.value(5).toString()).arg(q.value(6).toString()).arg(q.value(7).toString()).arg(q.value(8).toString());
         ui->textEdit->setPlainText(Biography);
 
-    }
 }
 
 me::~me()
 {
     delete ui;
+}
+
+void me::searchInDatabase()
+{
+    QString searchUsername = ui->lineEdit->text();
+
+    if (searchUsername.isEmpty()) {
+        ui->listWidget->clear();
+        ui->listWidget->setVisible(false);
+        return;
+    }
+
+    else if(!searchUsername.isEmpty()){
+        ui->listWidget->setVisible(true);
+    }
+    QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
+    database.setDatabaseName("d:\\DB_project.db");
+    database.open();
+
+    QSqlQuery query;
+    query.prepare("SELECT username FROM verificationpage WHERE username LIKE :search");
+    query.bindValue(":search", "%" + searchUsername + "%");
+
+    if (!query.exec()) {
+        qDebug() << "Query failed";
+        return;
+    }
+    ui->listWidget->clear();
+
+    ui->listWidget->setMinimumHeight(0);
+
+    while (query.next()) {
+        QString username = query.value(0).toString();
+        QListWidgetItem *item = new QListWidgetItem(username);
+        ui->listWidget->addItem(item);
+
+        ui->listWidget->setMinimumHeight(qMax(ui->listWidget->minimumHeight(), ui->listWidget->sizeHintForColumn(0) + 20));
+    }
 }
 
 void me::on_commandLinkButton_clicked()
@@ -82,14 +139,13 @@ void me::on_commandLinkButton_2_clicked()
 void me::on_commandLinkButton_3_clicked()
 {
     if (Type_m == "P"){
-
         jobsuser *w3 = new jobsuser(adad_m,Type_m);
         this->close();
         w3->show();
 
     }
     else if (Type_m == "C") {
-        QMessageBox::warning(this, "home", "Only persons can enter the desired window.");
+        QMessageBox::warning(this, "Me", "Only persons can enter the desired window.");
     }
     else{
         QMessageBox::warning(this, "home", "the account is valid.");
@@ -99,9 +155,14 @@ void me::on_commandLinkButton_3_clicked()
 
 void me::on_commandLinkButton_7_clicked()
 {
+    if(Type_m == "P"){
+        QMessageBox::warning(this, "Me" , "Only companies can enter the desired window.");
+    }
+    else if(Type_m == "C"){
     jobscompany *w3 = new jobscompany(adad_m,Type_m);
     this->close();
     w3->show();
+    }
 }
 
 
@@ -115,17 +176,26 @@ void me::on_commandLinkButton_4_clicked()
 
 void me::on_commandLinkButton_5_clicked()
 {
+    if(Type_m == "P"){
     mynetworkuser *w3 = new mynetworkuser(adad_m,Type_m);
     this->close();
     w3->show();
+    }
+    else if (Type_m == "C")
+         QMessageBox::warning(this, "Me", "Only persons can enter the desired window.");
 }
 
 
 void me::on_commandLinkButton_6_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany(adad_m, Type_m);
-    this->close();
-    w3->show();
+    if(Type_m== "P"){
+        QMessageBox::warning(this, "Me" , "Only companies can enter the desired window.");
+    }
+    else if(Type_m == "C"){
+        mynetworkcompany *w3 = new mynetworkcompany(adad_m, Type_m);
+        this->close();
+        w3->show();
+    }
 }
 
 
@@ -139,8 +209,8 @@ void me::on_pushButton_clicked()
 
 void me::on_pushButton_2_clicked()
 {
-    editinformation *w = new editinformation(adad_m,Type_m);
-    this->close();
-    w->show();
+        editinformation *w = new editinformation(adad_m,Type_m);
+        this->close();
+        w->show();
 }
 

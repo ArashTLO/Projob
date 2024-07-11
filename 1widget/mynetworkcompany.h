@@ -12,10 +12,12 @@ class mynetworkcompany : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit mynetworkcompany(int number, QString type, QWidget *parent = nullptr);
+    explicit mynetworkcompany( int number, QString type, QWidget *parent = nullptr);
     ~mynetworkcompany();
 
 private slots:
+
+    void searchInDatabase();
 
     int show_follower(int id_followeng);
 

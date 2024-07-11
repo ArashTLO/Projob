@@ -17,6 +17,8 @@ public:
 
 private slots:
 
+    void searchInDatabase();
+
     void on_viewProfile_user_clicked(int applicant);
 
     void on_viewProfile_company_clicked(int applicant);

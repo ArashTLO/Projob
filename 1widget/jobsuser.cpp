@@ -20,6 +20,8 @@
 #include "QMessageBox"
 #include "content.h"
 #include "QTextEdit"
+#include "QVariantList"
+#include "QListWidgetItem"
 
 int adad_ju;
 QString Type_ju;
@@ -35,7 +37,6 @@ jobsuser::jobsuser(int number, QString type ,QWidget *parent) :
     database.setDatabaseName("d:\\DB_project.db");
     database.open();
 
-
     QString selectQuery = "SELECT jobs FROM CompanyInformation";
     QSqlQuery q;
     q.prepare("SELECT skills FROM verificationpage WHERE account_id = :number");
@@ -49,7 +50,6 @@ jobsuser::jobsuser(int number, QString type ,QWidget *parent) :
 
     ui->frame_2->setGeometry(1,10,500,frameHeight);
     ui->frame_2->setStyleSheet("background-color:rgb(255, 255, 255);");
-
 
     if (!q.exec(selectQuery)) {
         qDebug() << "Error: ";
@@ -164,12 +164,52 @@ jobsuser::jobsuser(int number, QString type ,QWidget *parent) :
         }
     }
 
+    connect(ui->lineEdit_Search, &QLineEdit::textChanged, this, &jobsuser::searchInDatabase);
 }
 
 jobsuser::~jobsuser()
 {
     delete ui;
 }
+
+void jobsuser::searchInDatabase()
+{
+    QString searchUsername = ui->lineEdit_Search->text();
+
+    if (searchUsername.isEmpty()) {
+        ui->listWidget->clear();
+        ui->listWidget->setVisible(false);
+        return;
+    }
+
+    else if(!searchUsername.isEmpty()){
+        ui->listWidget->setVisible(true);
+    }
+    QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
+    database.setDatabaseName("d:\\DB_project.db");
+    database.open();
+
+    QSqlQuery query;
+    query.prepare("SELECT username FROM verificationpage WHERE username LIKE :search");
+    query.bindValue(":search", "%" + searchUsername + "%");
+
+    if (!query.exec()) {
+        qDebug() << "Query failed";
+        return;
+    }
+    ui->listWidget->clear();
+
+    ui->listWidget->setMinimumHeight(0);
+
+    while (query.next()) {
+        QString username = query.value(0).toString();
+        QListWidgetItem *item = new QListWidgetItem(username);
+        ui->listWidget->addItem(item);
+
+        ui->listWidget->setMinimumHeight(qMax(ui->listWidget->minimumHeight(), ui->listWidget->sizeHintForColumn(0) + 20));
+    }
+}
+
 QString jobsuser::check_request(int id_Man, int id_com, int id_job){
 
     QSqlQuery q;
@@ -254,7 +294,6 @@ void jobsuser::on_commandLinkButton_4_clicked()
     w3->show();
 }
 
-
 void jobsuser::on_commandLinkButton_5_clicked()
 {
     mynetworkuser *w3 = new mynetworkuser(adad_ju,Type_ju);
@@ -262,19 +301,27 @@ void jobsuser::on_commandLinkButton_5_clicked()
     w3->show();
 }
 
-
 void jobsuser::on_commandLinkButton_7_clicked()
 {
+    if(Type_ju == "P"){
+        QMessageBox::warning(this, "Job User" , "Only companies can enter the desired window.");
+    }
+    else if(Type_ju == "C"){
     jobscompany *w3 = new jobscompany(adad_ju,Type_ju);
     this->close();
     w3->show();
+    }
 }
-
 
 void jobsuser::on_commandLinkButton_6_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany(adad_ju,Type_ju);
-    this->close();
-    w3->show();
+    if(Type_ju == "P"){
+        QMessageBox::warning(this, "Job User" , "Only companies can enter the desired window.");
+    }
+    else if(Type_ju == "C"){
+        mynetworkcompany *w3 = new mynetworkcompany(adad_ju,Type_ju);
+        this->close();
+        w3->show();
+    }
 }
 

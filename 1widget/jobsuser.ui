@@ -295,7 +295,7 @@ border-bottom-right-radius: 40px;</string>
       <string>PROJOB</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="lineEdit_Search">
      <property name="geometry">
       <rect>
        <x>230</x>
@@ -519,6 +519,16 @@ background-color: rgb(235, 235, 235);</string>
     </property>
     <property name="text">
      <string>your skills :</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>60</y>
+      <width>256</width>
+      <height>0</height>
+     </rect>
     </property>
    </widget>
   </widget>

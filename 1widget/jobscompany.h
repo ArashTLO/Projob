@@ -12,10 +12,12 @@ class jobscompany : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit jobscompany(int number,QString type,QWidget *parent = nullptr);
+    explicit jobscompany(int number, QString type,QWidget *parent = nullptr);
     ~jobscompany();
 
 private slots:
+
+    void searchInDatabase();
 
     void on_accept_clicked(int number,int id_user, int id_job);
 

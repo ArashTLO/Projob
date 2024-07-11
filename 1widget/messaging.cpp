@@ -37,7 +37,7 @@ messaging::messaging(int number, QString type, QString text_message, QWidget *pa
     if(text_message != nullptr){
         ui->textEdit->setText(text_message);
     }
-    ui->frame_3->setGeometry(0,0,786,481);
+    //ui->frame_3->setGeometry(0,0,786,481);
     QSqlDatabase database; // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
     database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("d:\\DB_project.db");
@@ -69,7 +69,7 @@ messaging::messaging(int number, QString type, QString text_message, QWidget *pa
         user->setGeometry(0,0,318,53);
         user->setText(N1);
         user->setFont(font);
-        user->setStyleSheet("border-radius:1px background-color: rgb(255, 255, 255);");
+        user->setStyleSheet("border-radius:1px; background-color: rgb(255, 255, 255);");
 
 
         int receiver = q.value(3).toInt();
@@ -82,6 +82,7 @@ messaging::messaging(int number, QString type, QString text_message, QWidget *pa
         QPixmap image;
         image.loadFromData(imageData);
         imagel->setPixmap(image.scaled(476,180));
+        imagel->setStyleSheet("border-radius:3px;");
         imagel->setScaledContents(true);
 
         group->show();
@@ -103,13 +104,19 @@ void messaging::on_user_clicked(int sender, int receiver){
 
     QList<QTextEdit*> textEdits = ui->frame_3->findChildren<QTextEdit*>();
     for (QTextEdit* textEdit : textEdits) {
-    textEdit->deleteLater();
+        textEdit->deleteLater();
     }
 
     QList<QLabel*> labels = ui->frame_3->findChildren<QLabel*>();
     for (QLabel* label : labels) {
-    label->deleteLater();
+        label->deleteLater();
     }
+
+    QList<QLineEdit*> LineEdits = ui->frame_3->findChildren<QLineEdit*>();
+    for (QLineEdit* LineEdit : LineEdits) {
+        LineEdit->deleteLater();
+    }
+
    QSqlQuery query;
    query.prepare("SELECT DM FROM verificationpage WHERE account_id = :sender");
    query.bindValue(":sender", sender);
@@ -133,7 +140,6 @@ void messaging::on_user_clicked(int sender, int receiver){
 
            ui->frame_3->setMinimumHeight(frameHeight);
 
-
 /////////////////////////////////////////////////////////////////////////
 
             if(postObject["texe_messag"].toString() != nullptr){
@@ -145,9 +151,15 @@ void messaging::on_user_clicked(int sender, int receiver){
                 tex->setReadOnly(true);
                 tex->setFont(font);
 
+                QLineEdit *time_Date = new QLineEdit(tex);
+                time_Date->setGeometry(10,137,200,27);
+                time_Date->setText(postObject["Time_and_Date"].toString());
+                time_Date->setStyleSheet("background-color:transparent; border:1pc solid gray; color: black;");
+
                 frameHeight += 178;
                 currentY += 178;
                 tex->show();
+                time_Date->show();
             }
             if (!postObject["image_messag"].isNull()) {
                 QString imagePath = postObject["image_messag"].toString();
@@ -160,9 +172,16 @@ void messaging::on_user_clicked(int sender, int receiver){
                     imageLabel->setStyleSheet("border-radius: 13px;");
                     imageLabel->setScaledContents(true);
 
-                    frameHeight += 160;
-                    currentY += 160;
+                    QLineEdit *time_Date = new QLineEdit(ui->frame_3);
+                    time_Date->setGeometry(14,currentY + 160,170,27);
+                    time_Date->setStyleSheet("background-color:white; background-image: url(:/new/prefix1/f2a416d0-4ac9-11ee-9715-5d1e9c9f2803.jpg);border:1pc solid gray; color: black;");
+                    time_Date->setText(postObject["Time_and_Date"].toString());
+                    time_Date->setReadOnly(true);
+
+                    frameHeight += 197;
+                    currentY += 197;
                     imageLabel->show();
+                    time_Date->show();
                 } else {
                     qDebug() << "Failed to load image from file: " << imagePath;
                 }
@@ -175,6 +194,7 @@ void messaging::on_user_clicked(int sender, int receiver){
            ui->frame_3->setMinimumHeight(frameHeight);
 
            if(postObject["texe_messag"].toString() != nullptr){
+
            QTextEdit *tex = new QTextEdit(ui->frame_3);
            tex->setText(postObject["texe_messag"].toString());
            tex->setStyleSheet("background-image: url(:/new/prefix1/bc29ca60-4b40-11ee-b6aa-afa6de34b028.jpg);border:2px solid rgb(52, 103, 110);border-radius: 13px; padding: 6px;");
@@ -182,9 +202,15 @@ void messaging::on_user_clicked(int sender, int receiver){
            tex->setReadOnly(true);
            tex->setFont(font);
 
+           QLineEdit *time_Date = new QLineEdit(tex);
+           time_Date->setGeometry(480,137,280,27);
+           time_Date->setText(postObject["Time_and_Date"].toString());
+           time_Date->setStyleSheet("background-color:transparent; border:1pc solid gray; color: black;");
+
            frameHeight += 178;
            currentY += 178;
            tex->show();
+           time_Date->show();
            }
            if (!postObject["image_messag"].isNull()) {
                QString imagePath = postObject["image_messag"].toString();
@@ -197,9 +223,15 @@ void messaging::on_user_clicked(int sender, int receiver){
                    imageLabel->setStyleSheet("border-radius: 13px;");
                    imageLabel->setScaledContents(true);
 
-                   frameHeight += 160;
-                   currentY += 160;
+                   QLineEdit *time_Date = new QLineEdit(ui->frame_3);
+                   time_Date->setGeometry(584,currentY + 160,170,27);
+                   time_Date->setText(postObject["Time_and_Date"].toString());
+                   time_Date->setStyleSheet("background-color:white;background-image: url(:/new/prefix1/f2a416d0-4ac9-11ee-9715-5d1e9c9f2803.jpg); border:1pc solid gray; color: black;");
+
+                   frameHeight += 197;
+                   currentY += 197;
                    imageLabel->show();
+                   time_Date->show();
                } else {
                    qDebug() << "Failed to load image from file: " << imagePath;
                }
@@ -215,7 +247,6 @@ void messaging::on_commandLinkButton_clicked()
     w3->show();
 }
 
-
 void messaging::on_commandLinkButton_2_clicked()
 {
     me *w3 = new me(adad_M,Type_M);
@@ -227,14 +258,13 @@ void messaging::on_commandLinkButton_2_clicked()
 void messaging::on_commandLinkButton_3_clicked()
 {
     if (Type_M == "P"){
-
         jobsuser *w3 = new jobsuser(adad_M,Type_M);
         this->close();
         w3->show();
 
     }
     else if (Type_M == "C") {
-        QMessageBox::warning(this, "home", "Only persons can enter the desired window.");
+        QMessageBox::warning(this, "Messaging", "Only persons can enter the desired window.");
     }
     else{
         QMessageBox::warning(this, "home", "the account is valid.");
@@ -257,25 +287,34 @@ void messaging::on_commandLinkButton_5_clicked()
     this->close();
     w3->show();
     }
-    if(Type_M == "C"){
-        QMessageBox::information(this,"Login","Only individuals can enter this window and companies cannot enter this window.");
-    }
+    if(Type_M == "C")
+        QMessageBox::warning(this, "Messaging", "Only persons can enter the desired window.");
 }
 
 
 void messaging::on_commandLinkButton_7_clicked()
 {
+    if(Type_M == "P"){
+        QMessageBox::warning(this, "Messaging" , "Only companies can enter the desired window.");
+    }
+    else if(Type_M == "C"){
     jobscompany *w3 = new jobscompany(adad_M,Type_M);
     this->close();
     w3->show();
+    }
 }
 
 
 void messaging::on_commandLinkButton_6_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany(adad_M, Type_M);
-    this->close();
-    w3->show();
+    if(Type_M == "P"){
+        QMessageBox::warning(this, "Messaging" , "Only companies can enter the desired window.");
+    }
+    else if(Type_M == "C"){
+        mynetworkcompany *w3 = new mynetworkcompany(adad_M, Type_M);
+        this->close();
+        w3->show();
+    }
 }
 
 void messaging::on_pushButton_clicked()

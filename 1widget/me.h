@@ -16,6 +16,9 @@ public:
     ~me();
 
 private slots:
+
+    void searchInDatabase();
+
     void on_commandLinkButton_clicked();
 
     void on_commandLinkButton_2_clicked();

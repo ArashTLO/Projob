@@ -17,6 +17,8 @@
 #include "content.h"
 #include "QMessageBox"
 #include "viewprofile.h"
+#include "QVariantList"
+#include "QListWidgetItem"
 
 int adad_m_u;
 QString Type_m_u;
@@ -31,6 +33,8 @@ mynetworkuser::mynetworkuser(int number,QString type,QWidget *parent) :
     database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("d:\\DB_project.db");
     database.open();
+
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &mynetworkuser::searchInDatabase);
 
     int box_X = 6,box_Y = 6,box_Y_C = 6;
 
@@ -240,6 +244,45 @@ mynetworkuser::~mynetworkuser()
     delete ui;
 }
 
+void mynetworkuser::searchInDatabase()
+{
+    QString searchUsername = ui->lineEdit->text();
+
+    if (searchUsername.isEmpty()) {
+        ui->listWidget->clear();
+        ui->listWidget->setVisible(false);
+        return;
+    }
+
+    else if(!searchUsername.isEmpty()){
+        ui->listWidget->setVisible(true);
+    }
+    QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
+    database.setDatabaseName("d:\\DB_project.db");
+    database.open();
+
+    QSqlQuery query;
+    query.prepare("SELECT username FROM verificationpage WHERE username LIKE :search");
+    query.bindValue(":search", "%" + searchUsername + "%");
+
+    if (!query.exec()) {
+        qDebug() << "Query failed";
+        return;
+    }
+    ui->listWidget->clear();
+
+    ui->listWidget->setMinimumHeight(0);
+
+    while (query.next()) {
+        QString username = query.value(0).toString();
+        QListWidgetItem *item = new QListWidgetItem(username);
+        ui->listWidget->addItem(item);
+
+        ui->listWidget->setMinimumHeight(qMax(ui->listWidget->minimumHeight(), ui->listWidget->sizeHintForColumn(0) + 20));
+    }
+}
+
+
 void mynetworkuser::on_viewProfile_user_clicked(int applicant){
     viewprofile *w = new viewprofile(applicant, "P");
     w->show();
@@ -407,14 +450,13 @@ void mynetworkuser::on_commandLinkButton_2_clicked()
 void mynetworkuser::on_commandLinkButton_3_clicked()
 {
     if (Type_m_u == "P"){
-
         jobsuser *w3 = new jobsuser(adad_m_u,Type_m_u);
         this->close();
         w3->show();
 
     }
     else if (Type_m_u == "C") {
-        QMessageBox::warning(this, "home", "Only persons can enter the desired window.");
+        QMessageBox::warning(this, "My network User", "Only persons can enter the desired window.");
     }
     else{
         QMessageBox::warning(this, "home", "the account is valid.");
@@ -441,16 +483,26 @@ void mynetworkuser::on_commandLinkButton_5_clicked()
 
 void mynetworkuser::on_commandLinkButton_7_clicked()
 {
+    if(Type_m_u == "P"){
+        QMessageBox::warning(this, "My network Company" , "Only companies can enter the desired window.");
+    }
+    else if(Type_m_u == "C"){
     jobscompany *w3 = new jobscompany(adad_m_u,Type_m_u);
     this->close();
     w3->show();
+    }
 }
 
 
 void mynetworkuser::on_commandLinkButton_6_clicked()
 {
-    mynetworkcompany *w3 = new mynetworkcompany(adad_m_u, Type_m_u);
-    this->close();
-    w3->show();
+    if(Type_m_u == "P"){
+        QMessageBox::warning(this, "My network User" , "Only companies can enter the desired window.");
+    }
+    else if(Type_m_u == "C"){
+        mynetworkcompany *w3 = new mynetworkcompany(adad_m_u, Type_m_u);
+        this->close();
+        w3->show();
+    }
 }
 

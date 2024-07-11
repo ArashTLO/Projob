@@ -23,20 +23,34 @@
 #include "QMessageBox"
 
 int adad_p;
-QString name_p,Type_p;
-QString *n;
+QString name_p,Type_p,text_Repost,image_Repost;
+QByteArray Image_Data;
 post::post(int number,QString type,QString image_repost, QString text_repost, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::post)
 {
+    text_Repost = text_repost;
+    image_Repost = image_repost;
+    connect(new loginpage, SIGNAL(sendData(int)), this, SLOT(receiveData(int)));
+    ui->setupUi(this);
+    QSqlDatabase database;    // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
+    database = QSqlDatabase::addDatabase("QSQLITE");
+    database.setDatabaseName("d:\\DB_project.db");
+    database.open();
+
     Type_p = type;
 
     if(image_repost != nullptr && text_repost != nullptr){
 
         ui->textEdit_post->setText(text_repost);
 
+        Image_Data = QByteArray::fromBase64(image_repost.toUtf8());
 
+        QPixmap image;
+        image.loadFromData(Image_Data);
+        ui->label_3->setPixmap(image.scaled(171,151));
     }
+
     content myContent;
     name_p = myContent.check_type(type,number);
     numberLabel = new QLabel(name_p, this);
@@ -44,12 +58,6 @@ post::post(int number,QString type,QString image_repost, QString text_repost, QW
     numberLabel->setStyleSheet("padding:5px;background-color: rgb(132,183,190);border-radius:13px;border:3px solid rgb(52,103,110);");
     adad_p = number;
 
-    connect(new loginpage, SIGNAL(sendData(int)), this, SLOT(receiveData(int)));
-    ui->setupUi(this);
-    QSqlDatabase database;    // این 4 خط رو باید همیشه وارد کنی وقتی میخوای با اس کیو ال کار کنی
-    database = QSqlDatabase::addDatabase("QSQLITE");
-    database.setDatabaseName("d:\\DB_project.db");
-    database.open();
 }
 
 QString filePath1;
@@ -64,7 +72,21 @@ void post::on_pushButton_clicked()
 
     QFile imageFile(filePath1);
 
-    if (imageFile.open(QIODevice::ReadOnly)) {
+    if(image_Repost != nullptr && text_Repost != nullptr){
+
+        qDebug() << " gfhhhhhhhhhhhhhhhh";
+        if(Type_p == "P"){
+
+        POST mypost(adad_p,text_Repost,Image_Data);
+        mypost.posting_user();
+        }
+        else if(Type_p == "C"){
+
+        POST mypost(adad_p,text_Repost,Image_Data);
+        mypost.posting_company();
+        }
+    }
+    else if (imageFile.open(QIODevice::ReadOnly)) {
         QByteArray imageData = imageFile.readAll();
 
         if(Type_p == "P"){
