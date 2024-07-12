@@ -90,6 +90,7 @@ jobsuser::jobsuser(int number, QString type ,QWidget *parent) :
                 nameline->setGeometry(120, 35, 200, 35);
                 nameline->setStyleSheet("color: rgb(52, 103, 110);background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 10px;");
                 nameline->setFont(font);
+                nameline->setReadOnly(true);
 
                 QPushButton *applying = new QPushButton(groupBox);
                 applying->setGeometry(360,35,115,35);
@@ -120,6 +121,7 @@ jobsuser::jobsuser(int number, QString type ,QWidget *parent) :
                 skillsline->setGeometry(120,135,300,35);
                 skillsline->setStyleSheet("background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 10px;");
                 skillsline->setFont(font);
+                skillsline->setReadOnly(true);
 
                 QLabel *addressl = new QLabel(groupBox);
                 addressl->setText("address :");
@@ -132,6 +134,7 @@ jobsuser::jobsuser(int number, QString type ,QWidget *parent) :
                 addressline->setGeometry(120,185,300,60);
                 addressline->setStyleSheet("background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 10px;");
                 addressline->setFont(font);
+                addressline->setReadOnly(true);
 
                 QLabel *jobtypel = new QLabel(groupBox);
                 jobtypel->setText("type :");
@@ -144,6 +147,7 @@ jobsuser::jobsuser(int number, QString type ,QWidget *parent) :
                 jobtypeline->setGeometry(320,260,100,35);
                 jobtypeline->setStyleSheet("background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 10px;");
                 jobtypeline->setFont(font);
+                jobtypeline->setReadOnly(true);
 
                 QLabel *workplase = new QLabel(groupBox);
                 workplase->setText("work plase :");
@@ -156,6 +160,7 @@ jobsuser::jobsuser(int number, QString type ,QWidget *parent) :
                 workplaseline->setGeometry(120,260,100,35);
                 workplaseline->setStyleSheet("background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 10px;");
                 workplaseline->setFont(font);
+                workplaseline->setReadOnly(true);
 
                 groupBox->show();
                 currentY += 330;

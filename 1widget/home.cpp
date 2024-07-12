@@ -117,6 +117,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         namelabel->setGeometry(50,25,200,35);
         namelabel->setStyleSheet("background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 10px;");
         namelabel->setStyleSheet("padding:6px;background-color:rgb(238,238,238);border-radius:13px;border:2px solid rgb(181, 56, 75);");
+        namelabel->setReadOnly(true);
 
         QLabel *imageLabel = new QLabel(groupBox);
         QPixmap image;
@@ -248,6 +249,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         namelabel->setGeometry(50,25,200,35);
         namelabel->setStyleSheet("background-color: rgb(202, 243, 250);color: rgb(0, 0, 0);border-radius: 10px;padding: 10px;");
         namelabel->setStyleSheet("padding:6px;background-color:rgb(238,238,238);border-radius:13px;border:2px solid rgb(181, 56, 75);");
+        namelabel->setReadOnly(true);
 
         QLabel *imageLabel = new QLabel(groupBox);
         QPixmap image;
@@ -390,6 +392,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         QLineEdit *namelabel = new QLineEdit(name,groupBox);
         namelabel->setGeometry(50,25,200,35);
         namelabel->setStyleSheet("padding:6px;background-color:rgb(238,238,238);border-radius:13px;border:2px solid rgb(181, 56, 75);");
+        namelabel->setReadOnly(true);
 
         QLabel *imageLabel = new QLabel(groupBox);
         QPixmap image;
@@ -519,6 +522,7 @@ home::home(int number,QString type,int number_post_show,QWidget *parent) :
         QLineEdit *namelabel = new QLineEdit(name,groupBox);
         namelabel->setGeometry(50,25,200,35);
         namelabel->setStyleSheet("padding:6px;background-color:rgb(238,238,238);border-radius:13px;border:2px solid rgb(181, 56, 75);");
+        namelabel->setReadOnly(true);
 
         QLabel *imageLabel = new QLabel(groupBox);
         QPixmap image;
